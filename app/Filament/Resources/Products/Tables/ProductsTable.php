@@ -10,6 +10,7 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -18,45 +19,62 @@ class ProductsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('sort_order', 'asc')
             ->columns([
-                TextColumn::make('category.name')
-                    ->searchable(),
+                ImageColumn::make('cover_image')
+                    ->label('Photo')
+                    ->square()
+                    ->defaultImageUrl(asset('images/placeholder.jpg')),
+
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                TextColumn::make('material')
-                    ->searchable(),
+                    ->label('Product Name')
+                    ->description(fn ($record): ?string => $record->material)
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('category.name')
+                    ->label('Category')
+                    ->badge()
+                    ->color('gray')
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('dimensions')
-                    ->searchable(),
-                TextColumn::make('finish')
-                    ->searchable(),
+                    ->label('Dimensions')
+                    ->placeholder('-')
+                    ->toggleable(),
+
                 TextColumn::make('moq')
-                    ->searchable(),
-                ImageColumn::make('cover_image'),
+                    ->label('MOQ')
+                    ->badge()
+                    ->color('info')
+                    ->placeholder('-'),
+
                 IconColumn::make('is_featured')
-                    ->boolean(),
+                    ->label('Featured')
+                    ->boolean()
+                    ->sortable(),
+
                 IconColumn::make('is_active')
-                    ->boolean(),
+                    ->label('Active')
+                    ->boolean()
+                    ->sortable(),
+
                 TextColumn::make('sort_order')
+                    ->label('Order')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('meta_title')
-                    ->searchable(),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
+                    ->label('Added')
+                    ->dateTime('d M Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name'),
                 TrashedFilter::make(),
             ])
             ->recordActions([

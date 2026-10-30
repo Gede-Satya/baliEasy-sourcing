@@ -13,16 +13,38 @@ use App\Models\Quotation;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class QuotationResource extends Resource
 {
     protected static ?string $model = Quotation::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | UnitEnum | null $navigationGroup = 'Sourcing & RFQ';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'Quotations / RFQ';
+
+    protected static ?string $modelLabel = 'Quotation';
+
+    protected static ?string $pluralModelLabel = 'Quotations / RFQ';
+
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
     protected static ?string $recordTitleAttribute = 'reference_no';
+
+    public static function getNavigationBadge(): ?string
+    {
+        $pending = static::getModel()::where('status', 'pending')->count();
+
+        return $pending > 0 ? (string) $pending : null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'warning';
+    }
 
     public static function form(Schema $schema): Schema
     {

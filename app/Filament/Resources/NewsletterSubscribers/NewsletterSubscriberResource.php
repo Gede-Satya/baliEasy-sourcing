@@ -11,16 +11,27 @@ use App\Models\NewsletterSubscriber;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class NewsletterSubscriberResource extends Resource
 {
     protected static ?string $model = NewsletterSubscriber::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | UnitEnum | null $navigationGroup = 'Marketing';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'Newsletter Leads';
+
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-envelope';
 
     protected static ?string $recordTitleAttribute = 'email';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) static::getModel()::count();
+    }
 
     public static function form(Schema $schema): Schema
     {

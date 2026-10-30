@@ -10,6 +10,7 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -18,47 +19,66 @@ class PartnersTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('sort_order', 'asc')
             ->columns([
+                ImageColumn::make('cover_image')
+                    ->label('Photo')
+                    ->square()
+                    ->defaultImageUrl(asset('images/placeholder.jpg')),
+
                 TextColumn::make('type')
-                    ->searchable(),
+                    ->label('Category')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'stay' => 'indigo',
+                        'eat' => 'emerald',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'stay' => 'Where to Stay',
+                        'eat' => 'Where to Eat',
+                        default => ucfirst($state),
+                    })
+                    ->sortable(),
+
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                TextColumn::make('area')
-                    ->searchable(),
+                    ->label('Venue Name')
+                    ->description(fn ($record): ?string => $record->area)
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('price_range')
-                    ->searchable(),
-                TextColumn::make('maps_url')
-                    ->searchable(),
-                TextColumn::make('website_url')
-                    ->searchable(),
-                TextColumn::make('instagram_url')
-                    ->searchable(),
+                    ->label('Price Guide')
+                    ->badge()
+                    ->color('gray'),
+
                 TextColumn::make('phone')
-                    ->searchable(),
-                ImageColumn::make('cover_image'),
+                    ->label('Contact')
+                    ->placeholder('-')
+                    ->toggleable(),
+
                 IconColumn::make('is_featured')
-                    ->boolean(),
+                    ->label('Featured')
+                    ->boolean()
+                    ->sortable(),
+
                 IconColumn::make('is_active')
-                    ->boolean(),
+                    ->label('Active')
+                    ->boolean()
+                    ->sortable(),
+
                 TextColumn::make('sort_order')
+                    ->label('Order')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('type')
+                    ->label('Category')
+                    ->options([
+                        'stay' => 'Where to Stay',
+                        'eat' => 'Where to Eat',
+                    ]),
                 TrashedFilter::make(),
             ])
             ->recordActions([

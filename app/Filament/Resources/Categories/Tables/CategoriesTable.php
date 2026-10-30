@@ -15,25 +15,45 @@ class CategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('sort_order', 'asc')
             ->columns([
-                TextColumn::make('parent.name')
-                    ->searchable(),
+                ImageColumn::make('cover_image')
+                    ->label('Thumbnail')
+                    ->square()
+                    ->defaultImageUrl(asset('images/placeholder.jpg')),
+
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                ImageColumn::make('cover_image'),
+                    ->label('Category Name')
+                    ->description(fn ($record): ?string => $record->slug)
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('parent.name')
+                    ->label('Parent Category')
+                    ->badge()
+                    ->color('gray')
+                    ->placeholder('Top-level'),
+
+                TextColumn::make('products_count')
+                    ->label('Products')
+                    ->counts('products')
+                    ->badge()
+                    ->color('primary')
+                    ->sortable(),
+
+                IconColumn::make('is_active')
+                    ->label('Active')
+                    ->boolean()
+                    ->sortable(),
+
                 TextColumn::make('sort_order')
+                    ->label('Sort')
                     ->numeric()
                     ->sortable(),
-                IconColumn::make('is_active')
-                    ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Last Updated')
+                    ->dateTime('d M Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

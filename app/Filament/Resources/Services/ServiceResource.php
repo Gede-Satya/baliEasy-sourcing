@@ -11,14 +11,20 @@ use App\Models\Service;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | UnitEnum | null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'Services & Value Pillars';
+
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-shield-check';
 
     protected static ?string $recordTitleAttribute = 'title';
 
