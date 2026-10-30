@@ -181,6 +181,27 @@ class AdminPanelTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function test_visitor_overview_widget_renders(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $this->actingAs($admin);
+
+        Livewire::test(\App\Filament\Widgets\VisitorOverviewWidget::class)
+            ->assertSuccessful()
+            ->assertSee('Kunjungan Hari Ini')
+            ->assertSee('Pengunjung Unik Total');
+    }
+
+    public function test_recent_visitors_widget_renders(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $this->actingAs($admin);
+
+        Livewire::test(\App\Filament\Widgets\RecentVisitorsWidget::class)
+            ->assertSuccessful()
+            ->assertSee('Log Kunjungan Langsung (Real-time Visitors Log)');
+    }
+
     public function test_admin_can_access_visitor_analytics_page(): void
     {
         $admin = User::where('email', 'admin@balieasy.com')->first();

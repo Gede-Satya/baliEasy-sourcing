@@ -13,6 +13,11 @@ class VisitorDevicesChart extends ChartWidget
 
     protected ?string $maxHeight = '280px';
 
+    protected int | string | array $columnSpan = [
+        'md' => 1,
+        'xl' => 1,
+    ];
+
     protected function getData(): array
     {
         $desktop = PageView::where('device', 'Desktop')->count();
