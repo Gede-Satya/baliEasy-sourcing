@@ -184,62 +184,36 @@
         <!-- 2. About Us / Why Work With Us Section (#about) -->
         <section id="about" class="py-16 md:py-24 border-b border-stone-200/80">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                    
-                    <!-- Left Anchor Column -->
-                    <div class="lg:col-span-5 flex flex-col justify-start">
-                        <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            {{ __('site.about.eyebrow') }}
-                        </span>
-                        <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-4">
-                            {{ __('site.about.title') }}
-                        </h2>
-                        <h3 class="font-serif text-xl italic text-stone-700 font-normal mb-5">
-                            {{ __('site.about.subtitle') }}
-                        </h3>
-                        <p class="text-stone-600 text-sm leading-relaxed font-light mb-8">
-                            {{ __('site.about.description') }}
-                        </p>
 
-                        <!-- Transparent Highlight Box -->
-                        <div class="bg-[#F2ECE3] p-6 border-l-2 border-stone-900">
-                            <div class="font-serif text-base font-semibold text-stone-900 mb-1">
-                                {{ __('site.about.highlight_title') }}
-                            </div>
-                            <p class="text-xs text-stone-600 leading-relaxed font-light">
-                                {{ __('site.about.highlight_text') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: 4 Value Pillars -->
-                    <div class="lg:col-span-7 space-y-8">
-                        @foreach($services as $index => $service)
-                            @php
-                                $pilTitle = __("site.about.pillars." . ($index + 1) . ".title");
-                                if ($pilTitle === "site.about.pillars." . ($index + 1) . ".title") {
-                                    $pilTitle = $service->title;
-                                }
-                                $pilDesc = __("site.about.pillars." . ($index + 1) . ".description");
-                                if ($pilDesc === "site.about.pillars." . ($index + 1) . ".description") {
-                                    $pilDesc = $service->description;
-                                }
-                            @endphp
-                            <div class="pb-8 border-b border-stone-200 last:border-b-0 last:pb-0">
-                                <span class="text-[10px] font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-1">
-                                    {{ __('site.about.pillar_badge', ['num' => $index + 1]) }}
-                                </span>
-                                <h3 class="font-serif text-2xl text-stone-900 font-medium mb-2">
-                                    {{ $pilTitle }}
-                                </h3>
-                                <p class="text-stone-600 text-sm leading-relaxed font-light">
-                                    {{ $pilDesc }}
-                                </p>
-                            </div>
-                        @endforeach
-                    </div>
-
+                <div class="max-w-2xl mb-12">
+                    <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
+                        {{ __('site.about.eyebrow') }}
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
+                        {{ __('site.about.title') }}
+                    </h2>
+                    <p class="text-stone-600 text-sm md:text-base font-light leading-relaxed">
+                        {{ __('site.about.subtitle') }}
+                    </p>
                 </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+                    @foreach($services as $index => $service)
+                        @php
+                            $key = 'site.about.pillars.' . ($index + 1);
+                            $pilTitle = __("$key.title");
+                            if ($pilTitle === "$key.title") { $pilTitle = $service->title; }
+                            $pilDesc = __("$key.description");
+                            if ($pilDesc === "$key.description") { $pilDesc = $service->description; }
+                        @endphp
+                        <div class="pt-5 border-t border-stone-300">
+                            <span class="font-serif text-sm text-stone-500">0{{ $index + 1 }}</span>
+                            <h3 class="font-serif text-xl text-stone-900 font-medium mt-2 mb-1.5">{{ $pilTitle }}</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed font-light">{{ $pilDesc }}</p>
+                        </div>
+                    @endforeach
+                </div>
+
             </div>
         </section>
 
@@ -324,7 +298,7 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 
                 <!-- Section Header -->
-                <div class="max-w-2xl mb-14">
+                <div class="max-w-2xl mb-12">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
                         {{ __('site.how_it_works.eyebrow') }}
                     </span>
@@ -336,46 +310,22 @@
                     </p>
                 </div>
 
-                <!-- 4 Steps Row -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
                     @foreach($steps as $index => $step)
                         @php
-                            $stepTitle = __("site.how_it_works.steps." . ($index + 1) . ".title");
-                            if ($stepTitle === "site.how_it_works.steps." . ($index + 1) . ".title") {
-                                $stepTitle = $step->title;
-                            }
-                            $stepDesc = __("site.how_it_works.steps." . ($index + 1) . ".description");
-                            if ($stepDesc === "site.how_it_works.steps." . ($index + 1) . ".description") {
-                                $stepDesc = $step->description;
-                            }
+                            $key = 'site.how_it_works.steps.' . ($index + 1);
+                            $stepTitle = __("$key.title");
+                            if ($stepTitle === "$key.title") { $stepTitle = $step->title; }
+                            $stepDesc = __("$key.description");
+                            if ($stepDesc === "$key.description") { $stepDesc = $step->description; }
                         @endphp
-                        <div class="flex flex-col justify-between pt-6 border-t border-stone-200">
-                            <div>
-                                <!-- Step Number -->
-                                <div class="font-serif text-4xl text-stone-400 font-light mb-4">
-                                    0{{ $index + 1 }}
-                                </div>
-
-                                <!-- Step Title -->
-                                <h3 class="font-serif text-xl text-stone-900 font-medium mb-3">
-                                    {{ $stepTitle }}
-                                </h3>
-
-                                <!-- Step Description -->
-                                <p class="text-stone-600 text-xs leading-relaxed font-light mb-6">
-                                    {{ $stepDesc }}
-                                </p>
-                            </div>
-
-                            <!-- Step Stage Tag -->
-                            <div class="pt-3 border-t border-stone-100">
-                                <span class="text-[10px] tracking-[0.16em] uppercase font-semibold text-stone-400">
-                                    {{ __('site.how_it_works.step_badge', ['num' => $index + 1]) }}
-                                </span>
-                            </div>
-                        </div>
+                        <li class="pt-5 border-t border-stone-300">
+                            <span class="font-serif text-3xl text-stone-400 font-light">0{{ $index + 1 }}</span>
+                            <h3 class="font-serif text-xl text-stone-900 font-medium mt-2 mb-1.5">{{ $stepTitle }}</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed font-light">{{ $stepDesc }}</p>
+                        </li>
                     @endforeach
-                </div>
+                </ol>
 
             </div>
         </section>

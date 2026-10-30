@@ -62,24 +62,24 @@ return [
     'how_it_works' => [
         'eyebrow' => 'CARA KERJA KAMI',
         'title' => 'Dari sketsa awal hingga sampai di depan pintu Anda',
-        'subtitle' => 'Alur kerja 4 langkah yang transparan dan memudahkan bagi pembeli luar kota maupun luar negeri.',
+        'subtitle' => 'Empat langkah sederhana, diurus tim kami di Bali.',
         'step_badge' => 'Langkah 0:num',
         'steps' => [
             1 => [
-                'title' => 'Kirimkan Kebutuhan Anda',
-                'description' => 'Kirim foto referensi, sketsa desain, atau jumlah pesanan Anda. Kami konfirmasi kelayakannya dalam 48 jam.',
+                'title' => 'Kirim Kebutuhan',
+                'description' => 'Foto, sketsa, atau jumlah pesanan. Kami balas dalam 48 jam.',
             ],
             2 => [
-                'title' => 'Pemeriksaan Sampel Fisik',
-                'description' => 'Kami hubungkan proyek Anda dengan pengrajin yang tepat dan kirimkan sampel purwarupa untuk disetujui.',
+                'title' => 'Setujui Sampel',
+                'description' => 'Kami pilihkan pengrajin dan kirim purwarupa.',
             ],
             3 => [
-                'title' => 'Inspeksi Kualitas Langsung',
-                'description' => 'Inspektur kami datang langsung ke workshop di setiap tahap penting. Anda menerima laporan foto detail dan uji kelembapan kayu.',
+                'title' => 'Cek Kualitas',
+                'description' => 'Inspeksi langsung dengan laporan foto.',
             ],
             4 => [
-                'title' => 'Pengemasan & Pengiriman',
-                'description' => 'Kami bungkus barang dengan peti standar ekspor, satukan barang dari berbagai pengrajin dalam satu kontainer, dan urus dokumen bea cukai.',
+                'title' => 'Kemas & Kirim',
+                'description' => 'Peti ekspor, satu kontainer, bea cukai beres.',
             ],
         ],
     ],
@@ -103,20 +103,20 @@ return [
         'pillar_badge' => 'KEUNGGULAN 0:num',
         'pillars' => [
             1 => [
-                'title' => 'Workshop Terpilih & Terpercaya',
-                'description' => 'Kami hanya bermitra dengan pengrajin berpengalaman yang mematuhi legalitas kayu (SVLK), kesejahteraan pekerja, dan ketepatan waktu.',
+                'title' => 'Workshop Terpilih',
+                'description' => 'Kayu legal (SVLK) dan pengrajin terpercaya.',
             ],
             2 => [
-                'title' => 'Protokol Inspeksi Berlapis',
-                'description' => 'Uji kadar air kayu, ketahanan sambungan, uji jatuh kemasan ekspor, dan persetujuan foto resolusi tinggi.',
+                'title' => 'Inspeksi Ketat',
+                'description' => 'Kadar air, sambungan, dan kemasan dicek sebelum kirim.',
             ],
             3 => [
-                'title' => 'Komunikasi Cepat & Responsif',
-                'description' => 'Pembaruan langsung via WhatsApp dan email. Jawaban langsung saat Anda membutuhkannya kapan pun.',
+                'title' => 'Komunikasi Jelas',
+                'description' => 'Respons cepat via WhatsApp dan email.',
             ],
             4 => [
-                'title' => 'Konsolidasi Kontainer Lengkap',
-                'description' => 'Pesan dari sepuluh workshop berbeda dan satukan semuanya dalam satu kontainer dari gudang pusat kami di Bali untuk menghemat ongkir.',
+                'title' => 'Satu Kontainer',
+                'description' => 'Banyak workshop, digabung dalam satu pengiriman.',
             ],
         ],
     ],

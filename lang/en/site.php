@@ -62,24 +62,24 @@ return [
     'how_it_works' => [
         'eyebrow' => 'HOW IT WORKS',
         'title' => 'From initial sketch to your warehouse door',
-        'subtitle' => 'A straightforward 4-step process designed for remote buyers, interior designers, and hospitality brands.',
+        'subtitle' => 'Four simple steps, handled by our team in Bali.',
         'step_badge' => 'Step 0:num',
         'steps' => [
             1 => [
                 'title' => 'Send Your Brief',
-                'description' => 'Share your product photos, technical sketches, or target quantities. We evaluate feasibility within 48 hours.',
+                'description' => 'Photos, sketches, or quantities. We reply within 48 hours.',
             ],
             2 => [
-                'title' => 'Review Physical Samples',
-                'description' => 'We match your project with the right makers and ship physical prototypes for your approval before mass production.',
+                'title' => 'Approve Samples',
+                'description' => 'We match the right makers and send prototypes.',
             ],
             3 => [
-                'title' => 'On-Site Quality Checks',
-                'description' => 'Our inspectors visit the workshop at every critical stage. You receive detailed photo reports and moisture readings.',
+                'title' => 'Quality Checks',
+                'description' => 'On-site inspections with photo reports.',
             ],
             4 => [
                 'title' => 'Packed & Shipped',
-                'description' => 'We crate your goods, consolidate multiple makers into one container, and handle customs clearance to your home port.',
+                'description' => 'Export crating, one container, customs handled.',
             ],
         ],
     ],
@@ -103,20 +103,20 @@ return [
         'pillar_badge' => 'WHY WORK WITH US 0:num',
         'pillars' => [
             1 => [
-                'title' => 'Handpicked Workshops',
-                'description' => 'We only partner with established makers who respect legal timber laws (SVLK), artisan welfare, and delivery timelines.',
+                'title' => 'Vetted Workshops',
+                'description' => 'Legal timber (SVLK) and reliable makers only.',
             ],
             2 => [
-                'title' => 'Rigorous Inspection Protocol',
-                'description' => 'Wood moisture content testing, joint strength checks, drop-tested export crating, and high-resolution photo sign-offs.',
+                'title' => 'Strict Inspection',
+                'description' => 'Moisture, joints, and crating checked before shipping.',
             ],
             3 => [
-                'title' => 'Fluent, Fast Communication',
-                'description' => 'Direct WhatsApp and email updates in clear English. Real-time answers when you need them across all time zones.',
+                'title' => 'Clear Communication',
+                'description' => 'Fast replies in English via WhatsApp and email.',
             ],
             4 => [
-                'title' => 'Full Container Consolidation',
-                'description' => 'Order from ten different workshops and ship them all inside one container from our central Bali warehouse.',
+                'title' => 'One Container',
+                'description' => 'Many workshops, consolidated into a single shipment.',
             ],
         ],
     ],

@@ -34,8 +34,8 @@ class HomeController extends Controller
     {
         $settings = Setting::all()->pluck('value', 'key');
         $categories = Category::active()->orderBy('sort_order')->take(4)->get();
-        $steps = HowItWorksStep::orderBy('sort_order')->get();
-        $services = Service::active()->orderBy('sort_order')->get();
+        $steps = HowItWorksStep::orderBy('sort_order')->take(4)->get();
+        $services = Service::active()->orderBy('sort_order')->take(4)->get();
         $partners = Partner::active()->featured()->orderBy('sort_order')->take(2)->get();
 
         return view('home', compact('settings', 'categories', 'steps', 'services', 'partners'));
