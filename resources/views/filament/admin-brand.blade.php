@@ -1,14 +1,13 @@
-<div class="flex items-center gap-3">
-    <div class="w-9 h-9 rounded-md bg-stone-900 text-amber-200 flex items-center justify-center font-serif font-semibold text-sm tracking-wider shadow-sm border border-amber-900/20">
+<div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px;">
+    <div style="width: 36px; height: 36px; background: #1c1917; color: #fde68a; border: 1px solid rgba(217, 119, 6, 0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: serif; font-weight: 700; font-size: 15px; letter-spacing: 1px;">
         BE
     </div>
-    <div class="flex flex-col text-left">
-        <span class="font-serif text-base tracking-[0.16em] font-medium text-stone-900 dark:text-stone-100 uppercase leading-tight">
+    <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
+        <span style="font-family: serif; font-size: 17px; font-weight: 600; letter-spacing: 0.12em; color: #fafaf9; text-transform: uppercase;">
             Bali Easy
         </span>
-        <span class="text-[9px] tracking-[0.28em] font-sans font-semibold text-stone-500 uppercase">
+        <span style="font-size: 9px; font-weight: 600; letter-spacing: 0.25em; color: #a8a29e; text-transform: uppercase;">
             SOURCING PORTAL
         </span>
     </div>
 </div>
-
