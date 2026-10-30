@@ -173,7 +173,7 @@ class HomePageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Contact Bali Easy Sourcing');
-        $response->assertSee('Direct Channels');
+        $response->assertSee('Instant WhatsApp Chat');
         $response->assertSee('Bali Studio &amp; Office', false);
         $response->assertSee('48-Hour Response Commitment');
     }
@@ -184,7 +184,7 @@ class HomePageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Hubungi Bali Easy Sourcing');
-        $response->assertSee('Saluran Komunikasi Langsung');
+        $response->assertSee('Chat WhatsApp Langsung');
         $response->assertSee('Studio &amp; Kantor di Bali', false);
         $response->assertSee('Komitmen Respon 48 Jam');
     }
