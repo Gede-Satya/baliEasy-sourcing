@@ -211,6 +211,9 @@ return [
         'email_direct' => 'Email Resmi Perusahaan',
         'guarantee_title' => 'Komitmen Respon 48 Jam',
         'guarantee_text' => 'Kami meninjau setiap brief desain dan memberikan rincian kelayakan workshop, batas minimum pemesanan (MOQ), serta estimasi waktu pengerjaan dalam 48 jam kerja.',
+        'success_title' => 'Permintaan terkirim.',
+        'error_title' => 'Mohon periksa kembali formulir:',
+        'required_note' => 'Wajib diisi',
     ],
 
     // Bottom CTA

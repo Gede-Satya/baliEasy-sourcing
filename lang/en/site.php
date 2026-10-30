@@ -211,6 +211,9 @@ return [
         'email_direct' => 'Official Email Inquiry',
         'guarantee_title' => '48-Hour Response Commitment',
         'guarantee_text' => 'We review every design brief and provide transparent feedback on workshop feasibility, minimum order quantities (MOQ), and estimated timelines within 48 business hours.',
+        'success_title' => 'Request sent.',
+        'error_title' => 'Please check the form:',
+        'required_note' => 'Required fields',
     ],
 
     // Bottom CTA
