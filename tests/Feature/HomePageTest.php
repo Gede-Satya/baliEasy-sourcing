@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\NewsletterSubscriber;
 use App\Models\Quotation;
+use App\Models\Setting;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -133,5 +134,20 @@ class HomePageTest extends TestCase
             'email' => 'buyer@boutiquehotel.com',
             'is_active' => true,
         ]);
+    }
+
+    public function test_homepage_reflects_custom_settings_live(): void
+    {
+        Setting::where('key', 'site_name')->update(['value' => 'Nusantara Craft Sourcing']);
+        Setting::where('key', 'whatsapp_number')->update(['value' => '+62 877 7777 8888']);
+        Setting::where('key', 'hero_image_caption')->update(['value' => 'Special master artisan carved desk.']);
+
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        $response->assertSee('NUSANTARA CRAFT SOURCING');
+        $response->assertSee('+62 877 7777 8888');
+        $response->assertSee('6287777778888');
+        $response->assertSee('Special master artisan carved desk.');
     }
 }

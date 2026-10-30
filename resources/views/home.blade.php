@@ -10,15 +10,23 @@
                     <!-- Left Hero Content -->
                     <div class="lg:col-span-6 flex flex-col justify-center">
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase mb-4">
-                            {{ __('site.hero.eyebrow') }}
+                            {{ (!empty($settings['hero_eyebrow']) && $settings['hero_eyebrow'] !== 'BALI SOURCING & QUALITY CONTROL') ? $settings['hero_eyebrow'] : __('site.hero.eyebrow') }}
                         </span>
                         
                         <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-stone-900 leading-[1.1] mb-6 font-normal">
-                            {{ __('site.hero.title_part1') }} <span class="italic font-normal">{{ __('site.hero.title_part2') }}</span>
+                            @if(!empty($settings['hero_title']) && $settings['hero_title'] !== 'Source from Indonesia. We make it simple.')
+                                {{ $settings['hero_title'] }}
+                            @else
+                                {{ __('site.hero.title_part1') }} <span class="italic font-normal">{{ __('site.hero.title_part2') }}</span>
+                            @endif
                         </h1>
 
                         <p class="text-stone-600 text-base md:text-lg leading-relaxed mb-8 max-w-xl font-light">
-                            {{ __('site.hero.description') }}
+                            @if(!empty($settings['hero_description']) && $settings['hero_description'] !== 'We find vetted artisan workshops, negotiate honest local prices, and inspect every single item before it ships. You get exceptional craftsmanship without ever leaving your desk.')
+                                {{ $settings['hero_description'] }}
+                            @else
+                                {{ __('site.hero.description') }}
+                            @endif
                         </p>
 
                         <!-- Actions -->
@@ -35,26 +43,26 @@
                         <div class="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-                                    {{ __('site.hero.stats.workshops_num') }}
+                                    {{ $settings['stat_1_number'] ?? __('site.hero.stats.workshops_num') }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ __('site.hero.stats.workshops_label') }}
+                                    {{ $settings['stat_1_label'] ?? __('site.hero.stats.workshops_label') }}
                                 </div>
                             </div>
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-                                    {{ __('site.hero.stats.pricing_num') }}
+                                    {{ $settings['stat_2_number'] ?? __('site.hero.stats.pricing_num') }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ __('site.hero.stats.pricing_label') }}
+                                    {{ $settings['stat_2_label'] ?? __('site.hero.stats.pricing_label') }}
                                 </div>
                             </div>
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-                                    {{ __('site.hero.stats.qc_num') }}
+                                    {{ $settings['stat_3_number'] ?? __('site.hero.stats.qc_num') }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ __('site.hero.stats.qc_label') }}
+                                    {{ $settings['stat_3_label'] ?? __('site.hero.stats.qc_label') }}
                                 </div>
                             </div>
                         </div>
@@ -73,7 +81,7 @@
                             >
                         </div>
                         <p class="mt-3 text-xs text-stone-500 font-serif italic text-left">
-                            {{ __('site.hero.image_caption') }}
+                            {{ (!empty($settings['hero_image_caption']) && $settings['hero_image_caption'] !== 'Master woodcarver shaping seasoned plantation teak in our partner workshop.') ? $settings['hero_image_caption'] : __('site.hero.image_caption') }}
                         </p>
                     </div>
 

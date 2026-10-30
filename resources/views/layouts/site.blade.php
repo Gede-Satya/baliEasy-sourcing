@@ -33,8 +33,8 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="group flex flex-col tracking-wider font-serif">
-                <span class="text-xl md:text-2xl font-bold tracking-[0.12em] text-stone-900">BALI EASY</span>
-                <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-500 uppercase -mt-0.5">SOURCING AGENCY</span>
+                <span class="text-xl md:text-2xl font-bold tracking-[0.12em] text-stone-900">{{ strtoupper($settings['site_name'] ?? 'BALI EASY') }}</span>
+                <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-500 uppercase -mt-0.5">{{ strtoupper($settings['tagline'] ?? 'SOURCING AGENCY') }}</span>
             </a>
 
             <!-- Desktop Nav Links (Ordered matching section flow) -->
@@ -114,8 +114,8 @@
                 <!-- Col 1: Brand Info -->
                 <div class="lg:col-span-4 space-y-4">
                     <a href="{{ route('home') }}" class="flex flex-col tracking-wider font-serif">
-                        <span class="text-xl font-bold tracking-[0.12em] text-white">BALI EASY</span>
-                        <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-400 uppercase">SOURCING AGENCY</span>
+                        <span class="text-xl font-bold tracking-[0.12em] text-white">{{ strtoupper($settings['site_name'] ?? 'BALI EASY') }}</span>
+                        <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-400 uppercase">{{ strtoupper($settings['tagline'] ?? 'SOURCING AGENCY') }}</span>
                     </a>
                     <p class="text-stone-400 leading-relaxed font-light max-w-sm">
                         {{ __('site.footer.description') }}
@@ -123,7 +123,10 @@
                     <div class="text-stone-400 text-xs space-y-1 font-light pt-2">
                         <div>{{ $settings['address'] ?? 'Jl. Pantai Batu Bolong, Canggu, Bali 80361, Indonesia' }}</div>
                         <div>Email: <a href="mailto:{{ $settings['contact_email'] ?? 'hello@balieasysourcing.com' }}" class="text-stone-200 hover:underline">{{ $settings['contact_email'] ?? 'hello@balieasysourcing.com' }}</a></div>
-                        <div>WhatsApp: <span class="text-stone-200">{{ $settings['whatsapp_number'] ?? '+62 812 3456 7890' }}</span></div>
+                        <div>WhatsApp: <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="text-stone-200 hover:underline">{{ $settings['whatsapp_number'] ?? '+62 812 3456 7890' }}</a></div>
+                        @if(!empty($settings['instagram_url']))
+                            <div>Instagram: <a href="{{ $settings['instagram_url'] }}" target="_blank" rel="noopener noreferrer" class="text-stone-200 hover:underline">{{ $settings['instagram_url'] }}</a></div>
+                        @endif
                     </div>
                 </div>
 
@@ -194,7 +197,7 @@
             <!-- Bottom Copyright & Policies -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-stone-500 text-[11px] gap-4">
                 <div>
-                    &copy; {{ date('Y') }} {{ __('site.footer.copyright') }}
+                    &copy; {{ date('Y') }} {{ $settings['site_name'] ?? 'Bali Easy Sourcing' }}. {{ __('site.footer.copyright') }}
                 </div>
                 <div class="flex items-center space-x-6">
                     <a href="{{ url('/admin') }}" class="hover:text-stone-300 transition-colors">{{ __('site.footer.staff_login') }}</a>

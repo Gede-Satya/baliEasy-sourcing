@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\Settings\Pages\EditSetting;
 use App\Filament\Widgets\LatestQuotations;
 use App\Filament\Widgets\QuotationStatusChart;
 use App\Filament\Widgets\StatsOverview;
+use App\Models\Setting;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -108,5 +110,24 @@ class AdminPanelTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Quotations / RFQ', false);
+    }
+
+    public function test_admin_can_update_setting(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $setting = Setting::where('key', 'whatsapp_number')->first();
+
+        Livewire::actingAs($admin)
+            ->test(EditSetting::class, ['record' => $setting->getRouteKey()])
+            ->fillForm([
+                'value' => '+62 899 9999 9999',
+            ])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $this->assertDatabaseHas('settings', [
+            'key' => 'whatsapp_number',
+            'value' => '+62 899 9999 9999',
+        ]);
     }
 }
