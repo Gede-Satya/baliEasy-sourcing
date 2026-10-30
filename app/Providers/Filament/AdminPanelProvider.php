@@ -34,6 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Bali Easy Sourcing')
             ->brandLogo(fn () => view('filament.admin-brand'))
             ->brandLogoHeight('2.4rem')
+            ->darkMode(false)
             ->colors([
                 'primary' => Color::Amber,
                 'gray' => Color::Stone,

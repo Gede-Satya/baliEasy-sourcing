@@ -3,10 +3,10 @@
         BE
     </div>
     <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-        <span style="font-family: serif; font-size: 17px; font-weight: 600; letter-spacing: 0.12em; color: #fafaf9; text-transform: uppercase;">
+        <span style="font-family: serif; font-size: 17px; font-weight: 600; letter-spacing: 0.12em; color: #1c1917; text-transform: uppercase;">
             Bali Easy
         </span>
-        <span style="font-size: 9px; font-weight: 600; letter-spacing: 0.25em; color: #a8a29e; text-transform: uppercase;">
+        <span style="font-size: 9px; font-weight: 600; letter-spacing: 0.25em; color: #78716c; text-transform: uppercase;">
             SOURCING PORTAL
         </span>
     </div>
