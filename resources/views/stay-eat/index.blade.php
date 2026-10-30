@@ -33,10 +33,10 @@
                         {{ __('site.stay_eat_page.filter_all') }} ({{ count($stays) + count($eats) }})
                     </a>
                     <a href="{{ route('stay-eat', ['type' => 'stay', 'area' => $area]) }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ $type === 'stay' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
-                        🏨 {{ __('site.stay_eat_page.filter_stay') }} ({{ count($stays) }})
+                        {{ __('site.stay_eat_page.filter_stay') }} ({{ count($stays) }})
                     </a>
                     <a href="{{ route('stay-eat', ['type' => 'eat', 'area' => $area]) }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ $type === 'eat' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
-                        🍽️ {{ __('site.stay_eat_page.filter_eat') }} ({{ count($eats) }})
+                        {{ __('site.stay_eat_page.filter_eat') }} ({{ count($eats) }})
                     </a>
                 </div>
 
@@ -117,7 +117,7 @@
                                     <span aria-hidden="true">&nearr;</span>
                                 </a>
                             @else
-                                <span class="text-stone-400 font-light">&mdash;</span>
+                                <span class="text-stone-400 font-light">-</span>
                             @endif
 
                             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}?text={{ urlencode('Hello Bali Easy Sourcing, I am planning a sourcing visit to Bali and would like recommendations for ' . $pName) }}" target="_blank" rel="noopener noreferrer" class="text-stone-500 hover:text-stone-900 font-medium transition-colors">

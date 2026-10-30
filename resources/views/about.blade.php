@@ -50,7 +50,7 @@
                             "{{ __('site.about.subtitle') }}"
                         </p>
                         <span class="text-xs font-sans tracking-wider uppercase text-stone-600 font-medium">
-                            &mdash; {{ $settings['site_name'] ?? 'Bali Easy Sourcing' }} Principles
+                            {{ $settings['site_name'] ?? 'Bali Easy Sourcing' }} Principles
                         </span>
                     </div>
                 </div>
