@@ -30,21 +30,21 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 2. Default Settings
+        // 2. Default Settings (Attractive, Human & Engaging Copy)
         $defaultSettings = [
             'site_name' => 'Bali Easy Sourcing',
-            'tagline' => 'Source from Indonesia. We make it easy.',
+            'tagline' => 'Source from Indonesia. We make it simple.',
             'hero_eyebrow' => 'BALI SOURCING & QUALITY CONTROL AGENCY',
-            'hero_title' => 'Source from Indonesia. We make it easy.',
-            'hero_description' => 'Your trusted boots-on-the-ground sourcing agency in Bali. We connect international buyers, interior designers, and hospitality brands directly with vetted Indonesian artisans and ethical manufacturers.',
+            'hero_title' => 'Source from Indonesia. We make it simple.',
+            'hero_description' => 'We find vetted artisan workshops, negotiate honest local prices, and inspect every single item before it ships. You get exceptional craftsmanship without ever leaving your desk.',
             'hero_image' => 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80',
-            'hero_image_caption' => 'Handcrafted solid teak furniture production in our partner workshop.',
-            'stat_1_number' => '100+ Verified',
-            'stat_1_label' => 'Local Workshops',
-            'stat_2_number' => 'Direct Pricing',
-            'stat_2_label' => 'No Hidden Markups',
-            'stat_3_number' => 'End-to-End',
-            'stat_3_label' => 'QC & Global Shipping',
+            'hero_image_caption' => 'Master woodcarver shaping seasoned plantation teak in our partner workshop.',
+            'stat_1_number' => '100+',
+            'stat_1_label' => 'Vetted Workshops',
+            'stat_2_number' => '0%',
+            'stat_2_label' => 'Hidden Markups',
+            'stat_3_number' => '100%',
+            'stat_3_label' => 'Inspected Before Shipping',
             'whatsapp_number' => '+62 812 3456 7890',
             'contact_email' => 'hello@balieasysourcing.com',
             'rfq_notification_email' => 'rfq@balieasysourcing.com',
@@ -63,30 +63,30 @@ class DatabaseSeeder extends Seeder
         // 3. Product Categories
         $categories = [
             [
-                'name' => 'Solid Teak & Reclaimed Wood',
+                'name' => 'Solid Teak & Reclaimed Timber',
                 'slug' => 'solid-wood',
-                'description' => 'Sustainably harvested reclaimed and plantation teak furniture with certified legal timber.',
+                'description' => 'Bespoke dining tables, outdoor daybeds, and architectural beams crafted from legal plantation and reclaimed teak.',
                 'cover_image' => 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80',
                 'sort_order' => 1,
             ],
             [
-                'name' => 'Woven Rattan & Natural Fibers',
+                'name' => 'Natural Rattan & Basketry',
                 'slug' => 'fibers-weaves',
-                'description' => 'Handwoven chairs, lighting, and decor made by generational artisans in Indonesian weaving communities.',
+                'description' => 'Lounge chairs, pendant lighting, and storage baskets handwoven from raw rattan, seagrass, and water hyacinth.',
                 'cover_image' => 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
                 'sort_order' => 2,
             ],
             [
-                'name' => 'Natural Stone, Terrazzo & Ceramics',
+                'name' => 'Volcanic Stone & Terrazzo',
                 'slug' => 'stone-terrazzo',
-                'description' => 'Custom carved river stone basins, architectural wall panels, and polished terrazzo bathroomware.',
+                'description' => 'Hand-carved river stone bathtubs, temple stone reliefs, and custom polished terrazzo fixtures for luxury villas.',
                 'cover_image' => 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
                 'sort_order' => 3,
             ],
             [
-                'name' => 'Textiles, Linens & Homeware',
+                'name' => 'Linen, Batik & Resort Textiles',
                 'slug' => 'textiles-linen',
-                'description' => 'Handspun botanical linens, traditional batik fabrics, cushion covers, and private label resort wear.',
+                'description' => 'Botanical-dyed linen homewares, hand-stamped traditional batik, cushion covers, and private-label resort wear.',
                 'cover_image' => 'https://images.unsplash.com/photo-1606744824163-985d376605aa?auto=format&fit=crop&w=800&q=80',
                 'sort_order' => 4,
             ],
@@ -108,23 +108,23 @@ class DatabaseSeeder extends Seeder
         // 4. How It Works Steps
         $steps = [
             [
-                'title' => 'Submit Your Request',
-                'description' => 'Send us your product photos, dimensions, target quantities, and material preferences through our simple quote form.',
+                'title' => 'Send Your Brief',
+                'description' => 'Share your product photos, technical sketches, or target quantities. We evaluate feasibility within 48 hours.',
                 'sort_order' => 1,
             ],
             [
-                'title' => 'Supplier Matching & Sampling',
-                'description' => 'We connect your brief with trusted specialized manufacturers and create physical sample prototypes for your approval.',
+                'title' => 'Review Physical Samples',
+                'description' => 'We match your project with the right makers and ship physical prototypes for your approval before mass production.',
                 'sort_order' => 2,
             ],
             [
-                'title' => 'Production & Quality Control',
-                'description' => 'Our local inspectors visit the workshops during manufacturing to perform quality checks and send you detailed photo reports.',
+                'title' => 'On-Site Quality Checks',
+                'description' => 'Our inspectors visit the workshop at every critical stage. You receive detailed photo reports and moisture readings.',
                 'sort_order' => 3,
             ],
             [
-                'title' => 'Packaging & Global Shipping',
-                'description' => 'Export-grade packaging, fumigation, container consolidation at our Bali warehouse, and customs documentation.',
+                'title' => 'Packed & Shipped',
+                'description' => 'We crate your goods, consolidate multiple makers into one container, and handle customs clearance to your home port.',
                 'sort_order' => 4,
             ],
         ];
@@ -136,29 +136,29 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // 5. Why Choose Us / Services
+        // 5. Why Work With Us
         $pillars = [
             [
-                'title' => 'Verified Local Workshops',
-                'description' => 'We personally inspect every manufacturer, check legal timber licenses (SVLK), and ensure fair working conditions.',
+                'title' => 'Handpicked Workshops',
+                'description' => 'We only partner with established makers who respect legal timber laws (SVLK), artisan welfare, and delivery timelines.',
                 'icon' => 'shield-check',
                 'sort_order' => 1,
             ],
             [
-                'title' => 'Strict Multi-Stage Quality Control',
-                'description' => 'Wood moisture testing, structural integrity checks, finish consistency, and drop-tested export packaging.',
+                'title' => 'Rigorous Inspection Protocol',
+                'description' => 'Wood moisture content testing, joint strength checks, drop-tested export crating, and high-resolution photo sign-offs.',
                 'icon' => 'check-badge',
                 'sort_order' => 2,
             ],
             [
-                'title' => 'Clear English & Local Communication',
-                'description' => 'Fluent English-speaking project managers who understand international design standards, tolerances, and deadlines.',
+                'title' => 'Fluent, Fast Communication',
+                'description' => 'Direct WhatsApp and email updates in clear English. Real-time answers when you need them across all time zones.',
                 'icon' => 'chat-bubble-left-right',
                 'sort_order' => 3,
             ],
             [
-                'title' => 'Container Consolidation & Shipping',
-                'description' => 'Combine orders from multiple workshops into a single shipping container at our central warehouse to save freight costs.',
+                'title' => 'Full Container Consolidation',
+                'description' => 'Order from ten different workshops and ship them all inside one container from our central Bali warehouse.',
                 'icon' => 'truck',
                 'sort_order' => 4,
             ],
@@ -171,13 +171,13 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // 6. Partners (Stay & Eat in Bali)
+        // 6. Where to Stay & Eat
         $partners = [
             [
                 'type' => Partner::TYPE_STAY,
                 'name' => 'Hideout Bamboo Estate',
                 'slug' => 'hideout-bamboo-estate',
-                'description' => 'Eco-luxury bamboo villa surrounded by scenic rice terraces. A favorite retreat for visiting interior designers and architects.',
+                'description' => 'An iconic eco-luxury bamboo villa nestled between quiet jungle valleys and rice terraces. The perfect retreat while exploring artisanal workshops in Gianyar.',
                 'area' => 'Ubud, Gianyar',
                 'price_range' => '$$$',
                 'cover_image' => 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
@@ -190,7 +190,7 @@ class DatabaseSeeder extends Seeder
                 'type' => Partner::TYPE_EAT,
                 'name' => 'Kilo Kitchen Bali',
                 'slug' => 'kilo-kitchen-bali',
-                'description' => 'Architectural dining venue featuring custom local terrazzo and teak interiors, serving contemporary Southeast Asian dishes.',
+                'description' => 'Modern industrial architecture paired with locally crafted terrazzo and teak interiors. Great food, great design inspiration.',
                 'area' => 'Seminyak, Badung',
                 'price_range' => '$$',
                 'cover_image' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',

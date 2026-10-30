@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $settings['site_name'] ?? 'Bali Easy Sourcing' }} | Sourcing &amp; Quality Control Agency in Bali</title>
-    <meta name="description" content="{{ $settings['hero_description'] ?? 'Your trusted boots-on-the-ground sourcing and quality control agency in Bali, Indonesia.' }}">
+    <meta name="description" content="{{ $settings['hero_description'] ?? 'Your trusted boots-on-the-ground sourcing agency in Bali. We connect international buyers with vetted Indonesian artisans.' }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 </head>
 <body class="bg-[#FAF8F5] text-stone-900 antialiased font-sans selection:bg-stone-900 selection:text-white">
 
-    <!-- Top Notification / Status Banner (if Quote submitted) -->
+    <!-- Top Notification Banner (if Quote submitted) -->
     @if(session('rfq_success'))
         <div id="quote-success" class="bg-stone-900 text-stone-50 px-6 py-4 text-center text-sm font-medium sticky top-0 z-50 border-b border-stone-800 flex items-center justify-center gap-3">
             <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -36,7 +36,7 @@
                 <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-500 uppercase -mt-0.5">SOURCING AGENCY</span>
             </a>
 
-            <!-- Desktop Nav Links (Standard & Familiar) -->
+            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center space-x-7 text-xs font-medium uppercase tracking-[0.16em] text-stone-600" aria-label="Main Navigation">
                 <a href="#home" class="hover:text-stone-950 transition-colors">Home</a>
                 <a href="#about" class="hover:text-stone-950 transition-colors">About Us</a>
@@ -96,11 +96,11 @@
                         </span>
                         
                         <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-stone-900 leading-[1.1] mb-6 font-normal">
-                            Source from Indonesia. <span class="italic font-normal">We make it easy.</span>
+                            Source from Indonesia. <span class="italic font-normal">Without the headache.</span>
                         </h1>
 
                         <p class="text-stone-600 text-base md:text-lg leading-relaxed mb-8 max-w-xl font-light">
-                            {{ $settings['hero_description'] ?? 'Your trusted boots-on-the-ground sourcing agency in Bali. We connect international buyers, interior designers, and hospitality brands directly with vetted Indonesian artisans and ethical manufacturers.' }}
+                            {{ $settings['hero_description'] ?? 'We find vetted artisan workshops, negotiate honest local prices, and inspect every single item before it ships. You get exceptional craftsmanship without ever leaving your desk.' }}
                         </p>
 
                         <!-- Actions -->
@@ -116,27 +116,27 @@
                         <!-- Trust Metrics / Stats -->
                         <div class="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
                             <div>
-                                <div class="font-serif text-xl sm:text-2xl font-bold text-stone-900">
-                                    {{ $settings['stat_1_number'] ?? '100+ Verified' }}
+                                <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
+                                    {{ $settings['stat_1_number'] ?? '100+' }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ $settings['stat_1_label'] ?? 'Local Workshops' }}
+                                    {{ $settings['stat_1_label'] ?? 'Vetted Workshops' }}
                                 </div>
                             </div>
                             <div>
-                                <div class="font-serif text-xl sm:text-2xl font-bold text-stone-900">
-                                    {{ $settings['stat_2_number'] ?? 'Direct Pricing' }}
+                                <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
+                                    {{ $settings['stat_2_number'] ?? '0%' }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ $settings['stat_2_label'] ?? 'No Hidden Markups' }}
+                                    {{ $settings['stat_2_label'] ?? 'Hidden Markups' }}
                                 </div>
                             </div>
                             <div>
-                                <div class="font-serif text-xl sm:text-2xl font-bold text-stone-900">
-                                    {{ $settings['stat_3_number'] ?? 'End-to-End' }}
+                                <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
+                                    {{ $settings['stat_3_number'] ?? '100%' }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ $settings['stat_3_label'] ?? 'QC & Global Shipping' }}
+                                    {{ $settings['stat_3_label'] ?? 'Inspected Before Shipping' }}
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                         <div class="relative bg-stone-100 overflow-hidden shadow-sm">
                             <img 
                                 src="{{ $settings['hero_image'] ?? 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80' }}" 
-                                alt="Skilled artisan sculpting solid teak wood furniture in local Indonesian workshop" 
+                                alt="Master woodcarver shaping seasoned plantation teak in traditional Indonesian workshop" 
                                 class="w-full h-auto aspect-4/5 object-cover object-center"
                                 width="640" 
                                 height="800"
@@ -155,7 +155,7 @@
                             >
                         </div>
                         <p class="mt-3 text-xs text-stone-500 font-serif italic text-left">
-                            {{ $settings['hero_image_caption'] ?? 'Handcrafted solid teak furniture production in our partner workshop.' }}
+                            {{ $settings['hero_image_caption'] ?? 'Master woodcarver shaping seasoned plantation teak in our partner workshop.' }}
                         </p>
                     </div>
 
@@ -171,14 +171,14 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-stone-200 gap-6">
                     <div>
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            SOURCING DIRECTORY
+                            WHAT WE SOURCE
                         </span>
                         <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal">
-                            Product Categories
+                            Curated Indonesian Craftsmanship
                         </h2>
                     </div>
                     <p class="text-stone-600 text-sm md:text-base max-w-md font-light leading-relaxed">
-                        From handcrafted solid wood to natural woven fibers, explore our main sourcing categories across Bali and Java.
+                        Direct access to master woodworkers, stone carvers, weavers, and textile studios across Bali and Java.
                     </p>
                 </div>
 
@@ -236,13 +236,13 @@
                 <!-- Section Header -->
                 <div class="max-w-2xl mb-14">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                        OUR PROCESS
+                        HOW IT WORKS
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
-                        How It Works
+                        From initial sketch to your warehouse door
                     </h2>
                     <p class="text-stone-600 text-sm md:text-base font-light leading-relaxed">
-                        A clear and transparent step-by-step sourcing process from initial idea to worldwide delivery.
+                        A straightforward 4-step process designed for remote buyers, interior designers, and hospitality brands.
                     </p>
                 </div>
 
@@ -286,19 +286,19 @@
                 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
                     <div class="max-w-2xl">
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-600 uppercase block mb-2">
-                            CUSTOM ORDERS &amp; HOSPITALITY PROJECTS
+                            CUSTOM &amp; HOSPITALITY PROJECTS
                         </span>
                         <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-stone-950 font-normal mb-3">
-                            Looking for custom products or large hospitality orders?
+                            Furnishing a villa, boutique resort, or retail brand?
                         </h2>
                         <p class="text-stone-700 text-sm sm:text-base font-light leading-relaxed">
-                            Whether you are outfitting a boutique villa, hotel, restaurant, or retail store, our team in Bali handles negotiation, sample development, and quality inspections directly with local artisans.
+                            Custom dimensions, special timber finishes, or mixed-material assemblies. If Indonesian artisans can make it, we will source, inspect, and ship it for you.
                         </p>
                     </div>
 
                     <div class="shrink-0">
                         <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
-                            Get a Custom Quote
+                            Tell Us About Your Project
                         </a>
                     </div>
                 </div>
@@ -313,25 +313,25 @@
                     <!-- Left Anchor Column -->
                     <div class="lg:col-span-5 flex flex-col justify-start">
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            ABOUT BALI EASY SOURCING
+                            WHY CHOOSE US
                         </span>
                         <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-4">
-                            Why Work With Us
+                            Your eyes, ears, and hands in Bali
                         </h2>
                         <h3 class="font-serif text-xl italic text-stone-700 font-normal mb-5">
-                            Boots on the ground. Complete clarity.
+                            No language barriers. No surprise defects. No mystery markups.
                         </h3>
                         <p class="text-stone-600 text-sm leading-relaxed font-light mb-8">
-                            Sourcing overseas often brings language barriers, quality inconsistencies, and lack of transparency. We act as your dedicated local procurement office in Bali and Java.
+                            Buying overseas can feel like a gamble when you cannot inspect goods in person. We act as your dedicated local team on the ground, walking the factory floors, testing wood moisture, and protecting your investment from day one.
                         </p>
 
                         <!-- Transparent Highlight Box -->
                         <div class="bg-[#F2ECE3] p-6 border-l-2 border-stone-900">
                             <div class="font-serif text-base font-semibold text-stone-900 mb-1">
-                                Transparent Direct Pricing
+                                100% Transparent Direct Pricing
                             </div>
                             <p class="text-xs text-stone-600 leading-relaxed font-light">
-                                We operate on a clear service fee model. You pay real workshop prices with no hidden agent markups.
+                                You pay the actual workshop production cost. We charge a flat, transparent service fee for our sourcing, QC, and logistics management.
                             </p>
                         </div>
                     </div>
@@ -341,7 +341,7 @@
                         @foreach($services as $index => $service)
                             <div class="pb-8 border-b border-stone-200 last:border-b-0 last:pb-0">
                                 <span class="text-[10px] font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-1">
-                                    SERVICE ADVANTAGE 0{{ $index + 1 }}
+                                    WHY WORK WITH US 0{{ $index + 1 }}
                                 </span>
                                 <h3 class="font-serif text-2xl text-stone-900 font-medium mb-2">
                                     {{ $service->title }}
@@ -364,13 +364,13 @@
                 <!-- Section Header -->
                 <div class="max-w-xl mb-12">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                        VISITING BALI
+                        VISITING BALI?
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-2">
                         Where to Stay &amp; Where to Eat
                     </h2>
                     <p class="text-stone-600 text-sm font-light">
-                        Our simple, vetted recommendations for clients visiting Bali on workshop inspection trips.
+                        Planning an inspection trip? Here are two of our favorite vetted spots in Bali.
                     </p>
                 </div>
 
@@ -391,7 +391,7 @@
                                     >
                                 </div>
 
-                                <!-- Simple Label: Where to Stay / Where to Eat -->
+                                <!-- Label: Where to Stay / Where to Eat -->
                                 <div class="text-[11px] font-semibold tracking-[0.18em] text-stone-500 uppercase mb-2">
                                     {{ $partner->type === 'stay' ? 'Where to Stay' : 'Where to Eat' }} &middot; {{ $partner->area }}
                                 </div>
@@ -427,13 +427,13 @@
                 
                 <div class="text-center mb-12">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                        GET IN TOUCH
+                        START A CONVERSATION
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
-                        Request a Quote / Contact Us
+                        Tell us what you want to make
                     </h2>
                     <p class="text-stone-600 text-sm sm:text-base font-light max-w-xl mx-auto">
-                        Share your product requirements, target quantities, and timeline. Our Bali sourcing team will evaluate workshop availability and reply within 48 hours.
+                        Got a mood board, a sketch, or an order list? Send it over. We will assess workshop availability and reply with a transparent quote in 48 hours.
                     </p>
                 </div>
 
@@ -552,14 +552,14 @@
                     <!-- Project Scope & Description -->
                     <div>
                         <label for="description" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                            Product Description &amp; Specifications <span class="text-red-500">*</span>
+                            Project Details &amp; Specifications <span class="text-red-500">*</span>
                         </label>
                         <textarea 
                             id="description" 
                             name="description" 
                             rows="4" 
                             required 
-                            placeholder="Describe your desired items, materials, dimensions, finishes, or custom designs..."
+                            placeholder="Tell us what you want to produce: product types, materials, target dimensions, finishes, or custom designs..."
                             class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                         >{{ old('description') }}</textarea>
                     </div>
@@ -567,7 +567,7 @@
                     <!-- Submit Button -->
                     <div class="pt-2">
                         <button type="submit" class="w-full py-4 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
-                            Send Quote Request
+                            Send My Sourcing Request
                         </button>
                     </div>
                 </form>
@@ -579,23 +579,23 @@
         <section class="py-20 md:py-28 bg-[#181614] text-stone-100 border-t border-stone-900">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <span class="text-xs font-semibold tracking-[0.22em] text-stone-400 uppercase block mb-3">
-                    START YOUR SOURCING JOURNEY
+                    READY TO START?
                 </span>
                 
                 <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-normal mb-6">
-                    Ready to source from Indonesia?
+                    Let us build your next collection in Indonesia.
                 </h2>
 
                 <p class="text-stone-300 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10">
-                    Tell us about your project requirements. Receive a comprehensive vendor feasibility report and transparent cost breakdown within 48 hours.
+                    Zero commitment to inquire. Send your ideas today and see how simple sourcing in Bali can be.
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center gap-4">
                     <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-100 transition-colors">
-                        Request a Quote
+                        Request a Free Quote
                     </a>
                     <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 border border-stone-600 text-stone-200 text-xs font-medium uppercase tracking-[0.18em] hover:border-white hover:text-white transition-colors">
-                        WhatsApp Us Directly
+                        Chat on WhatsApp
                     </a>
                 </div>
             </div>
