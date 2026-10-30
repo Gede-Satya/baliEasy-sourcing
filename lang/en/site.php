@@ -186,5 +186,58 @@ return [
         'terms' => 'Terms of Service',
         'privacy' => 'Privacy Policy',
     ],
+
+    // Dedicated About Us Page
+    'about_page' => [
+        'breadcrumb' => 'About Us',
+        'hero_eyebrow' => 'OUR STORY & PURPOSE',
+        'hero_title' => 'Connecting Global Vision with Balinese Craftsmanship',
+        'hero_subtitle' => 'Founded in Canggu, Bali Easy Sourcing is a premier procurement and quality control agency. We represent international interior designers, architects, and hospitality brands directly on the ground.',
+        
+        'story_badge' => 'THE FOUNDING VISION',
+        'story_title' => 'Built out of a genuine need for transparency and reliability',
+        'story_p1' => "For decades, Bali has been recognized as one of the world's most vibrant epicenters for bespoke furniture, organic homewares, and architectural stone. Yet, remote buyers regularly faced language barriers, fluctuating workshop quotes, unpredictable timber moisture, and logistics delays.",
+        'story_p2' => 'Bali Easy Sourcing was created to solve this. Acting as your dedicated representative on the island, we visit the workshops, conduct technical joinery tests, negotiate fair producer-direct prices, and consolidate orders into secure global container shipments.',
+        
+        'pillars_badge' => 'WHAT GUIDES US',
+        'pillars_title' => 'Our Core Principles',
+        'pillars' => [
+            1 => [
+                'title' => 'Artisan Respect & Fair Pay',
+                'desc' => 'We partner directly with family-run master workshops, ensuring dignified wages, safe conditions, and legal timber certification (SVLK).',
+            ],
+            2 => [
+                'title' => 'Zero Hidden Markups',
+                'desc' => 'Complete visibility on raw production costs. We charge an honest, flat management fee with zero secret commissions.',
+            ],
+            3 => [
+                'title' => 'Uncompromising Inspection',
+                'desc' => 'Every single piece is personally checked by our quality team for moisture content, structure strength, and export packaging.',
+            ],
+            4 => [
+                'title' => 'Seamless Global Freight',
+                'desc' => 'From multiple artisan studios across Bali and Java into one consolidated container directly to your destination port.',
+            ],
+        ],
+
+        'process_badge' => 'ON-SITE PRESENCE',
+        'process_title' => 'How We Protect Your Sourcing Investment',
+        'process_desc' => 'We do not simply place orders via phone. Our inspectors travel across Gianyar, Ubud, Jepara, and Tabanan to personally oversee every production milestone.',
+
+        'stats' => [
+            'artisans' => '500+',
+            'artisans_label' => 'Verified Artisan Workshops',
+            'inspection' => '100%',
+            'inspection_label' => 'On-Site Inspected',
+            'countries' => '18+',
+            'countries_label' => 'Export Destinations',
+            'turnaround' => '48h',
+            'turnaround_label' => 'Initial Assessment',
+        ],
+
+        'cta_title' => 'Have a project in mind for Bali?',
+        'cta_desc' => 'Whether you need bespoke furniture for a luxury villa or a full container of hospitality decor, our team is ready to guide you.',
+        'cta_btn' => 'Start Sourcing With Us',
+    ],
 ];
 

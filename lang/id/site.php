@@ -186,5 +186,58 @@ return [
         'terms' => 'Ketentuan Layanan',
         'privacy' => 'Kebijakan Privasi',
     ],
+
+    // Dedicated About Us Page
+    'about_page' => [
+        'breadcrumb' => 'Tentang Kami',
+        'hero_eyebrow' => 'CERITA & TUJUAN KAMI',
+        'hero_title' => 'Menghubungkan Desain Global dengan Keahlian Pengrajin Bali',
+        'hero_subtitle' => 'Didirikan di Canggu, Bali Easy Sourcing adalah agensi pengadaan dan kontrol kualitas terpercaya. Kami mewakili desainer interior, arsitek, dan pengembang vila internasional langsung di lapangan.',
+        
+        'story_badge' => 'VISI AWAL KAMI',
+        'story_title' => 'Lahir dari kebutuhan nyata akan transparansi dan keandalan',
+        'story_p1' => 'Selama puluhan tahun, Bali dikenal sebagai pusat dunia untuk furnitur kustom, kerajinan dekorasi alami, dan batu arsitektural. Namun, pembeli jarak jauh sering menghadapi kendala bahasa, harga yang tidak pasti, kelembapan kayu yang tidak terukur, dan risiko pengiriman.',
+        'story_p2' => 'Bali Easy Sourcing hadir menjawab kendala tersebut. Bertindak sebagai tim perwakilan lokal Anda di Bali, kami mengunjungi workshop pengrajin, menguji kekuatan sambungan kayu, menegosiasikan harga langsung pengrajin yang adil, serta menggabungkan pesanan ke dalam kontainer ekspor yang aman.',
+        
+        'pillars_badge' => 'PRINSIP KAMI',
+        'pillars_title' => 'Nilai-Nilai Utama',
+        'pillars' => [
+            1 => [
+                'title' => 'Penghormatan Pengrajin & Upah Adil',
+                'desc' => 'Kami bermitra langsung dengan studio dan pengrajin keluarga, memastikan upah yang layak, lingkungan kerja yang aman, dan legalitas kayu bersertifikat SVLK.',
+            ],
+            2 => [
+                'title' => 'Tanpa Markup Tersembunyi',
+                'desc' => 'Transparansi penuh terhadap biaya produksi workshop. Kami mengenakan biaya jasa manajemen yang jelas tanpa komisi tersembunyi.',
+            ],
+            3 => [
+                'title' => 'Inspeksi Mutu Tanpa Kompromi',
+                'desc' => 'Setiap produk diperiksa secara langsung oleh tim QC kami untuk kadar air kayu, ketahanan struktur, dan standar kemasan ekspor.',
+            ],
+            4 => [
+                'title' => 'Pengiriman Global Terpadu',
+                'desc' => 'Dari berbagai workshop di Bali dan Jawa, kami satukan ke dalam satu kontainer langsung ke pelabuhan tujuan Anda.',
+            ],
+        ],
+
+        'process_badge' => 'KEHADIRAN DI LAPANGAN',
+        'process_title' => 'Cara Kami Menjaga Kualitas & Investasi Anda',
+        'process_desc' => 'Kami tidak hanya memesan via telepon. Tim inspektur kami terjun langsung ke Gianyar, Ubud, Jepara, hingga Tabanan untuk mengawasi setiap tahap produksi.',
+
+        'stats' => [
+            'artisans' => '500+',
+            'artisans_label' => 'Workshop Terverifikasi',
+            'inspection' => '100%',
+            'inspection_label' => 'Inspeksi Langsung di Lokasi',
+            'countries' => '18+',
+            'countries_label' => 'Negara Tujuan Ekspor',
+            'turnaround' => '48 Jam',
+            'turnaround_label' => 'Estimasi Penilaian Awal',
+        ],
+
+        'cta_title' => 'Punya rencana proyek pengadaan di Bali?',
+        'cta_desc' => 'Baik kebutuhan furnitur kustom vila mewah maupun satu kontainer penuh dekorasi hospitality, tim kami siap mendampingi Anda.',
+        'cta_btn' => 'Mulai Konsultasi Pengadaan',
+    ],
 ];
 

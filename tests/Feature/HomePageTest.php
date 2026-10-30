@@ -52,6 +52,29 @@ class HomePageTest extends TestCase
         $response->assertSee('Tempat Menginap &amp; Kuliner Pilihan', false);
     }
 
+    public function test_about_us_page_loads_in_english(): void
+    {
+        $response = $this->get('/about');
+
+        $response->assertStatus(200);
+        $response->assertSee('About Us');
+        $response->assertSee('Connecting Global Vision with Balinese Craftsmanship');
+        $response->assertSee('OUR STORY &amp; PURPOSE', false);
+        $response->assertSee('500+');
+        $response->assertSee('Start Sourcing With Us');
+    }
+
+    public function test_about_us_page_loads_in_indonesian(): void
+    {
+        $response = $this->withSession(['locale' => 'id'])->get('/about');
+
+        $response->assertStatus(200);
+        $response->assertSee('Tentang Kami');
+        $response->assertSee('Menghubungkan Desain Global dengan Keahlian Pengrajin Bali');
+        $response->assertSee('CERITA &amp; TUJUAN KAMI', false);
+        $response->assertSee('Mulai Konsultasi Pengadaan');
+    }
+
     public function test_can_submit_quote_request(): void
     {
         $category = Category::first();
@@ -68,6 +91,8 @@ class HomePageTest extends TestCase
         ]);
 
         $response->assertRedirect();
+        $response->assertSessionHas('rfq_success');
+
         $this->assertDatabaseHas('quotations', [
             'email' => 'alex@designstudio.com',
             'name' => 'Alexander Wright',
@@ -78,12 +103,15 @@ class HomePageTest extends TestCase
     public function test_can_subscribe_to_newsletter(): void
     {
         $response = $this->post('/newsletter', [
-            'email' => 'subscriber@example.com',
+            'email' => 'buyer@boutiquehotel.com',
         ]);
 
         $response->assertRedirect();
+        $response->assertSessionHas('newsletter_success');
+
         $this->assertDatabaseHas('newsletter_subscribers', [
-            'email' => 'subscriber@example.com',
+            'email' => 'buyer@boutiquehotel.com',
+            'is_active' => true,
         ]);
     }
 }

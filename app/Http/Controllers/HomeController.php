@@ -42,6 +42,18 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the dedicated About Us page.
+     */
+    public function about(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+        $categories = Category::active()->orderBy('sort_order')->take(4)->get();
+        $services = Service::active()->orderBy('sort_order')->get();
+
+        return view('about', compact('settings', 'categories', 'services'));
+    }
+
+    /**
      * Handle RFQ (Quotation) form submission.
      */
     public function submitRfq(Request $request): RedirectResponse
