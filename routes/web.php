@@ -13,6 +13,7 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/lang/{locale}', [HomeController::class, 'changeLocale'])->name('locale.switch');
 Route::post('/rfq', [HomeController::class, 'submitRfq'])->name('rfq.submit');
 Route::post('/newsletter', [HomeController::class, 'subscribeNewsletter'])->name('newsletter.subscribe');
+Route::get('/track/{token}', [\App\Http\Controllers\ProjectTrackingController::class, 'show'])->name('projects.track');
 
 if (app()->environment('local')) {
     Route::get('/admin/dev-autologin', function () {

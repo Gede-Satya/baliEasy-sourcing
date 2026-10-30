@@ -161,6 +161,78 @@ class AdminPanelTest extends TestCase
         $response->assertSee($quotation->reference_no);
     }
 
+    public function test_admin_can_convert_quotation_to_sourcing_project(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $quotation = \App\Models\Quotation::create([
+            'reference_no' => 'RFQ-CONVERT-01',
+            'name' => 'David Miller',
+            'email' => 'david@millerdesigns.com',
+            'whatsapp' => '+61498765432',
+            'company' => 'Miller Designs Sydney',
+            'country' => 'Australia',
+            'description' => 'Solid teak chairs and dining furniture collection',
+            'status' => 'quoted',
+        ]);
+
+        $project = \App\Models\SourcingProject::create([
+            'quotation_id' => $quotation->id,
+            'title' => 'Sourcing Project for ' . $quotation->name,
+            'client_name' => $quotation->name,
+            'client_company' => $quotation->company,
+            'client_email' => $quotation->email,
+            'client_whatsapp' => $quotation->whatsapp,
+            'client_country' => $quotation->country,
+            'client_notes' => $quotation->description,
+            'stage' => \App\Models\SourcingProject::STAGE_SAMPLING,
+            'progress_percent' => 15,
+        ]);
+
+        $quotation->update(['status' => 'closed']);
+
+        $this->assertDatabaseHas('sourcing_projects', [
+            'quotation_id' => $quotation->id,
+            'client_email' => 'david@millerdesigns.com',
+        ]);
+        $this->assertEquals('closed', $quotation->fresh()->status);
+        $this->assertNotEmpty($project->access_token);
+        $this->assertStringContainsString('trk_', $project->access_token);
+    }
+
+    public function test_admin_can_access_sourcing_projects_list_page(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+
+        $response = $this->actingAs($admin)->get('/admin/sourcing-projects');
+
+        $response->assertStatus(200);
+        $response->assertSee('Proyek Sourcing Aktif', false);
+    }
+
+    public function test_admin_can_view_sourcing_project_details(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $project = \App\Models\SourcingProject::create([
+            'title' => 'Custom Handcrafted Furniture for Resort',
+            'client_name' => 'Michael Chen',
+            'client_company' => 'Chen Hospitality Group',
+            'client_email' => 'michael@chen.com',
+            'client_whatsapp' => '+61412345678',
+            'client_country' => 'Australia',
+            'workshop_name' => 'Ubud Artisan Wood',
+            'workshop_location' => 'Ubud, Bali',
+            'stage' => \App\Models\SourcingProject::STAGE_SAMPLING,
+            'progress_percent' => 20,
+        ]);
+
+        $response = $this->actingAs($admin)->get("/admin/sourcing-projects/{$project->id}");
+
+        $response->assertStatus(200);
+        $response->assertSee($project->project_code);
+        $response->assertSee($project->client_name);
+        $response->assertSee('Kirim Update WhatsApp ke Klien', false);
+    }
+
     public function test_admin_can_update_setting(): void
     {
         $admin = User::where('email', 'admin@balieasy.com')->first();

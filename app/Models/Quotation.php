@@ -71,6 +71,11 @@ class Quotation extends Model
         return $this->hasMany(QuotationAttachment::class);
     }
 
+    public function sourcingProjects(): HasMany
+    {
+        return $this->hasMany(SourcingProject::class);
+    }
+
     public function scopeStatus($query, string $status)
     {
         return $query->where('status', $status);

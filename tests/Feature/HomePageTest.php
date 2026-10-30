@@ -203,4 +203,35 @@ class HomePageTest extends TestCase
         $response->assertSee('6287777778888');
         $response->assertSee('Special master artisan carved desk.');
     }
+
+    public function test_client_can_view_live_project_tracking_page(): void
+    {
+        $project = \App\Models\SourcingProject::create([
+            'title' => 'Teak Dining Tables & Rattan Lamps for Villa Canggu',
+            'client_name' => 'Emma Watson Design',
+            'client_company' => 'Watson Interiors UK',
+            'client_email' => 'emma@watson.co.uk',
+            'client_whatsapp' => '+447911999888',
+            'client_country' => 'United Kingdom',
+            'workshop_name' => 'Gianyar Teak Studio',
+            'workshop_location' => 'Tegallalang, Bali',
+            'stage' => \App\Models\SourcingProject::STAGE_PRODUCTION,
+            'progress_percent' => 65,
+        ]);
+
+        $response = $this->get("/track/{$project->access_token}");
+
+        $response->assertStatus(200);
+        $response->assertSee($project->project_code);
+        $response->assertSee('Teak Dining Tables &amp; Rattan Lamps for Villa Canggu', false);
+        $response->assertSee('Emma Watson Design');
+        $response->assertSee('Gianyar Teak Studio');
+        $response->assertSee('65%');
+    }
+
+    public function test_tracking_page_returns_404_on_invalid_token(): void
+    {
+        $response = $this->get('/track/invalid_token_12345');
+        $response->assertStatus(404);
+    }
 }

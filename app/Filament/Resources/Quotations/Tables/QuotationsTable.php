@@ -130,6 +130,39 @@ class QuotationsTable
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
+                    Action::make('convert_to_project')
+                        ->label('Konversi ke Proyek Sourcing')
+                        ->icon('heroicon-m-briefcase')
+                        ->color('primary')
+                        ->requiresConfirmation()
+                        ->modalHeading('Konversi RFQ Menjadi Proyek Sourcing Aktif')
+                        ->modalDescription('Tindakan ini akan membuat Proyek Sourcing baru yang terhubung ke klien ini dan menghasilkan tautan pelacakan langsung.')
+                        ->action(function (Quotation $record) {
+                            $project = \App\Models\SourcingProject::create([
+                                'quotation_id' => $record->id,
+                                'title' => $record->description ? \Illuminate\Support\Str::limit($record->description, 80) : "Sourcing Project for {$record->name}",
+                                'category_id' => $record->category_id,
+                                'client_name' => $record->name,
+                                'client_company' => $record->company,
+                                'client_email' => $record->email,
+                                'client_whatsapp' => $record->whatsapp,
+                                'client_country' => $record->country,
+                                'client_notes' => $record->description,
+                                'stage' => \App\Models\SourcingProject::STAGE_SAMPLING,
+                                'progress_percent' => 15,
+                                'target_completion_date' => $record->target_date,
+                            ]);
+
+                            $record->update(['status' => 'closed']);
+
+                            \Filament\Notifications\Notification::make()
+                                ->title('Proyek Sourcing Berhasil Dibuat')
+                                ->body("Proyek {$project->project_code} telah dibuat.")
+                                ->success()
+                                ->send();
+
+                            return redirect(\App\Filament\Resources\SourcingProjects\SourcingProjectResource::getUrl('view', ['record' => $project]));
+                        }),
                     Action::make('mark_contacted')
                         ->label('Tandai Dihubungi')
                         ->icon('heroicon-m-check')
