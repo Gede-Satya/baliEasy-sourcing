@@ -1,75 +1,84 @@
 <x-filament-panels::page>
-    <div class="space-y-6">
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
         
-        <!-- Live Visits Feed / Log Kunjungan Terakhir -->
-        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm">
-            <div class="flex items-center justify-between mb-4">
-                <div>
-                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">
-                        Log Kunjungan Langsung (Real-time Visitors Log)
-                    </h3>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">
-                        20 aktivitas kunjungan halaman publik terbaru yang tercatat oleh sistem.
-                    </p>
-                </div>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <!-- Row 1: Charts (Traffic Trend & Device Breakdown) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            @livewire(\App\Filament\Widgets\VisitorTrafficChart::class)
+            @livewire(\App\Filament\Widgets\VisitorDevicesChart::class)
+        </div>
+
+        <!-- Row 2: Top Visited Pages Widget -->
+        <div>
+            @livewire(\App\Filament\Widgets\TopPagesWidget::class)
+        </div>
+
+        <!-- Row 3: Live Real-time Visitors Feed -->
+        <x-filament::section>
+            <x-slot name="heading">
+                Log Kunjungan Langsung (Real-time Visitors Log)
+            </x-slot>
+            <x-slot name="description">
+                20 aktivitas kunjungan halaman publik terbaru yang tercatat oleh sistem pelacak.
+            </x-slot>
+            <x-slot name="headerEnd">
+                <span style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.625rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0;">
+                    <span style="width: 8px; height: 8px; border-radius: 9999px; background-color: #10b981;"></span>
                     Pelacak Aktif
                 </span>
-            </div>
+            </x-slot>
 
             @php
                 $recentVisits = \App\Models\PageView::orderBy('created_at', 'desc')->take(20)->get();
             @endphp
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs text-gray-600 dark:text-gray-300">
-                    <thead class="bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-200 uppercase tracking-wider text-[11px] font-semibold">
-                        <tr>
-                            <th class="px-4 py-3">Waktu</th>
-                            <th class="px-4 py-3">Halaman Dikunjungi</th>
-                            <th class="px-4 py-3">Perangkat</th>
-                            <th class="px-4 py-3">Browser / OS</th>
-                            <th class="px-4 py-3">Sumber Rujukan (Referer)</th>
-                            <th class="px-4 py-3">Bahasa</th>
+            <div style="overflow-x: auto; margin: -1rem; margin-top: 0.5rem;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.8125rem;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #e7e5e4; background-color: #fafaf9; color: #78716c; text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.05em; font-weight: 600;">
+                            <th style="padding: 0.75rem 1rem;">Waktu</th>
+                            <th style="padding: 0.75rem 1rem;">Halaman Dikunjungi</th>
+                            <th style="padding: 0.75rem 1rem;">Perangkat</th>
+                            <th style="padding: 0.75rem 1rem;">Browser / OS</th>
+                            <th style="padding: 0.75rem 1rem;">Sumber Rujukan (Referer)</th>
+                            <th style="padding: 0.75rem 1rem;">Bahasa</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+                    <tbody style="color: #44403c;">
                         @forelse($recentVisits as $visit)
-                            <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
-                                <td class="px-4 py-3 whitespace-nowrap text-gray-500">
-                                    {{ $visit->created_at->diffForHumans() }}
-                                    <span class="block text-[10px] text-gray-400">{{ $visit->created_at->format('d M H:i:s') }}</span>
+                            <tr style="border-bottom: 1px solid #f5f5f4;">
+                                <td style="padding: 0.75rem 1rem; white-space: nowrap; color: #78716c;">
+                                    <div style="font-weight: 500; color: #292524;">{{ $visit->created_at->diffForHumans() }}</div>
+                                    <div style="font-size: 0.6875rem; color: #a8a29e;">{{ $visit->created_at->format('d M Y, H:i:s') }}</div>
                                 </td>
-                                <td class="px-4 py-3 font-medium text-gray-900 dark:text-white">
-                                    <div>{{ $visit->page_title ?: $visit->path }}</div>
-                                    <a href="{{ url($visit->path) }}" target="_blank" class="text-[11px] text-amber-600 hover:underline">
+                                <td style="padding: 0.75rem 1rem;">
+                                    <div style="font-weight: 600; color: #1c1917;">{{ $visit->page_title ?: $visit->path }}</div>
+                                    <a href="{{ url($visit->path) }}" target="_blank" style="font-size: 0.75rem; color: #d97706; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
                                         {{ $visit->path }} &nearr;
                                     </a>
                                 </td>
-                                <td class="px-4 py-3">
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium {{ $visit->device === 'Mobile' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200' }}">
+                                <td style="padding: 0.75rem 1rem;">
+                                    <span style="display: inline-block; padding: 0.125rem 0.5rem; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 500; background-color: {{ $visit->device === 'Mobile' ? '#fef3c7; color: #b45309; border: 1px solid #fde68a;' : '#dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe;' }}">
                                         {{ $visit->device }}
                                     </span>
                                 </td>
-                                <td class="px-4 py-3">
-                                    <div class="text-gray-900 dark:text-white">{{ $visit->browser }}</div>
-                                    <div class="text-[10px] text-gray-400">{{ $visit->platform }}</div>
+                                <td style="padding: 0.75rem 1rem;">
+                                    <div style="font-weight: 500; color: #292524;">{{ $visit->browser }}</div>
+                                    <div style="font-size: 0.6875rem; color: #78716c;">{{ $visit->platform }}</div>
                                 </td>
-                                <td class="px-4 py-3">
+                                <td style="padding: 0.75rem 1rem;">
                                     @if($visit->referer)
-                                        <span class="text-gray-700 dark:text-gray-300 font-medium">{{ $visit->referer }}</span>
+                                        <span style="font-weight: 500; color: #292524;">{{ $visit->referer }}</span>
                                     @else
-                                        <span class="text-gray-400 italic">Langsung (Direct / Bookmark)</span>
+                                        <span style="color: #a8a29e; font-style: italic;">Langsung (Direct / Bookmark)</span>
                                     @endif
                                 </td>
-                                <td class="px-4 py-3 uppercase text-[11px] font-mono text-gray-500">
+                                <td style="padding: 0.75rem 1rem; text-transform: uppercase; font-family: monospace; font-size: 0.75rem; color: #78716c;">
                                     {{ $visit->locale ?: 'en' }}
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-4 py-6 text-center text-gray-400">
+                                <td colspan="6" style="padding: 2rem; text-align: center; color: #a8a29e;">
                                     Belum ada data kunjungan yang tercatat.
                                 </td>
                             </tr>
@@ -77,8 +86,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </x-filament::section>
 
     </div>
 </x-filament-panels::page>
-
