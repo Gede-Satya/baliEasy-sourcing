@@ -15,17 +15,28 @@ class SettingsTable
         return $table
             ->columns([
                 TextColumn::make('key')
+                    ->label('Setting Key')
+                    ->badge()
+                    ->color('gray')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('value')
+                    ->label('Current Live Value')
+                    ->limit(60)
+                    ->tooltip(fn ($record): ?string => $record->value)
                     ->searchable(),
+
                 TextColumn::make('group')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Group')
+                    ->badge()
+                    ->color('info')
+                    ->sortable(),
+
                 TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Last Changed')
+                    ->since()
+                    ->sortable(),
             ])
             ->filters([
                 //
