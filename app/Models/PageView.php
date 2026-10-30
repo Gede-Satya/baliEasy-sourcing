@@ -48,3 +48,4 @@ class PageView extends Model
         return $query->where('created_at', '>=', Carbon::now()->subDays($days)->startOfDay());
     }
 }
+

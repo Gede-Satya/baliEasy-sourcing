@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\PageView;
+use Filament\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
@@ -27,8 +28,18 @@ class TopPagesWidget extends TableWidget
         return $table
             ->query(
                 PageView::query()
-                    ->select(DB::raw('MIN(id) as id'), 'path', 'page_title', DB::raw('COUNT(*) as total_views'), DB::raw('COUNT(DISTINCT ip_hash) as unique_visitors'), DB::raw('MAX(created_at) as last_visited_at'))
-                    ->groupBy('path', 'page_title')
+                    ->fromSub(function ($query) {
+                        $query->from('page_views')
+                            ->select([
+                                DB::raw('MIN(id) as id'),
+                                'path',
+                                'page_title',
+                                DB::raw('COUNT(*) as total_views'),
+                                DB::raw('COUNT(DISTINCT ip_hash) as unique_visitors'),
+                                DB::raw('MAX(created_at) as last_visited_at'),
+                            ])
+                            ->groupBy('path', 'page_title');
+                    }, 'page_views')
                     ->orderByDesc('total_views')
             )
             ->columns([
@@ -54,6 +65,13 @@ class TopPagesWidget extends TableWidget
                     ->label('Kunjungan Terakhir')
                     ->dateTime('d M Y, H:i')
                     ->sortable(),
+            ])
+            ->recordActions([
+                Action::make('visit_page')
+                    ->label('Buka')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn ($record): string => url($record->path), shouldOpenInNewTab: true),
             ])
             ->paginated([5, 10]);
     }

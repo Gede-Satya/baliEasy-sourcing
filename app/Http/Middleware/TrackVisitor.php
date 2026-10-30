@@ -178,3 +178,4 @@ class TrackVisitor
         return ucwords(trim($path, '/'));
     }
 }
+
