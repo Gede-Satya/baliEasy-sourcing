@@ -19,20 +19,21 @@ class HomePageTest extends TestCase
         $this->seed(DatabaseSeeder::class);
     }
 
-    public function test_homepage_loads_successfully(): void
+    public function test_homepage_loads_successfully_with_standard_navigation(): void
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
         $response->assertSee('BALI EASY');
-        $response->assertSee('Source from Indonesia.');
-        $response->assertSee('Curated Material Disciplines');
+        $response->assertSee('Home');
+        $response->assertSee('About Us');
+        $response->assertSee('Product Categories');
         $response->assertSee('How It Works');
-        $response->assertSee('Why Bali Easy Sourcing');
-        $response->assertSee('The Bali Instinct');
+        $response->assertSee('Partners');
+        $response->assertSee('Request a Quote');
     }
 
-    public function test_can_submit_rfq_inquiry(): void
+    public function test_can_submit_quote_request(): void
     {
         $category = Category::first();
 
