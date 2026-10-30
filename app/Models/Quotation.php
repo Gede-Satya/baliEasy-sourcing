@@ -76,3 +76,4 @@ class Quotation extends Model
         return $query->where('status', $status);
     }
 }
+

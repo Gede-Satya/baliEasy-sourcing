@@ -42,3 +42,4 @@ class Setting extends Model
         );
     }
 }
+

@@ -30,3 +30,4 @@ class QuotationAttachment extends Model
         return $this->belongsTo(Quotation::class);
     }
 }
+

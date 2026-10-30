@@ -66,3 +66,4 @@ class Product extends Model
         return $query->where('is_featured', true);
     }
 }
+

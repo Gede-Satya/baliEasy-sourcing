@@ -65,3 +65,4 @@ class Partner extends Model
         return $query->where('type', self::TYPE_EAT);
     }
 }
+

@@ -30,3 +30,4 @@ class Page extends Model
         return $query->where('is_active', true);
     }
 }
+

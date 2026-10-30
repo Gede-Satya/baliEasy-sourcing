@@ -22,3 +22,4 @@ class HowItWorksStep extends Model
         ];
     }
 }
+
