@@ -36,6 +36,8 @@ class ProductForm
                             FileUpload::make('cover_image')
                                 ->label('Cover Photo')
                                 ->image()
+                                ->disk('public')
+                                ->visibility('public')
                                 ->directory('products'),
                         ]),
                         Textarea::make('short_description')

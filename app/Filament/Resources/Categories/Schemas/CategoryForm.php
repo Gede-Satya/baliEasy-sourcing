@@ -24,7 +24,10 @@ class CategoryForm
                 Textarea::make('description')
                     ->columnSpanFull(),
                 FileUpload::make('cover_image')
-                    ->image(),
+                    ->image()
+                    ->disk('public')
+                    ->visibility('public')
+                    ->directory('categories'),
                 TextInput::make('sort_order')
                     ->required()
                     ->numeric()

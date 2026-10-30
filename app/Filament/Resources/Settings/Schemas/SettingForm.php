@@ -76,7 +76,7 @@ class SettingForm
                             ->rows(3)
                             ->columnSpanFull()
                             ->visible(fn ($record) => $record?->key !== 'hero_image')
-                            ->required(),
+                            ->required(fn ($record) => $record?->key !== 'hero_image'),
                     ]),
             ]);
     }

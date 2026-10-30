@@ -48,6 +48,8 @@ class PartnerForm
                             FileUpload::make('cover_image')
                                 ->label('Cover Image')
                                 ->image()
+                                ->disk('public')
+                                ->visibility('public')
                                 ->directory('partners'),
                         ]),
                         Textarea::make('description')
