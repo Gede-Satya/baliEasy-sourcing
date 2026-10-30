@@ -7,5 +7,6 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateService extends CreateRecord
 {
+    protected static bool $canCreateAnother = false;
     protected static string $resource = ServiceResource::class;
 }

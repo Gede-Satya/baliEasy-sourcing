@@ -7,5 +7,6 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateNewsletterSubscriber extends CreateRecord
 {
+    protected static bool $canCreateAnother = false;
     protected static string $resource = NewsletterSubscriberResource::class;
 }
