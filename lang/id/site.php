@@ -187,3 +187,4 @@ return [
         'privacy' => 'Kebijakan Privasi',
     ],
 ];
+

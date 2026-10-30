@@ -36,7 +36,7 @@
                 <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-500 uppercase -mt-0.5">SOURCING AGENCY</span>
             </a>
 
-            <!-- Desktop Nav Links -->
+            <!-- Desktop Nav Links (Ordered matching section flow) -->
             <nav class="hidden md:flex items-center space-x-7 text-xs font-medium uppercase tracking-[0.16em] text-stone-600" aria-label="Main Navigation">
                 <a href="#home" class="hover:text-stone-950 transition-colors">{{ __('site.nav.home') }}</a>
                 <a href="#about" class="hover:text-stone-950 transition-colors">{{ __('site.nav.about') }}</a>
@@ -102,7 +102,7 @@
 
     <main id="main-content">
 
-        <!-- 1. Hero Section -->
+        <!-- 1. Home / Hero Section -->
         <section id="home" class="py-12 md:py-20 border-b border-stone-200/80">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -181,7 +181,69 @@
             </div>
         </section>
 
-        <!-- 2. Product Categories Section -->
+        <!-- 2. About Us / Why Work With Us Section (#about) -->
+        <section id="about" class="py-16 md:py-24 border-b border-stone-200/80">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                    
+                    <!-- Left Anchor Column -->
+                    <div class="lg:col-span-5 flex flex-col justify-start">
+                        <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
+                            {{ __('site.about.eyebrow') }}
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-4">
+                            {{ __('site.about.title') }}
+                        </h2>
+                        <h3 class="font-serif text-xl italic text-stone-700 font-normal mb-5">
+                            {{ __('site.about.subtitle') }}
+                        </h3>
+                        <p class="text-stone-600 text-sm leading-relaxed font-light mb-8">
+                            {{ __('site.about.description') }}
+                        </p>
+
+                        <!-- Transparent Highlight Box -->
+                        <div class="bg-[#F2ECE3] p-6 border-l-2 border-stone-900">
+                            <div class="font-serif text-base font-semibold text-stone-900 mb-1">
+                                {{ __('site.about.highlight_title') }}
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed font-light">
+                                {{ __('site.about.highlight_text') }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: 4 Value Pillars -->
+                    <div class="lg:col-span-7 space-y-8">
+                        @foreach($services as $index => $service)
+                            @php
+                                $pilTitle = __("site.about.pillars." . ($index + 1) . ".title");
+                                if ($pilTitle === "site.about.pillars." . ($index + 1) . ".title") {
+                                    $pilTitle = $service->title;
+                                }
+                                $pilDesc = __("site.about.pillars." . ($index + 1) . ".description");
+                                if ($pilDesc === "site.about.pillars." . ($index + 1) . ".description") {
+                                    $pilDesc = $service->description;
+                                }
+                            @endphp
+                            <div class="pb-8 border-b border-stone-200 last:border-b-0 last:pb-0">
+                                <span class="text-[10px] font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-1">
+                                    {{ __('site.about.pillar_badge', ['num' => $index + 1]) }}
+                                </span>
+                                <h3 class="font-serif text-2xl text-stone-900 font-medium mb-2">
+                                    {{ $pilTitle }}
+                                </h3>
+                                <p class="text-stone-600 text-sm leading-relaxed font-light">
+                                    {{ $pilDesc }}
+                                </p>
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Product Categories Section (#categories) -->
         <section id="categories" class="py-16 md:py-24 border-b border-stone-200/80">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 
@@ -257,7 +319,7 @@
             </div>
         </section>
 
-        <!-- 3. How It Works Section -->
+        <!-- 4. How It Works Section (#how-it-works) -->
         <section id="how-it-works" class="py-16 md:py-24 border-b border-stone-200/80">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 
@@ -318,7 +380,7 @@
             </div>
         </section>
 
-        <!-- 4. Mid Callout Banner -->
+        <!-- 5. Mid Callout Banner -->
         <section class="py-14 bg-[#EDE6DC] border-b border-stone-200">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
@@ -343,69 +405,7 @@
             </div>
         </section>
 
-        <!-- 5. About Us / Why Work With Us -->
-        <section id="about" class="py-16 md:py-24 border-b border-stone-200/80">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                    
-                    <!-- Left Anchor Column -->
-                    <div class="lg:col-span-5 flex flex-col justify-start">
-                        <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            {{ __('site.about.eyebrow') }}
-                        </span>
-                        <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-4">
-                            {{ __('site.about.title') }}
-                        </h2>
-                        <h3 class="font-serif text-xl italic text-stone-700 font-normal mb-5">
-                            {{ __('site.about.subtitle') }}
-                        </h3>
-                        <p class="text-stone-600 text-sm leading-relaxed font-light mb-8">
-                            {{ __('site.about.description') }}
-                        </p>
-
-                        <!-- Transparent Highlight Box -->
-                        <div class="bg-[#F2ECE3] p-6 border-l-2 border-stone-900">
-                            <div class="font-serif text-base font-semibold text-stone-900 mb-1">
-                                {{ __('site.about.highlight_title') }}
-                            </div>
-                            <p class="text-xs text-stone-600 leading-relaxed font-light">
-                                {{ __('site.about.highlight_text') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: 4 Value Pillars -->
-                    <div class="lg:col-span-7 space-y-8">
-                        @foreach($services as $index => $service)
-                            @php
-                                $pilTitle = __("site.about.pillars." . ($index + 1) . ".title");
-                                if ($pilTitle === "site.about.pillars." . ($index + 1) . ".title") {
-                                    $pilTitle = $service->title;
-                                }
-                                $pilDesc = __("site.about.pillars." . ($index + 1) . ".description");
-                                if ($pilDesc === "site.about.pillars." . ($index + 1) . ".description") {
-                                    $pilDesc = $service->description;
-                                }
-                            @endphp
-                            <div class="pb-8 border-b border-stone-200 last:border-b-0 last:pb-0">
-                                <span class="text-[10px] font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-1">
-                                    {{ __('site.about.pillar_badge', ['num' => $index + 1]) }}
-                                </span>
-                                <h3 class="font-serif text-2xl text-stone-900 font-medium mb-2">
-                                    {{ $pilTitle }}
-                                </h3>
-                                <p class="text-stone-600 text-sm leading-relaxed font-light">
-                                    {{ $pilDesc }}
-                                </p>
-                            </div>
-                        @endforeach
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. Where to Stay & Where to Eat -->
+        <!-- 6. Where to Stay & Where to Eat (#stay-eat) -->
         <section id="stay-eat" class="py-16 md:py-24 border-b border-stone-200/80">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 
@@ -480,7 +480,7 @@
             </div>
         </section>
 
-        <!-- 7. Contact Us & Request a Quote Form -->
+        <!-- 7. Contact Us & Request a Quote Form (#contact) -->
         <section id="contact" class="py-16 md:py-24 bg-[#FAF7F2] border-b border-stone-200">
             <div class="max-w-4xl mx-auto px-6 lg:px-12">
                 
