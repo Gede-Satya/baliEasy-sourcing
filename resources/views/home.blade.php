@@ -1,4 +1,4 @@
-﻿@extends('layouts.site')
+@extends('layouts.site')
 
 @section('content')
 
@@ -181,7 +181,7 @@
 
                             <!-- Link Action -->
                             <div class="pt-3 border-t border-stone-200">
-                                <a href="#contact" class="inline-flex items-center text-xs font-medium tracking-[0.15em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
+                                <a href="{{ route('categories.show', $category->slug) }}" class="inline-flex items-center text-xs font-medium tracking-[0.15em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
                                     <span>{{ __('site.categories.btn_view') }}</span>
                                     <span class="ml-1 text-sm font-sans" aria-hidden="true">&rarr;</span>
                                 </a>

@@ -41,7 +41,7 @@
             <nav class="hidden md:flex items-center space-x-7 text-xs font-medium uppercase tracking-[0.16em] text-stone-600" aria-label="Main Navigation">
                 <a href="{{ $h }}#home" class="hover:text-stone-950 transition-colors">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('about') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('about') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.about') }}</a>
-                <a href="{{ $h }}#categories" class="hover:text-stone-950 transition-colors">{{ __('site.nav.categories') }}</a>
+                <a href="{{ route('categories.index') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('categories.*') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.categories') }}</a>
                 <a href="{{ $h }}#how-it-works" class="hover:text-stone-950 transition-colors">{{ __('site.nav.how_it_works') }}</a>
                 <a href="{{ $h }}#stay-eat" class="hover:text-stone-950 transition-colors">{{ __('site.nav.stay_eat') }}</a>
                 <a href="{{ $h }}#contact" class="hover:text-stone-950 transition-colors">{{ __('site.nav.contact') }}</a>
@@ -88,7 +88,7 @@
             <nav class="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.15em] text-stone-700">
                 <a href="{{ $h }}#home" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('about') }}" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.about') }}</a>
-                <a href="{{ $h }}#categories" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.categories') }}</a>
+                <a href="{{ route('categories.index') }}" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.categories') }}</a>
                 <a href="{{ $h }}#how-it-works" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.how_it_works') }}</a>
                 <a href="{{ $h }}#stay-eat" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.stay_eat') }}</a>
                 <a href="{{ $h }}#contact" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.contact') }}</a>
@@ -151,7 +151,7 @@
                     <ul class="space-y-2 text-stone-400">
                         <li><a href="{{ $h }}#home" class="hover:text-stone-200 transition-colors">{{ __('site.nav.home') }}</a></li>
                         <li><a href="{{ route('about') }}" class="hover:text-stone-200 transition-colors">{{ __('site.nav.about') }}</a></li>
-                        <li><a href="{{ $h }}#categories" class="hover:text-stone-200 transition-colors">{{ __('site.nav.categories') }}</a></li>
+                        <li><a href="{{ route('categories.index') }}" class="hover:text-stone-200 transition-colors">{{ __('site.nav.categories') }}</a></li>
                         <li><a href="{{ $h }}#how-it-works" class="hover:text-stone-200 transition-colors">{{ __('site.nav.how_it_works') }}</a></li>
                         <li><a href="{{ $h }}#stay-eat" class="hover:text-stone-200 transition-colors">{{ __('site.nav.stay_eat') }}</a></li>
                         <li><a href="{{ $h }}#contact" class="hover:text-stone-200 transition-colors">{{ __('site.nav.contact') }}</a></li>

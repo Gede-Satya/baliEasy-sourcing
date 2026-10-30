@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\HowItWorksStep;
 use App\Models\Page;
 use App\Models\Partner;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\User;
@@ -93,7 +94,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            Category::updateOrCreate(
+            $createdCat = Category::updateOrCreate(
                 ['slug' => $cat['slug']],
                 [
                     'name' => $cat['name'],
@@ -103,6 +104,93 @@ class DatabaseSeeder extends Seeder
                     'is_active' => true,
                 ]
             );
+
+            // Add sample curated products for each category
+            if ($cat['slug'] === 'solid-wood') {
+                Product::updateOrCreate(
+                    ['slug' => 'bespoke-reclaimed-teak-dining-table'],
+                    [
+                        'category_id' => $createdCat->id,
+                        'name' => 'Bespoke Reclaimed Teak Dining Table',
+                        'short_description' => 'Solid reclaimed Indonesian teak dining table with natural hand-rubbed wax finish.',
+                        'description' => 'Sourced from historic Javanese structures, this dining table highlights authentic timber grain and heritage joinery. Built to withstand coastal climate with zero shrinkage.',
+                        'material' => 'Grade A Reclaimed Teak',
+                        'dimensions' => '240 x 100 x 76 cm',
+                        'finish' => 'Matte Wax / Water-resistant PU',
+                        'moq' => '5 pcs',
+                        'cover_image' => 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80',
+                        'is_featured' => true,
+                        'is_active' => true,
+                    ]
+                );
+                Product::updateOrCreate(
+                    ['slug' => 'minimalist-suar-wood-console'],
+                    [
+                        'category_id' => $createdCat->id,
+                        'name' => 'Minimalist Suar Wood Console Table',
+                        'short_description' => 'Live edge Suar hardwood console with blackened iron frame.',
+                        'description' => 'Custom kiln-dried Suar wood slab console table made for luxury hotel foyers and private villas.',
+                        'material' => 'Suar Wood & Powder-coated Steel',
+                        'dimensions' => '180 x 45 x 85 cm',
+                        'finish' => 'Natural Satin',
+                        'moq' => '5 pcs',
+                        'cover_image' => 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80',
+                        'is_featured' => true,
+                        'is_active' => true,
+                    ]
+                );
+            } elseif ($cat['slug'] === 'fibers-weaves') {
+                Product::updateOrCreate(
+                    ['slug' => 'handwoven-rattan-armchair'],
+                    [
+                        'category_id' => $createdCat->id,
+                        'name' => 'Handwoven Rattan Lounge Armchair',
+                        'short_description' => 'Ergonomic natural wicker lounge chair crafted by Cirebon weavers.',
+                        'description' => 'Handwoven natural rattan core over a sustainable bamboo and teak frame. Ideal for covered outdoor patios and boutique suites.',
+                        'material' => 'Natural Rattan & Teak Wood',
+                        'dimensions' => '78 x 82 x 75 cm',
+                        'finish' => 'Clear Protective Sealer',
+                        'moq' => '10 pcs',
+                        'cover_image' => 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
+                        'is_featured' => true,
+                        'is_active' => true,
+                    ]
+                );
+            } elseif ($cat['slug'] === 'stone-terrazzo') {
+                Product::updateOrCreate(
+                    ['slug' => 'monolithic-river-stone-bathtub'],
+                    [
+                        'category_id' => $createdCat->id,
+                        'name' => 'Monolithic River Stone Bathtub',
+                        'short_description' => 'Carved from single volcanic river boulder with polished inner bowl.',
+                        'description' => 'Individually carved by master stonecutters in East Java. Each piece possesses a unique natural silhouette and organic exterior texture.',
+                        'material' => 'Natural Volcanic River Stone',
+                        'dimensions' => 'Approx. 190 x 110 x 60 cm',
+                        'finish' => 'Honed & Sealed Interior, Raw Chiseled Exterior',
+                        'moq' => '1 pc',
+                        'cover_image' => 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
+                        'is_featured' => true,
+                        'is_active' => true,
+                    ]
+                );
+            } elseif ($cat['slug'] === 'textiles-linen') {
+                Product::updateOrCreate(
+                    ['slug' => 'botanical-dyed-linen-throw-cushions'],
+                    [
+                        'category_id' => $createdCat->id,
+                        'name' => 'Botanical-Dyed Raw Linen Cushion Covers',
+                        'short_description' => 'Heavyweight stone-washed European flax dyed with indigo and mangosteen peel.',
+                        'description' => 'Eco-dyed artisanal linen textiles produced in collaboration with Gianyar dye studios. Hypoallergenic and preshrunk for hospitality durability.',
+                        'material' => '100% Organic Linen',
+                        'dimensions' => '50 x 50 cm / 60 x 60 cm',
+                        'finish' => 'Natural Plant Pigment',
+                        'moq' => '25 pcs',
+                        'cover_image' => 'https://images.unsplash.com/photo-1606744824163-985d376605aa?auto=format&fit=crop&w=800&q=80',
+                        'is_featured' => true,
+                        'is_active' => true,
+                    ]
+                );
+            }
         }
 
         // 4. How It Works Steps

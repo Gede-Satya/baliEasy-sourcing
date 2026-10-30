@@ -239,5 +239,23 @@ return [
         'cta_desc' => 'Whether you need bespoke furniture for a luxury villa or a full container of hospitality decor, our team is ready to guide you.',
         'cta_btn' => 'Start Sourcing With Us',
     ],
+    // Dedicated Categories Page
+    'categories_page' => [
+        'title' => 'Product Categories & Materials',
+        'subtitle' => 'Explore the master artisan disciplines we source, inspect, and export across Indonesia.',
+        'overview_eyebrow' => 'CURATED DISCIPLINES',
+        'materials_lead' => 'Every material category is paired with specialized workshops, kiln-drying facilities, and on-site inspection protocols.',
+        'filter_all' => 'All Categories',
+        'filter_specs' => 'Technical Specs & Feasibility',
+        'available_products' => 'Curated Workshop Catalog',
+        'moq_label' => 'Standard MOQ',
+        'material_label' => 'Raw Material',
+        'lead_time' => 'Typical Lead Time',
+        'lead_time_val' => '4 - 8 weeks production',
+        'inquire_btn' => 'Request Quote for Category',
+        'custom_btn' => 'Custom Sourcing Inquiry',
+        'back_to_catalog' => 'Back to All Categories',
+        'rfq_hint' => 'Need customized dimensions, private labeling, or mixed container packing? We source directly from the master artisans.',
+    ],
 ];
 

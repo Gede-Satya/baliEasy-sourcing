@@ -239,5 +239,23 @@ return [
         'cta_desc' => 'Baik kebutuhan furnitur kustom vila mewah maupun satu kontainer penuh dekorasi hospitality, tim kami siap mendampingi Anda.',
         'cta_btn' => 'Mulai Konsultasi Pengadaan',
     ],
+    // Dedicated Categories Page
+    'categories_page' => [
+        'title' => 'Kategori Produk & Material',
+        'subtitle' => 'Jelajahi ragam material dan keahlian kriya Indonesia yang kami kurasi, inspeksi, dan ekspor.',
+        'overview_eyebrow' => 'SPESIALISASI KRIYA',
+        'materials_lead' => 'Setiap kategori material terhubung langsung dengan workshop berpengalaman, fasilitas kiln-dry oven kayu, dan inspeksi fisik berlapis.',
+        'filter_all' => 'Semua Kategori',
+        'filter_specs' => 'Spesifikasi Teknis & Kelayakan',
+        'available_products' => 'Katalog Unggulan Pengrajin',
+        'moq_label' => 'Estimasi MOQ',
+        'material_label' => 'Bahan Baku',
+        'lead_time' => 'Waktu Pengerjaan',
+        'lead_time_val' => '4 - 8 minggu produksi',
+        'inquire_btn' => 'Minta Penawaran Kategori Ini',
+        'custom_btn' => 'Konsultasi Pengadaan Kustom',
+        'back_to_catalog' => 'Kembali ke Semua Kategori',
+        'rfq_hint' => 'Perlu ukuran khusus, branding label sendiri, atau penggabungan aneka barang dalam satu kontainer? Kami urus langsung ke pengrajinnya.',
+    ],
 ];
 

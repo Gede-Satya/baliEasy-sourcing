@@ -54,6 +54,33 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the dedicated Categories list page.
+     */
+    public function categories(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+        $categories = Category::active()->with(['products' => function ($query) {
+            $query->where('is_active', true)->orderBy('sort_order');
+        }])->orderBy('sort_order')->get();
+
+        return view('categories.index', compact('settings', 'categories'));
+    }
+
+    /**
+     * Show a specific category detail with its products.
+     */
+    public function showCategory(string $slug): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+        $categories = Category::active()->orderBy('sort_order')->get();
+        $category = Category::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        $products = $category->products()->where('is_active', true)->orderBy('sort_order')->get();
+        $otherCategories = Category::where('id', '!=', $category->id)->where('is_active', true)->take(3)->get();
+
+        return view('categories.show', compact('settings', 'categories', 'category', 'products', 'otherCategories'));
+    }
+
+    /**
      * Handle RFQ (Quotation) form submission.
      */
     public function submitRfq(Request $request): RedirectResponse

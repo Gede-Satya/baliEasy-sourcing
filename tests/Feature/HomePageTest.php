@@ -75,6 +75,26 @@ class HomePageTest extends TestCase
         $response->assertSee('Mulai Konsultasi Pengadaan');
     }
 
+    public function test_categories_index_page_loads(): void
+    {
+        $response = $this->get('/categories');
+
+        $response->assertStatus(200);
+        $response->assertSee('Product Categories &amp; Materials', false);
+        $response->assertSee('Solid Teak &amp; Reclaimed Timber', false);
+        $response->assertSee('Natural Rattan &amp; Basketry', false);
+    }
+
+    public function test_category_show_page_loads_with_products(): void
+    {
+        $response = $this->get('/categories/solid-wood');
+
+        $response->assertStatus(200);
+        $response->assertSee('Solid Teak &amp; Reclaimed Timber', false);
+        $response->assertSee('Bespoke Reclaimed Teak Dining Table');
+        $response->assertSee('Curated Workshop Catalog');
+    }
+
     public function test_can_submit_quote_request(): void
     {
         $category = Category::first();
