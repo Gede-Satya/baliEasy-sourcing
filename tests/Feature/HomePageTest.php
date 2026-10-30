@@ -96,6 +96,37 @@ class HomePageTest extends TestCase
         $response->assertSee('Curated Workshop Catalog');
     }
 
+    public function test_stay_and_eat_page_loads_in_english(): void
+    {
+        $response = $this->get('/where-to-stay-and-eat');
+
+        $response->assertStatus(200);
+        $response->assertSee('Where to Stay &amp; Where to Eat in Bali', false);
+        $response->assertSee('Hideout Bamboo Estate');
+        $response->assertSee('The Slow Canggu');
+        $response->assertSee('Kilo Kitchen Bali');
+        $response->assertSee('VIP SOURCING VISIT CONCIERGE');
+    }
+
+    public function test_stay_and_eat_page_loads_in_indonesian(): void
+    {
+        $response = $this->withSession(['locale' => 'id'])->get('/where-to-stay-and-eat');
+
+        $response->assertStatus(200);
+        $response->assertSee('Rekomendasi Tempat Menginap &amp; Kuliner di Bali', false);
+        $response->assertSee('Tempat Menginap');
+        $response->assertSee('Tempat Kuliner');
+    }
+
+    public function test_stay_and_eat_page_filters_by_type(): void
+    {
+        $response = $this->get('/where-to-stay-and-eat?type=stay');
+
+        $response->assertStatus(200);
+        $response->assertSee('Hideout Bamboo Estate');
+        $response->assertDontSee('Kilo Kitchen Bali');
+    }
+
     public function test_can_submit_quote_request(): void
     {
         $category = Category::first();

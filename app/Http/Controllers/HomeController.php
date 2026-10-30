@@ -81,6 +81,32 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the dedicated Where to Stay and Where to Eat page.
+     */
+    public function stayEat(Request $request): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+        $categories = Category::active()->orderBy('sort_order')->take(4)->get();
+
+        $type = $request->query('type');
+        $area = $request->query('area');
+
+        $query = Partner::active()->orderBy('sort_order');
+        if (in_array($type, ['stay', 'eat'], true)) {
+            $query->where('type', $type);
+        }
+        if (!empty($area)) {
+            $query->where('area', 'like', "%{$area}%");
+        }
+
+        $partners = $query->get();
+        $stays = Partner::active()->stay()->orderBy('sort_order')->get();
+        $eats = Partner::active()->eat()->orderBy('sort_order')->get();
+
+        return view('stay-eat.index', compact('settings', 'categories', 'partners', 'stays', 'eats', 'type', 'area'));
+    }
+
+    /**
      * Handle RFQ (Quotation) form submission.
      */
     public function submitRfq(Request $request): RedirectResponse

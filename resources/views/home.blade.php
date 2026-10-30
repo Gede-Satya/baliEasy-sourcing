@@ -299,7 +299,7 @@
                                 <!-- Image Container -->
                                 <div class="overflow-hidden bg-stone-100 aspect-16/10 mb-5">
                                     <img 
-                                        src="{{ $partner->cover_image }}" 
+                                        src="{{ str_starts_with($partner->cover_image ?? '', 'http') ? $partner->cover_image : asset('storage/' . ($partner->cover_image ?? '')) }}" 
                                         alt="{{ $partnerName }}" 
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                         width="600" 
@@ -326,13 +326,20 @@
 
                             <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
                                 <span class="text-stone-400 font-light">{{ $partner->price_range ?? '$$' }}</span>
-                                <a href="#contact" class="inline-flex items-center font-medium tracking-[0.12em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
+                                <a href="{{ route('stay-eat') }}" class="inline-flex items-center font-medium tracking-[0.12em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
                                     <span>{{ __('site.stay_eat.btn_learn_more') }}</span>
                                     <span class="ml-1 text-sm font-sans" aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
                         </article>
                     @endforeach
+                </div>
+
+                <!-- View All Link -->
+                <div class="mt-12 text-center">
+                    <a href="{{ route('stay-eat') }}" class="inline-flex items-center justify-center px-8 py-3.5 border border-stone-800 text-stone-900 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-stone-900 hover:text-white transition-colors">
+                        {{ __('site.stay_eat.view_all') }} &rarr;
+                    </a>
                 </div>
 
             </div>

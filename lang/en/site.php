@@ -125,20 +125,53 @@ return [
     'stay_eat' => [
         'eyebrow' => 'VISITING BALI?',
         'title' => 'Where to Stay & Where to Eat',
-        'subtitle' => 'Planning an inspection trip? Here are two of our favorite vetted spots in Bali.',
+        'subtitle' => 'Planning an inspection trip? Here are vetted stays and dining spots curated by our team in Bali.',
         'badge_stay' => 'Where to Stay',
         'badge_eat' => 'Where to Eat',
         'btn_learn_more' => 'Learn More',
+        'view_all' => 'View All Curated Spots',
         'items' => [
             'hideout-bamboo-estate' => [
                 'name' => 'Hideout Bamboo Estate',
                 'description' => 'An iconic eco-luxury bamboo villa nestled between quiet jungle valleys and rice terraces. The perfect retreat while exploring artisanal workshops in Gianyar.',
             ],
+            'the-slow-canggu' => [
+                'name' => 'The Slow Canggu',
+                'description' => 'Brutalist architecture draped in native greenery, displaying curated contemporary Indonesian art and custom timber fittings just minutes from Batu Bolong beach.',
+            ],
+            'bambu-indah-retreat' => [
+                'name' => 'Bambu Indah Heritage Retreat',
+                'description' => 'Restored antique Javanese bridal homes perched above the Ayung River. A masterclass in traditional timber craftsmanship and ecological luxury.',
+            ],
             'kilo-kitchen-bali' => [
                 'name' => 'Kilo Kitchen Bali',
                 'description' => 'Modern industrial architecture paired with locally crafted terrazzo and teak interiors. Great food, great design inspiration.',
             ],
+            'mason-canggu' => [
+                'name' => 'Mason Canggu',
+                'description' => 'Artisanal wood-fired grill celebrating prime ingredients, house-cured charcuterie, and understated terracotta courtyard aesthetics.',
+            ],
+            'locavore-nxt' => [
+                'name' => 'Locavore NXT',
+                'description' => 'A culinary research lab championing 100% indigenous Indonesian ingredients, wild edibles, and fermentation in a sustainable architectural complex.',
+            ],
         ],
+    ],
+
+    // Dedicated Stay & Eat Page
+    'stay_eat_page' => [
+        'eyebrow' => 'CURATED ISLAND HOSPITALITY',
+        'title' => 'Where to Stay & Where to Eat in Bali',
+        'subtitle' => 'When visiting Bali for factory inspections, sampling sessions, or artisan studio visits, immerse yourself in places that reflect the same design integrity and craftsmanship you come here to source.',
+        'filter_all' => 'All Recommendations',
+        'filter_stay' => 'Where to Stay',
+        'filter_eat' => 'Where to Eat',
+        'filter_area_all' => 'All Areas',
+        'concierge_title' => 'Planning a Sourcing Trip to Bali?',
+        'concierge_text' => 'We coordinate private workshop driver transfers, hotel recommendations, and artisan itinerary mapping for our international procurement clients.',
+        'concierge_btn' => 'Coordinate Your Sourcing Trip',
+        'visit_website' => 'Official Website',
+        'directions' => 'Maps & Directions',
     ],
 
     // Contact / RFQ Form

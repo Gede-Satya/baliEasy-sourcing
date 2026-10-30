@@ -125,20 +125,53 @@ return [
     'stay_eat' => [
         'eyebrow' => 'BERKUNJUNG KE BALI?',
         'title' => 'Tempat Menginap & Kuliner Pilihan',
-        'subtitle' => 'Merencanakan perjalanan inspeksi ke Bali? Berikut dua lokasi pilihan rekomendasi kami.',
+        'subtitle' => 'Merencanakan perjalanan inspeksi ke Bali? Berikut rekomendasi akomodasi dan kuliner pilihan tim kami.',
         'badge_stay' => 'Tempat Menginap',
         'badge_eat' => 'Tempat Kuliner',
         'btn_learn_more' => 'Lihat Informasi',
+        'view_all' => 'Lihat Semua Rekomendasi',
         'items' => [
             'hideout-bamboo-estate' => [
                 'name' => 'Hideout Bamboo Estate',
                 'description' => 'Villa bambu ramah lingkungan ternama yang berada di antara lembah hutan dan sawah alami. Tempat beristirahat yang nyaman saat mengunjungi workshop di Gianyar.',
             ],
+            'the-slow-canggu' => [
+                'name' => 'The Slow Canggu',
+                'description' => 'Arsitektur brutalis berbalut tanaman tropis alami, menampilkan karya seni kontemporer Indonesia dan furnitur kayu kustom, dekat dari pantai Batu Bolong.',
+            ],
+            'bambu-indah-retreat' => [
+                'name' => 'Bambu Indah Heritage Retreat',
+                'description' => 'Rumah pengantin Jawa antik yang dipugar indah di atas tebing Sungai Ayung. Bukti keagungan pengerjaan kayu tradisional berpadu kemewahan ekologis.',
+            ],
             'kilo-kitchen-bali' => [
                 'name' => 'Kilo Kitchen Bali',
                 'description' => 'Arsitektur industrial modern berpadu dengan interior teraso dan kayu jati buatan pengrajin lokal. Sajian kuliner lezat penuh inspirasi desain.',
             ],
+            'mason-canggu' => [
+                'name' => 'Mason Canggu',
+                'description' => 'Restoran panggangan kayu artisanal dengan bahan baku pilihan, charcuterie buatan sendiri, dan suasana halaman terakota yang bersahaja.',
+            ],
+            'locavore-nxt' => [
+                'name' => 'Locavore NXT',
+                'description' => 'Laboratorium kuliner yang mengangkat 100% bahan baku lokal kepulauan Nusantara, tanaman liar, dan fermentasi di dalam kompleks arsitektur ramah lingkungan.',
+            ],
         ],
+    ],
+
+    // Dedicated Stay & Eat Page
+    'stay_eat_page' => [
+        'eyebrow' => 'AKOMODASI & KULINER PILIHAN',
+        'title' => 'Rekomendasi Tempat Menginap & Kuliner di Bali',
+        'subtitle' => 'Saat Anda berkunjung ke Bali untuk meninjau pabrik, sesi sampling bahan, atau survei studio pengrajin, nikmati tempat-tempat yang mencerminkan cita rasa desain dan keaslian karya kriya yang Anda cari.',
+        'filter_all' => 'Semua Rekomendasi',
+        'filter_stay' => 'Tempat Menginap',
+        'filter_eat' => 'Tempat Kuliner',
+        'filter_area_all' => 'Semua Wilayah',
+        'concierge_title' => 'Merencanakan Kunjungan Sourcing ke Bali?',
+        'concierge_text' => 'Kami dapat membantu mengatur transportasi sopir privat ke berbagai workshop, rekomendasi hotel, hingga jadwal kunjungan pengrajin untuk klien korporat kami.',
+        'concierge_btn' => 'Konsultasikan Kunjungan Anda',
+        'visit_website' => 'Situs Resmi',
+        'directions' => 'Peta & Petunjuk Arah',
     ],
 
     // Contact / RFQ Form
