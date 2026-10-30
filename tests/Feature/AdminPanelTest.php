@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Pages\Auth\Login;
 use App\Filament\Widgets\LatestQuotations;
 use App\Filament\Widgets\QuotationStatusChart;
 use App\Filament\Widgets\StatsOverview;
@@ -25,6 +26,30 @@ class AdminPanelTest extends TestCase
     {
         $response = $this->get('/admin');
         $response->assertRedirect('/admin/login');
+    }
+
+    public function test_login_page_renders_with_custom_branding_and_split_layout(): void
+    {
+        $response = $this->get('/admin/login');
+
+        $response->assertStatus(200);
+        $response->assertSee('BALI EASY SOURCING', false);
+        $response->assertSee('Sign In to Portal', false);
+        $response->assertSee('Bridging global vision', false);
+        $response->assertSee('Back to Website', false);
+        $response->assertSee('admin@balieasy.com', false);
+    }
+
+    public function test_admin_can_authenticate_via_custom_login_page(): void
+    {
+        Livewire::test(Login::class)
+            ->set('data.email', 'admin@balieasy.com')
+            ->set('data.password', 'password')
+            ->call('authenticate')
+            ->assertHasNoErrors()
+            ->assertRedirect('/admin');
+
+        $this->assertAuthenticated();
     }
 
     public function test_admin_can_access_dashboard_and_see_branding_and_navigation(): void

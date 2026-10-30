@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\Login;
 use App\Filament\Widgets\LatestQuotations;
 use App\Filament\Widgets\QuotationStatusChart;
 use App\Filament\Widgets\StatsOverview;
@@ -29,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(Login::class)
             ->brandName('Bali Easy Sourcing')
             ->brandLogo(fn () => view('filament.admin-brand'))
             ->brandLogoHeight('2.4rem')
