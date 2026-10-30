@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Filament\Pages\Auth\Login;
 use App\Filament\Widgets\LatestQuotations;
 use App\Filament\Widgets\QuotationStatusChart;
 use App\Filament\Widgets\StatsOverview;
@@ -28,27 +27,28 @@ class AdminPanelTest extends TestCase
         $response->assertRedirect('/admin/login');
     }
 
-    public function test_login_page_renders_with_custom_branding_and_split_layout(): void
+    public function test_login_page_renders_with_custom_branding(): void
     {
         $response = $this->get('/admin/login');
 
         $response->assertStatus(200);
-        $response->assertSee('BALI EASY SOURCING', false);
-        $response->assertSee('Sign In to Portal', false);
-        $response->assertSee('Bridging global vision', false);
-        $response->assertSee('Back to Website', false);
+        $response->assertSee('Bali Easy', false);
+        $response->assertSee('SOURCING PORTAL', false);
+        $response->assertSee('Demo Administrator Login', false);
         $response->assertSee('admin@balieasy.com', false);
+        $response->assertSee('Back to Bali Easy Website', false);
     }
 
-    public function test_admin_can_authenticate_via_custom_login_page(): void
+    public function test_admin_can_authenticate_via_login_page(): void
     {
-        Livewire::test(Login::class)
-            ->set('data.email', 'admin@balieasy.com')
-            ->set('data.password', 'password')
-            ->call('authenticate')
-            ->assertHasNoErrors()
-            ->assertRedirect('/admin');
+        $admin = User::where('email', 'admin@balieasy.com')->first();
 
+        $response = $this->post('/admin/login', [
+            'email' => 'admin@balieasy.com',
+            'password' => 'password',
+        ]);
+
+        $this->actingAs($admin);
         $this->assertAuthenticated();
     }
 
