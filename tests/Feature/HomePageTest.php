@@ -19,7 +19,7 @@ class HomePageTest extends TestCase
         $this->seed(DatabaseSeeder::class);
     }
 
-    public function test_homepage_loads_successfully_with_standard_navigation(): void
+    public function test_homepage_loads_in_english_by_default(): void
     {
         $response = $this->get('/');
 
@@ -27,10 +27,29 @@ class HomePageTest extends TestCase
         $response->assertSee('BALI EASY');
         $response->assertSee('Home');
         $response->assertSee('About Us');
-        $response->assertSee('Product Categories');
+        $response->assertSee('Curated Indonesian Craftsmanship');
         $response->assertSee('How It Works');
         $response->assertSee('Where to Stay & Where to Eat', false);
         $response->assertSee('Request a Quote');
+    }
+
+    public function test_can_switch_to_indonesian_locale(): void
+    {
+        // Switch to Indonesian
+        $switchResponse = $this->get('/lang/id');
+        $switchResponse->assertRedirect();
+
+        // Check home with Indonesian session
+        $response = $this->withSession(['locale' => 'id'])->get('/');
+
+        $response->assertStatus(200);
+        $response->assertSee('Beranda');
+        $response->assertSee('Tentang Kami');
+        $response->assertSee('Kategori');
+        $response->assertSee('Cara Kerja');
+        $response->assertSee('Minta Penawaran');
+        $response->assertSee('Kurasi Kriya &amp; Manufaktur Indonesia', false);
+        $response->assertSee('Tempat Menginap &amp; Kuliner Pilihan', false);
     }
 
     public function test_can_submit_quote_request(): void

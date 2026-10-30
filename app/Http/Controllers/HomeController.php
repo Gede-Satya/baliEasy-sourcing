@@ -16,6 +16,18 @@ use Illuminate\View\View;
 class HomeController extends Controller
 {
     /**
+     * Switch application language between EN and ID.
+     */
+    public function changeLocale(string $locale): RedirectResponse
+    {
+        if (in_array($locale, ['en', 'id'], true)) {
+            session(['locale' => $locale]);
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Show the homepage with all curated data.
      */
     public function index(): View

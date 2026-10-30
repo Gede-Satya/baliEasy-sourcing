@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="{{ app()->getLocale() }}" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $settings['site_name'] ?? 'Bali Easy Sourcing' }} | Sourcing &amp; Quality Control Agency in Bali</title>
-    <meta name="description" content="{{ $settings['hero_description'] ?? 'Your trusted boots-on-the-ground sourcing agency in Bali. We connect international buyers with vetted Indonesian artisans.' }}">
+    <title>{{ $settings['site_name'] ?? 'Bali Easy Sourcing' }} | {{ __('site.hero.eyebrow') }}</title>
+    <meta name="description" content="{{ __('site.hero.description') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,23 +38,41 @@
 
             <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center space-x-7 text-xs font-medium uppercase tracking-[0.16em] text-stone-600" aria-label="Main Navigation">
-                <a href="#home" class="hover:text-stone-950 transition-colors">Home</a>
-                <a href="#about" class="hover:text-stone-950 transition-colors">About Us</a>
-                <a href="#categories" class="hover:text-stone-950 transition-colors">Categories</a>
-                <a href="#how-it-works" class="hover:text-stone-950 transition-colors">How It Works</a>
-                <a href="#stay-eat" class="hover:text-stone-950 transition-colors">Stay &amp; Eat</a>
-                <a href="#contact" class="hover:text-stone-950 transition-colors">Contact</a>
+                <a href="#home" class="hover:text-stone-950 transition-colors">{{ __('site.nav.home') }}</a>
+                <a href="#about" class="hover:text-stone-950 transition-colors">{{ __('site.nav.about') }}</a>
+                <a href="#categories" class="hover:text-stone-950 transition-colors">{{ __('site.nav.categories') }}</a>
+                <a href="#how-it-works" class="hover:text-stone-950 transition-colors">{{ __('site.nav.how_it_works') }}</a>
+                <a href="#stay-eat" class="hover:text-stone-950 transition-colors">{{ __('site.nav.stay_eat') }}</a>
+                <a href="#contact" class="hover:text-stone-950 transition-colors">{{ __('site.nav.contact') }}</a>
             </nav>
 
-            <!-- Right CTA Button -->
+            <!-- Language Switcher & Right CTA Button -->
             <div class="hidden sm:flex items-center space-x-4">
+                <!-- EN / ID Switcher -->
+                <div class="inline-flex items-center text-xs font-medium tracking-wider bg-stone-100 border border-stone-200/90 rounded px-2.5 py-1">
+                    <a href="{{ route('locale.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'text-stone-950 font-bold' : 'text-stone-400 hover:text-stone-700' }} transition-colors" title="Switch to English">
+                        EN
+                    </a>
+                    <span class="mx-1 text-stone-300">/</span>
+                    <a href="{{ route('locale.switch', 'id') }}" class="{{ app()->getLocale() === 'id' ? 'text-stone-950 font-bold' : 'text-stone-400 hover:text-stone-700' }} transition-colors" title="Ganti ke Bahasa Indonesia">
+                        ID
+                    </a>
+                </div>
+
                 <a href="#contact" class="inline-flex items-center justify-center px-6 py-2.5 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.16em] hover:bg-stone-800 transition-colors">
-                    Request a Quote
+                    {{ __('site.nav.request_quote') }}
                 </a>
             </div>
 
             <!-- Mobile Hamburger Button -->
-            <div class="md:hidden flex items-center">
+            <div class="md:hidden flex items-center space-x-3">
+                <!-- Mobile EN / ID Switcher -->
+                <div class="inline-flex items-center text-xs font-medium tracking-wider bg-stone-100 border border-stone-200 rounded px-2 py-0.5">
+                    <a href="{{ route('locale.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'text-stone-950 font-bold' : 'text-stone-400' }}">EN</a>
+                    <span class="mx-1 text-stone-300">/</span>
+                    <a href="{{ route('locale.switch', 'id') }}" class="{{ app()->getLocale() === 'id' ? 'text-stone-950 font-bold' : 'text-stone-400' }}">ID</a>
+                </div>
+
                 <button type="button" id="mobile-menu-btn" class="p-2 text-stone-800 hover:text-stone-950" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path id="menu-icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 6h16M4 12h16M4 18h16" />
@@ -67,15 +85,15 @@
         <!-- Mobile Nav Menu Drawer -->
         <div id="mobile-nav" class="hidden md:hidden bg-[#FAF8F5] border-b border-stone-200 px-6 py-6 transition-all">
             <nav class="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.15em] text-stone-700">
-                <a href="#home" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Home</a>
-                <a href="#about" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">About Us</a>
-                <a href="#categories" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Categories</a>
-                <a href="#how-it-works" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">How It Works</a>
-                <a href="#stay-eat" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Where to Stay &amp; Eat</a>
-                <a href="#contact" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Contact Us</a>
+                <a href="#home" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.home') }}</a>
+                <a href="#about" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.about') }}</a>
+                <a href="#categories" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.categories') }}</a>
+                <a href="#how-it-works" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.how_it_works') }}</a>
+                <a href="#stay-eat" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.stay_eat') }}</a>
+                <a href="#contact" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.contact') }}</a>
                 <div class="pt-4 border-t border-stone-200">
                     <a href="#contact" class="block w-full py-3 text-center bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em]" onclick="toggleMobileMenu()">
-                        Request a Quote
+                        {{ __('site.nav.request_quote') }}
                     </a>
                 </div>
             </nav>
@@ -92,24 +110,24 @@
                     <!-- Left Hero Content -->
                     <div class="lg:col-span-6 flex flex-col justify-center">
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase mb-4">
-                            {{ $settings['hero_eyebrow'] ?? 'BALI SOURCING & QUALITY CONTROL AGENCY' }}
+                            {{ __('site.hero.eyebrow') }}
                         </span>
                         
                         <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-stone-900 leading-[1.1] mb-6 font-normal">
-                            Source from Indonesia. <span class="italic font-normal">Without the headache.</span>
+                            {{ __('site.hero.title_part1') }} <span class="italic font-normal">{{ __('site.hero.title_part2') }}</span>
                         </h1>
 
                         <p class="text-stone-600 text-base md:text-lg leading-relaxed mb-8 max-w-xl font-light">
-                            {{ $settings['hero_description'] ?? 'We find vetted artisan workshops, negotiate honest local prices, and inspect every single item before it ships. You get exceptional craftsmanship without ever leaving your desk.' }}
+                            {{ __('site.hero.description') }}
                         </p>
 
                         <!-- Actions -->
                         <div class="flex flex-wrap items-center gap-4 mb-12">
                             <a href="#contact" class="inline-flex items-center justify-center px-7 py-3.5 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
-                                {{ $settings['cta_text'] ?? 'Request a Quote' }}
+                                {{ __('site.hero.btn_quote') }}
                             </a>
                             <a href="#categories" class="inline-flex items-center justify-center px-7 py-3.5 border border-stone-300 text-stone-800 text-xs font-medium uppercase tracking-[0.18em] hover:border-stone-900 transition-colors">
-                                Explore Catalog
+                                {{ __('site.hero.btn_explore') }}
                             </a>
                         </div>
 
@@ -117,26 +135,26 @@
                         <div class="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-                                    {{ $settings['stat_1_number'] ?? '100+' }}
+                                    {{ __('site.hero.stats.workshops_num') }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ $settings['stat_1_label'] ?? 'Vetted Workshops' }}
+                                    {{ __('site.hero.stats.workshops_label') }}
                                 </div>
                             </div>
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-                                    {{ $settings['stat_2_number'] ?? '0%' }}
+                                    {{ __('site.hero.stats.pricing_num') }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ $settings['stat_2_label'] ?? 'Hidden Markups' }}
+                                    {{ __('site.hero.stats.pricing_label') }}
                                 </div>
                             </div>
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-                                    {{ $settings['stat_3_number'] ?? '100%' }}
+                                    {{ __('site.hero.stats.qc_num') }}
                                 </div>
                                 <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
-                                    {{ $settings['stat_3_label'] ?? 'Inspected Before Shipping' }}
+                                    {{ __('site.hero.stats.qc_label') }}
                                 </div>
                             </div>
                         </div>
@@ -155,7 +173,7 @@
                             >
                         </div>
                         <p class="mt-3 text-xs text-stone-500 font-serif italic text-left">
-                            {{ $settings['hero_image_caption'] ?? 'Master woodcarver shaping seasoned plantation teak in our partner workshop.' }}
+                            {{ __('site.hero.image_caption') }}
                         </p>
                     </div>
 
@@ -171,27 +189,37 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-stone-200 gap-6">
                     <div>
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            WHAT WE SOURCE
+                            {{ __('site.categories.eyebrow') }}
                         </span>
                         <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal">
-                            Curated Indonesian Craftsmanship
+                            {{ __('site.categories.title') }}
                         </h2>
                     </div>
                     <p class="text-stone-600 text-sm md:text-base max-w-md font-light leading-relaxed">
-                        Direct access to master woodworkers, stone carvers, weavers, and textile studios across Bali and Java.
+                        {{ __('site.categories.subtitle') }}
                     </p>
                 </div>
 
                 <!-- 4-Column Categories Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     @foreach($categories as $index => $category)
+                        @php
+                            $catName = __("site.categories.items.{$category->slug}.name");
+                            if ($catName === "site.categories.items.{$category->slug}.name") {
+                                $catName = $category->name;
+                            }
+                            $catDesc = __("site.categories.items.{$category->slug}.description");
+                            if ($catDesc === "site.categories.items.{$category->slug}.description") {
+                                $catDesc = $category->description;
+                            }
+                        @endphp
                         <article class="group flex flex-col justify-between">
                             <div>
                                 <!-- Image Container -->
                                 <div class="overflow-hidden bg-stone-100 aspect-3/4 mb-5">
                                     <img 
                                         src="{{ $category->cover_image }}" 
-                                        alt="{{ $category->name }}" 
+                                        alt="{{ $catName }}" 
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                         width="400" 
                                         height="533" 
@@ -201,24 +229,24 @@
 
                                 <!-- Index & Slug -->
                                 <span class="text-[10px] font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                                    CATEGORY 0{{ $index + 1 }}
+                                    {{ __('site.categories.category_badge', ['num' => $index + 1]) }}
                                 </span>
 
                                 <!-- Title -->
                                 <h3 class="font-serif text-xl text-stone-900 mb-2 font-medium">
-                                    {{ $category->name }}
+                                    {{ $catName }}
                                 </h3>
 
                                 <!-- Description -->
                                 <p class="text-stone-600 text-xs leading-relaxed font-light mb-4">
-                                    {{ $category->description }}
+                                    {{ $catDesc }}
                                 </p>
                             </div>
 
                             <!-- Link Action -->
                             <div class="pt-3 border-t border-stone-200">
                                 <a href="#contact" class="inline-flex items-center text-xs font-medium tracking-[0.15em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
-                                    <span>View Details</span>
+                                    <span>{{ __('site.categories.btn_view') }}</span>
                                     <span class="ml-1 text-sm font-sans" aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
@@ -236,19 +264,29 @@
                 <!-- Section Header -->
                 <div class="max-w-2xl mb-14">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                        HOW IT WORKS
+                        {{ __('site.how_it_works.eyebrow') }}
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
-                        From initial sketch to your warehouse door
+                        {{ __('site.how_it_works.title') }}
                     </h2>
                     <p class="text-stone-600 text-sm md:text-base font-light leading-relaxed">
-                        A straightforward 4-step process designed for remote buyers, interior designers, and hospitality brands.
+                        {{ __('site.how_it_works.subtitle') }}
                     </p>
                 </div>
 
                 <!-- 4 Steps Row -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
                     @foreach($steps as $index => $step)
+                        @php
+                            $stepTitle = __("site.how_it_works.steps." . ($index + 1) . ".title");
+                            if ($stepTitle === "site.how_it_works.steps." . ($index + 1) . ".title") {
+                                $stepTitle = $step->title;
+                            }
+                            $stepDesc = __("site.how_it_works.steps." . ($index + 1) . ".description");
+                            if ($stepDesc === "site.how_it_works.steps." . ($index + 1) . ".description") {
+                                $stepDesc = $step->description;
+                            }
+                        @endphp
                         <div class="flex flex-col justify-between pt-6 border-t border-stone-200">
                             <div>
                                 <!-- Step Number -->
@@ -258,19 +296,19 @@
 
                                 <!-- Step Title -->
                                 <h3 class="font-serif text-xl text-stone-900 font-medium mb-3">
-                                    {{ $step->title }}
+                                    {{ $stepTitle }}
                                 </h3>
 
                                 <!-- Step Description -->
                                 <p class="text-stone-600 text-xs leading-relaxed font-light mb-6">
-                                    {{ $step->description }}
+                                    {{ $stepDesc }}
                                 </p>
                             </div>
 
                             <!-- Step Stage Tag -->
                             <div class="pt-3 border-t border-stone-100">
                                 <span class="text-[10px] tracking-[0.16em] uppercase font-semibold text-stone-400">
-                                    Step 0{{ $index + 1 }}
+                                    {{ __('site.how_it_works.step_badge', ['num' => $index + 1]) }}
                                 </span>
                             </div>
                         </div>
@@ -286,19 +324,19 @@
                 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
                     <div class="max-w-2xl">
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-600 uppercase block mb-2">
-                            CUSTOM &amp; HOSPITALITY PROJECTS
+                            {{ __('site.banner.eyebrow') }}
                         </span>
                         <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-stone-950 font-normal mb-3">
-                            Furnishing a villa, boutique resort, or retail brand?
+                            {{ __('site.banner.title') }}
                         </h2>
                         <p class="text-stone-700 text-sm sm:text-base font-light leading-relaxed">
-                            Custom dimensions, special timber finishes, or mixed-material assemblies. If Indonesian artisans can make it, we will source, inspect, and ship it for you.
+                            {{ __('site.banner.subtitle') }}
                         </p>
                     </div>
 
                     <div class="shrink-0">
                         <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
-                            Tell Us About Your Project
+                            {{ __('site.banner.btn') }}
                         </a>
                     </div>
                 </div>
@@ -313,25 +351,25 @@
                     <!-- Left Anchor Column -->
                     <div class="lg:col-span-5 flex flex-col justify-start">
                         <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            WHY CHOOSE US
+                            {{ __('site.about.eyebrow') }}
                         </span>
                         <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-4">
-                            Your eyes, ears, and hands in Bali
+                            {{ __('site.about.title') }}
                         </h2>
                         <h3 class="font-serif text-xl italic text-stone-700 font-normal mb-5">
-                            No language barriers. No surprise defects. No mystery markups.
+                            {{ __('site.about.subtitle') }}
                         </h3>
                         <p class="text-stone-600 text-sm leading-relaxed font-light mb-8">
-                            Buying overseas can feel like a gamble when you cannot inspect goods in person. We act as your dedicated local team on the ground, walking the factory floors, testing wood moisture, and protecting your investment from day one.
+                            {{ __('site.about.description') }}
                         </p>
 
                         <!-- Transparent Highlight Box -->
                         <div class="bg-[#F2ECE3] p-6 border-l-2 border-stone-900">
                             <div class="font-serif text-base font-semibold text-stone-900 mb-1">
-                                100% Transparent Direct Pricing
+                                {{ __('site.about.highlight_title') }}
                             </div>
                             <p class="text-xs text-stone-600 leading-relaxed font-light">
-                                You pay the actual workshop production cost. We charge a flat, transparent service fee for our sourcing, QC, and logistics management.
+                                {{ __('site.about.highlight_text') }}
                             </p>
                         </div>
                     </div>
@@ -339,15 +377,25 @@
                     <!-- Right Column: 4 Value Pillars -->
                     <div class="lg:col-span-7 space-y-8">
                         @foreach($services as $index => $service)
+                            @php
+                                $pilTitle = __("site.about.pillars." . ($index + 1) . ".title");
+                                if ($pilTitle === "site.about.pillars." . ($index + 1) . ".title") {
+                                    $pilTitle = $service->title;
+                                }
+                                $pilDesc = __("site.about.pillars." . ($index + 1) . ".description");
+                                if ($pilDesc === "site.about.pillars." . ($index + 1) . ".description") {
+                                    $pilDesc = $service->description;
+                                }
+                            @endphp
                             <div class="pb-8 border-b border-stone-200 last:border-b-0 last:pb-0">
                                 <span class="text-[10px] font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-1">
-                                    WHY WORK WITH US 0{{ $index + 1 }}
+                                    {{ __('site.about.pillar_badge', ['num' => $index + 1]) }}
                                 </span>
                                 <h3 class="font-serif text-2xl text-stone-900 font-medium mb-2">
-                                    {{ $service->title }}
+                                    {{ $pilTitle }}
                                 </h3>
                                 <p class="text-stone-600 text-sm leading-relaxed font-light">
-                                    {{ $service->description }}
+                                    {{ $pilDesc }}
                                 </p>
                             </div>
                         @endforeach
@@ -364,26 +412,37 @@
                 <!-- Section Header -->
                 <div class="max-w-xl mb-12">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                        VISITING BALI?
+                        {{ __('site.stay_eat.eyebrow') }}
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-2">
-                        Where to Stay &amp; Where to Eat
+                        {{ __('site.stay_eat.title') }}
                     </h2>
                     <p class="text-stone-600 text-sm font-light">
-                        Planning an inspection trip? Here are two of our favorite vetted spots in Bali.
+                        {{ __('site.stay_eat.subtitle') }}
                     </p>
                 </div>
 
                 <!-- 2 Simple Clean Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                     @foreach($partners as $partner)
+                        @php
+                            $partnerName = __("site.stay_eat.items.{$partner->slug}.name");
+                            if ($partnerName === "site.stay_eat.items.{$partner->slug}.name") {
+                                $partnerName = $partner->name;
+                            }
+                            $partnerDesc = __("site.stay_eat.items.{$partner->slug}.description");
+                            if ($partnerDesc === "site.stay_eat.items.{$partner->slug}.description") {
+                                $partnerDesc = $partner->description;
+                            }
+                            $typeLabel = $partner->type === 'stay' ? __('site.stay_eat.badge_stay') : __('site.stay_eat.badge_eat');
+                        @endphp
                         <article class="group bg-white border border-stone-200/70 p-6 flex flex-col justify-between">
                             <div>
                                 <!-- Image Container -->
                                 <div class="overflow-hidden bg-stone-100 aspect-16/10 mb-5">
                                     <img 
                                         src="{{ $partner->cover_image }}" 
-                                        alt="{{ $partner->name }}" 
+                                        alt="{{ $partnerName }}" 
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                         width="600" 
                                         height="375" 
@@ -393,24 +452,24 @@
 
                                 <!-- Label: Where to Stay / Where to Eat -->
                                 <div class="text-[11px] font-semibold tracking-[0.18em] text-stone-500 uppercase mb-2">
-                                    {{ $partner->type === 'stay' ? 'Where to Stay' : 'Where to Eat' }} &middot; {{ $partner->area }}
+                                    {{ $typeLabel }} &middot; {{ $partner->area }}
                                 </div>
 
                                 <!-- Partner Title -->
                                 <h3 class="font-serif text-2xl text-stone-900 mb-2 font-medium">
-                                    {{ $partner->name }}
+                                    {{ $partnerName }}
                                 </h3>
 
                                 <!-- Description -->
                                 <p class="text-stone-600 text-xs sm:text-sm leading-relaxed font-light mb-4">
-                                    {{ $partner->description }}
+                                    {{ $partnerDesc }}
                                 </p>
                             </div>
 
                             <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
                                 <span class="text-stone-400 font-light">{{ $partner->price_range ?? '$$' }}</span>
                                 <a href="#contact" class="inline-flex items-center font-medium tracking-[0.12em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
-                                    <span>Learn More</span>
+                                    <span>{{ __('site.stay_eat.btn_learn_more') }}</span>
                                     <span class="ml-1 text-sm font-sans" aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
@@ -427,13 +486,13 @@
                 
                 <div class="text-center mb-12">
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                        START A CONVERSATION
+                        {{ __('site.contact.eyebrow') }}
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
-                        Tell us what you want to make
+                        {{ __('site.contact.title') }}
                     </h2>
                     <p class="text-stone-600 text-sm sm:text-base font-light max-w-xl mx-auto">
-                        Got a mood board, a sketch, or an order list? Send it over. We will assess workshop availability and reply with a transparent quote in 48 hours.
+                        {{ __('site.contact.subtitle') }}
                     </p>
                 </div>
 
@@ -455,7 +514,7 @@
                         <!-- Full Name -->
                         <div>
                             <label for="name" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                                Full Name <span class="text-red-500">*</span>
+                                {{ __('site.contact.name_label') }} <span class="text-red-500">*</span>
                             </label>
                             <input 
                                 type="text" 
@@ -463,7 +522,7 @@
                                 name="name" 
                                 value="{{ old('name') }}" 
                                 required 
-                                placeholder="Your Name"
+                                placeholder="{{ __('site.contact.name_placeholder') }}"
                                 class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                             >
                         </div>
@@ -471,7 +530,7 @@
                         <!-- Email Address -->
                         <div>
                             <label for="email" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                                Email Address <span class="text-red-500">*</span>
+                                {{ __('site.contact.email_label') }} <span class="text-red-500">*</span>
                             </label>
                             <input 
                                 type="email" 
@@ -479,7 +538,7 @@
                                 name="email" 
                                 value="{{ old('email') }}" 
                                 required 
-                                placeholder="buyer@example.com"
+                                placeholder="{{ __('site.contact.email_placeholder') }}"
                                 class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                             >
                         </div>
@@ -487,14 +546,14 @@
                         <!-- Company / Brand -->
                         <div>
                             <label for="company" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                                Company or Brand Name
+                                {{ __('site.contact.company_label') }}
                             </label>
                             <input 
                                 type="text" 
                                 id="company" 
                                 name="company" 
                                 value="{{ old('company') }}" 
-                                placeholder="Studio / Boutique / Hotel Name"
+                                placeholder="{{ __('site.contact.company_placeholder') }}"
                                 class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                             >
                         </div>
@@ -502,14 +561,14 @@
                         <!-- WhatsApp Phone -->
                         <div>
                             <label for="whatsapp" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                                WhatsApp / Phone Number
+                                {{ __('site.contact.whatsapp_label') }}
                             </label>
                             <input 
                                 type="text" 
                                 id="whatsapp" 
                                 name="whatsapp" 
                                 value="{{ old('whatsapp') }}" 
-                                placeholder="+1 234 567 8900"
+                                placeholder="{{ __('site.contact.whatsapp_placeholder') }}"
                                 class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                             >
                         </div>
@@ -517,17 +576,23 @@
                         <!-- Product Category Selector -->
                         <div>
                             <label for="category_id" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                                Product Category
+                                {{ __('site.contact.category_label') }}
                             </label>
                             <select 
                                 id="category_id" 
                                 name="category_id" 
                                 class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                             >
-                                <option value="">Select a category...</option>
+                                <option value="">{{ __('site.contact.category_default') }}</option>
                                 @foreach($categories as $cat)
+                                    @php
+                                        $catSelectName = __("site.categories.items.{$cat->slug}.name");
+                                        if ($catSelectName === "site.categories.items.{$cat->slug}.name") {
+                                            $catSelectName = $cat->name;
+                                        }
+                                    @endphp
                                     <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
-                                        {{ $cat->name }}
+                                        {{ $catSelectName }}
                                     </option>
                                 @endforeach
                             </select>
@@ -536,14 +601,14 @@
                         <!-- Estimated Quantity -->
                         <div>
                             <label for="quantity" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                                Estimated Order Quantity
+                                {{ __('site.contact.quantity_label') }}
                             </label>
                             <input 
                                 type="text" 
                                 id="quantity" 
                                 name="quantity" 
                                 value="{{ old('quantity') }}" 
-                                placeholder="e.g. 50 pcs / 1x 20ft Container"
+                                placeholder="{{ __('site.contact.quantity_placeholder') }}"
                                 class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                             >
                         </div>
@@ -552,14 +617,14 @@
                     <!-- Project Scope & Description -->
                     <div>
                         <label for="description" class="block text-xs font-semibold uppercase tracking-[0.15em] text-stone-700 mb-2">
-                            Project Details &amp; Specifications <span class="text-red-500">*</span>
+                            {{ __('site.contact.description_label') }} <span class="text-red-500">*</span>
                         </label>
                         <textarea 
                             id="description" 
                             name="description" 
                             rows="4" 
                             required 
-                            placeholder="Tell us what you want to produce: product types, materials, target dimensions, finishes, or custom designs..."
+                            placeholder="{{ __('site.contact.description_placeholder') }}"
                             class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none transition-colors"
                         >{{ old('description') }}</textarea>
                     </div>
@@ -567,7 +632,7 @@
                     <!-- Submit Button -->
                     <div class="pt-2">
                         <button type="submit" class="w-full py-4 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
-                            Send My Sourcing Request
+                            {{ __('site.contact.btn_submit') }}
                         </button>
                     </div>
                 </form>
@@ -579,23 +644,23 @@
         <section class="py-20 md:py-28 bg-[#181614] text-stone-100 border-t border-stone-900">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <span class="text-xs font-semibold tracking-[0.22em] text-stone-400 uppercase block mb-3">
-                    READY TO START?
+                    {{ __('site.bottom_cta.eyebrow') }}
                 </span>
                 
                 <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-normal mb-6">
-                    Let us build your next collection in Indonesia.
+                    {{ __('site.bottom_cta.title') }}
                 </h2>
 
                 <p class="text-stone-300 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10">
-                    Zero commitment to inquire. Send your ideas today and see how simple sourcing in Bali can be.
+                    {{ __('site.bottom_cta.subtitle') }}
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center gap-4">
                     <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-100 transition-colors">
-                        Request a Free Quote
+                        {{ __('site.bottom_cta.btn_quote') }}
                     </a>
                     <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 border border-stone-600 text-stone-200 text-xs font-medium uppercase tracking-[0.18em] hover:border-white hover:text-white transition-colors">
-                        Chat on WhatsApp
+                        {{ __('site.bottom_cta.btn_whatsapp') }}
                     </a>
                 </div>
             </div>
@@ -616,7 +681,7 @@
                         <span class="text-[9px] tracking-[0.35em] font-sans font-semibold text-stone-400 uppercase">SOURCING AGENCY</span>
                     </a>
                     <p class="text-stone-400 leading-relaxed font-light max-w-sm">
-                        Dedicated procurement, quality inspection, and export container shipping agency based in Bali, Indonesia.
+                        {{ __('site.footer.description') }}
                     </p>
                     <div class="text-stone-400 text-xs space-y-1 font-light pt-2">
                         <div>{{ $settings['address'] ?? 'Jl. Pantai Batu Bolong, Canggu, Bali 80361, Indonesia' }}</div>
@@ -628,13 +693,19 @@
                 <!-- Col 2: Categories -->
                 <div class="lg:col-span-3 space-y-3">
                     <div class="text-white font-semibold tracking-[0.16em] uppercase text-xs mb-4">
-                        Product Categories
+                        {{ __('site.footer.categories_title') }}
                     </div>
                     <ul class="space-y-2 text-stone-400">
                         @foreach($categories as $cat)
+                            @php
+                                $footerCatName = __("site.categories.items.{$cat->slug}.name");
+                                if ($footerCatName === "site.categories.items.{$cat->slug}.name") {
+                                    $footerCatName = $cat->name;
+                                }
+                            @endphp
                             <li>
                                 <a href="#categories" class="hover:text-stone-200 transition-colors">
-                                    {{ $cat->name }}
+                                    {{ $footerCatName }}
                                 </a>
                             </li>
                         @endforeach
@@ -644,26 +715,26 @@
                 <!-- Col 3: Navigation Menu -->
                 <div class="lg:col-span-2 space-y-3">
                     <div class="text-white font-semibold tracking-[0.16em] uppercase text-xs mb-4">
-                        Navigation
+                        {{ __('site.footer.nav_title') }}
                     </div>
                     <ul class="space-y-2 text-stone-400">
-                        <li><a href="#home" class="hover:text-stone-200 transition-colors">Home</a></li>
-                        <li><a href="#about" class="hover:text-stone-200 transition-colors">About Us</a></li>
-                        <li><a href="#categories" class="hover:text-stone-200 transition-colors">Categories</a></li>
-                        <li><a href="#how-it-works" class="hover:text-stone-200 transition-colors">How It Works</a></li>
-                        <li><a href="#stay-eat" class="hover:text-stone-200 transition-colors">Where to Stay &amp; Eat</a></li>
-                        <li><a href="#contact" class="hover:text-stone-200 transition-colors">Contact Us</a></li>
-                        <li><a href="{{ url('/admin') }}" class="hover:text-stone-200 transition-colors">Admin Login</a></li>
+                        <li><a href="#home" class="hover:text-stone-200 transition-colors">{{ __('site.nav.home') }}</a></li>
+                        <li><a href="#about" class="hover:text-stone-200 transition-colors">{{ __('site.nav.about') }}</a></li>
+                        <li><a href="#categories" class="hover:text-stone-200 transition-colors">{{ __('site.nav.categories') }}</a></li>
+                        <li><a href="#how-it-works" class="hover:text-stone-200 transition-colors">{{ __('site.nav.how_it_works') }}</a></li>
+                        <li><a href="#stay-eat" class="hover:text-stone-200 transition-colors">{{ __('site.nav.stay_eat') }}</a></li>
+                        <li><a href="#contact" class="hover:text-stone-200 transition-colors">{{ __('site.nav.contact') }}</a></li>
+                        <li><a href="{{ url('/admin') }}" class="hover:text-stone-200 transition-colors">{{ __('site.footer.staff_login') }}</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 4: Newsletter -->
                 <div id="newsletter" class="lg:col-span-3 space-y-4">
                     <div class="text-white font-semibold tracking-[0.16em] uppercase text-xs mb-2">
-                        Newsletter
+                        {{ __('site.footer.newsletter_title') }}
                     </div>
                     <p class="text-stone-400 text-xs font-light leading-relaxed">
-                        Subscribe for seasonal updates on Indonesian craftsmanship, workshop visits, and shipping news.
+                        {{ __('site.footer.newsletter_text') }}
                     </p>
 
                     @if(session('newsletter_success'))
@@ -678,11 +749,11 @@
                             type="email" 
                             name="email" 
                             required 
-                            placeholder="Enter your email" 
+                            placeholder="{{ __('site.footer.newsletter_placeholder') }}" 
                             class="px-3.5 py-2.5 bg-stone-900 text-white placeholder-stone-500 border border-stone-800 text-xs focus:outline-none focus:border-stone-400"
                         >
                         <button type="submit" class="w-full py-2.5 bg-stone-200 text-stone-900 text-xs font-semibold uppercase tracking-[0.15em] hover:bg-white transition-colors">
-                            Subscribe
+                            {{ __('site.footer.btn_subscribe') }}
                         </button>
                     </form>
                 </div>
@@ -692,12 +763,12 @@
             <!-- Bottom Copyright & Policies -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-stone-500 text-[11px] gap-4">
                 <div>
-                    &copy; {{ date('Y') }} Bali Easy Sourcing Agency. All rights reserved.
+                    &copy; {{ date('Y') }} {{ __('site.footer.copyright') }}
                 </div>
                 <div class="flex items-center space-x-6">
-                    <a href="{{ url('/admin') }}" class="hover:text-stone-300 transition-colors">Staff Login</a>
-                    <a href="#contact" class="hover:text-stone-300 transition-colors">Terms of Service</a>
-                    <a href="#contact" class="hover:text-stone-300 transition-colors">Privacy Policy</a>
+                    <a href="{{ url('/admin') }}" class="hover:text-stone-300 transition-colors">{{ __('site.footer.staff_login') }}</a>
+                    <a href="#contact" class="hover:text-stone-300 transition-colors">{{ __('site.footer.terms') }}</a>
+                    <a href="#contact" class="hover:text-stone-300 transition-colors">{{ __('site.footer.privacy') }}</a>
                 </div>
             </div>
 
