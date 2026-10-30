@@ -196,6 +196,23 @@ return [
         'btn_submit' => 'Send My Sourcing Request',
     ],
 
+    // Dedicated Contact Page
+    'contact_page' => [
+        'eyebrow' => 'GET IN TOUCH',
+        'title' => 'Contact Bali Easy Sourcing',
+        'subtitle' => 'Whether you have a specific production brief, require sample development, or want to schedule a workshop tour in Bali, our sourcing team is ready to assist.',
+        'channels_title' => 'Direct Channels',
+        'office_title' => 'Bali Studio & Office',
+        'hours_title' => 'Operating Hours',
+        'hours_value' => 'Monday – Friday: 09:00 – 18:00 (WITA / UTC+8)',
+        'hours_note' => 'Available for inquiries across US, EU & APAC time zones.',
+        'whatsapp_direct' => 'Instant WhatsApp Chat',
+        'whatsapp_note' => 'Fastest response for quick questions & sample photos',
+        'email_direct' => 'Official Email Inquiry',
+        'guarantee_title' => '48-Hour Response Commitment',
+        'guarantee_text' => 'We review every design brief and provide transparent feedback on workshop feasibility, minimum order quantities (MOQ), and estimated timelines within 48 business hours.',
+    ],
+
     // Bottom CTA
     'bottom_cta' => [
         'eyebrow' => 'READY TO START?',

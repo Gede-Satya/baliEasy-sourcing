@@ -167,6 +167,28 @@ class HomePageTest extends TestCase
         ]);
     }
 
+    public function test_contact_page_loads_in_english(): void
+    {
+        $response = $this->get('/contact');
+
+        $response->assertStatus(200);
+        $response->assertSee('Contact Bali Easy Sourcing');
+        $response->assertSee('Direct Channels');
+        $response->assertSee('Bali Studio &amp; Office', false);
+        $response->assertSee('48-Hour Response Commitment');
+    }
+
+    public function test_contact_page_loads_in_indonesian(): void
+    {
+        $response = $this->withSession(['locale' => 'id'])->get('/contact');
+
+        $response->assertStatus(200);
+        $response->assertSee('Hubungi Bali Easy Sourcing');
+        $response->assertSee('Saluran Komunikasi Langsung');
+        $response->assertSee('Studio &amp; Kantor di Bali', false);
+        $response->assertSee('Komitmen Respon 48 Jam');
+    }
+
     public function test_homepage_reflects_custom_settings_live(): void
     {
         Setting::where('key', 'site_name')->update(['value' => 'Nusantara Craft Sourcing']);

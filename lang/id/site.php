@@ -196,6 +196,23 @@ return [
         'btn_submit' => 'Kirim Permintaan Penawaran',
     ],
 
+    // Dedicated Contact Page
+    'contact_page' => [
+        'eyebrow' => 'HUBUNGI KAMI',
+        'title' => 'Hubungi Bali Easy Sourcing',
+        'subtitle' => 'Baik Anda memiliki brief produksi spesifik, membutuhkan pembuatan sampel produk, atau ingin menjadwalkan kunjungan workshop di Bali, tim kami siap membantu.',
+        'channels_title' => 'Saluran Komunikasi Langsung',
+        'office_title' => 'Studio & Kantor di Bali',
+        'hours_title' => 'Jam Operasional',
+        'hours_value' => 'Senin – Jumat: 09:00 – 18:00 (WITA / UTC+8)',
+        'hours_note' => 'Tersedia untuk pertanyaan mendesak di zona waktu klien internasional.',
+        'whatsapp_direct' => 'Chat WhatsApp Langsung',
+        'whatsapp_note' => 'Respon tercepat untuk pertanyaan singkat dan foto sampel',
+        'email_direct' => 'Email Resmi Perusahaan',
+        'guarantee_title' => 'Komitmen Respon 48 Jam',
+        'guarantee_text' => 'Kami meninjau setiap brief desain dan memberikan rincian kelayakan workshop, batas minimum pemesanan (MOQ), serta estimasi waktu pengerjaan dalam 48 jam kerja.',
+    ],
+
     // Bottom CTA
     'bottom_cta' => [
         'eyebrow' => 'SIAP MEMULAI?',

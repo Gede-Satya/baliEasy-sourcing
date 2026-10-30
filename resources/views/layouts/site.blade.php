@@ -44,7 +44,7 @@
                 <a href="{{ route('categories.index') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('categories.*') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.categories') }}</a>
                 <a href="{{ $h }}#how-it-works" class="hover:text-stone-950 transition-colors">{{ __('site.nav.how_it_works') }}</a>
                 <a href="{{ route('stay-eat') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('stay-eat') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.stay_eat') }}</a>
-                <a href="{{ $h }}#contact" class="hover:text-stone-950 transition-colors">{{ __('site.nav.contact') }}</a>
+                <a href="{{ route('contact') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('contact') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.contact') }}</a>
             </nav>
 
             <!-- Language Switcher & Right CTA Button -->
@@ -91,7 +91,7 @@
                 <a href="{{ route('categories.index') }}" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.categories') }}</a>
                 <a href="{{ $h }}#how-it-works" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.how_it_works') }}</a>
                 <a href="{{ route('stay-eat') }}" class="py-1 hover:text-stone-950 {{ request()->routeIs('stay-eat') ? 'font-bold text-stone-950' : '' }}" onclick="toggleMobileMenu()">{{ __('site.nav.stay_eat') }}</a>
-                <a href="{{ $h }}#contact" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.contact') }}</a>
+                <a href="{{ route('contact') }}" class="py-1 hover:text-stone-950 {{ request()->routeIs('contact') ? 'font-bold text-stone-950' : '' }}" onclick="toggleMobileMenu()">{{ __('site.nav.contact') }}</a>
                 <div class="pt-4 border-t border-stone-200">
                     <a href="{{ $h }}#contact" class="block w-full py-3 text-center bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em]" onclick="toggleMobileMenu()">
                         {{ __('site.nav.request_quote') }}
@@ -157,7 +157,7 @@
                         <li><a href="{{ route('categories.index') }}" class="hover:text-stone-200 transition-colors">{{ __('site.nav.categories') }}</a></li>
                         <li><a href="{{ $h }}#how-it-works" class="hover:text-stone-200 transition-colors">{{ __('site.nav.how_it_works') }}</a></li>
                         <li><a href="{{ route('stay-eat') }}" class="hover:text-stone-200 transition-colors">{{ __('site.nav.stay_eat') }}</a></li>
-                        <li><a href="{{ $h }}#contact" class="hover:text-stone-200 transition-colors">{{ __('site.nav.contact') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="hover:text-stone-200 transition-colors">{{ __('site.nav.contact') }}</a></li>
                         <li><a href="{{ url('/admin') }}" class="hover:text-stone-200 transition-colors">{{ __('site.footer.staff_login') }}</a></li>
                     </ul>
                 </div>

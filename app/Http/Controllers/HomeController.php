@@ -107,6 +107,17 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the dedicated Contact page.
+     */
+    public function contact(): View
+    {
+        $settings = Setting::all()->pluck('value', 'key');
+        $categories = Category::active()->orderBy('sort_order')->get();
+
+        return view('contact', compact('settings', 'categories'));
+    }
+
+    /**
      * Handle RFQ (Quotation) form submission.
      */
     public function submitRfq(Request $request): RedirectResponse
