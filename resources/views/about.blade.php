@@ -9,13 +9,6 @@
     <section class="py-16 md:py-24 border-b border-stone-200/80 bg-[#F4EFEA]">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             
-            <!-- Breadcrumbs -->
-            <nav class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-stone-500 mb-6" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}" class="hover:text-stone-900 transition-colors">{{ __('site.nav.home') }}</a>
-                <span class="text-stone-400">/</span>
-                <span class="text-stone-900">{{ __('site.about_page.breadcrumb') }}</span>
-            </nav>
-
             <div class="max-w-3xl">
                 <span class="text-xs font-semibold tracking-[0.25em] text-stone-500 uppercase block mb-3">
                     {{ __('site.about_page.hero_eyebrow') }}
@@ -252,3 +245,4 @@
     </section>
 
 @endsection
+
