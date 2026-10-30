@@ -36,9 +36,9 @@ class QuotationResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $pending = static::getModel()::where('status', 'pending')->count();
+        $new = static::getModel()::where('status', 'new')->count();
 
-        return $pending > 0 ? (string) $pending : null;
+        return $new > 0 ? (string) $new : null;
     }
 
     public static function getNavigationBadgeColor(): ?string

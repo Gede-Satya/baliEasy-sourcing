@@ -114,6 +114,51 @@ class AdminPanelTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Quotations / RFQ', false);
+        $response->assertSee('Perlu Ditindak', false);
+        $response->assertSee('Sedang Diproses', false);
+    }
+
+    public function test_admin_can_view_quotation_details(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $quotation = \App\Models\Quotation::create([
+            'reference_no' => 'RFQ-TEST-001',
+            'name' => 'John Designer',
+            'email' => 'john@example.com',
+            'whatsapp' => '+6281234567890',
+            'company' => 'Studio Bali',
+            'country' => 'Australia',
+            'quantity' => '20 pcs',
+            'description' => 'Solid teak outdoor chairs and dining table',
+            'status' => 'new',
+        ]);
+
+        $response = $this->actingAs($admin)->get("/admin/quotations/{$quotation->id}");
+
+        $response->assertStatus(200);
+        $response->assertSee($quotation->reference_no);
+        $response->assertSee($quotation->name);
+    }
+
+    public function test_admin_can_access_edit_quotation_page(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $quotation = \App\Models\Quotation::create([
+            'reference_no' => 'RFQ-TEST-002',
+            'name' => 'Sarah Architect',
+            'email' => 'sarah@example.com',
+            'whatsapp' => '+6281234567891',
+            'company' => 'Atelier Living',
+            'country' => 'Singapore',
+            'quantity' => '50 pcs',
+            'description' => 'Rattan woven pendants and natural stone basins',
+            'status' => 'quoted',
+        ]);
+
+        $response = $this->actingAs($admin)->get("/admin/quotations/{$quotation->id}/edit");
+
+        $response->assertStatus(200);
+        $response->assertSee($quotation->reference_no);
     }
 
     public function test_admin_can_update_setting(): void

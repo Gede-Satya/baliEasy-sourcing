@@ -63,3 +63,4 @@ class VisitorOverviewWidget extends StatsOverviewWidget
         ];
     }
 }
+

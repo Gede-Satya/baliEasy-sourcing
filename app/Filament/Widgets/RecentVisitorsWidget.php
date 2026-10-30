@@ -78,3 +78,4 @@ class RecentVisitorsWidget extends TableWidget
             ->emptyStateIcon('heroicon-o-signal');
     }
 }
+

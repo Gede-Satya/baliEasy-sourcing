@@ -5,7 +5,9 @@ namespace App\Filament\Resources\Quotations\Tables;
 use App\Models\Category;
 use App\Models\Quotation;
 use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -22,79 +24,92 @@ class QuotationsTable
             ->columns([
                 TextColumn::make('reference_no')
                     ->label('Ref #')
-                    ->badge()
-                    ->color('gray')
+                    ->fontFamily('mono')
+                    ->weight('medium')
                     ->copyable()
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('name')
-                    ->label('Client Name')
-                    ->description(fn (Quotation $record): ?string => $record->company)
-                    ->searchable()
+                    ->label('Klien & Perusahaan')
+                    ->weight('semibold')
+                    ->description(function (Quotation $record): ?string {
+                        $parts = array_filter([$record->company, $record->country]);
+                        return count($parts) ? implode(' · ', $parts) : null;
+                    })
+                    ->searchable(['name', 'company', 'country'])
                     ->sortable(),
 
                 TextColumn::make('email')
                     ->label('Email')
-                    ->icon('heroicon-m-envelope')
                     ->copyable()
                     ->searchable(),
 
                 TextColumn::make('whatsapp')
                     ->label('WhatsApp')
-                    ->icon('heroicon-m-phone')
                     ->placeholder('-')
-                    ->searchable(),
-
-                TextColumn::make('country')
-                    ->label('Country')
-                    ->badge()
-                    ->color('info')
+                    ->copyable()
                     ->searchable(),
 
                 TextColumn::make('category.name')
-                    ->label('Category')
-                    ->placeholder('General inquiry')
+                    ->label('Kategori')
+                    ->placeholder('Umum / General')
+                    ->badge()
+                    ->color('gray')
                     ->sortable(),
+
+                TextColumn::make('quantity')
+                    ->label('Estimasi Volume')
+                    ->placeholder('-')
+                    ->limit(20)
+                    ->toggleable(),
 
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        'pending' => 'warning',
+                        'new' => 'warning',
                         'contacted' => 'info',
                         'quoted' => 'primary',
-                        'in_progress' => 'purple',
-                        'completed' => 'success',
-                        'cancelled' => 'danger',
+                        'closed' => 'success',
+                        'lost' => 'danger',
                         default => 'gray',
                     })
-                    ->formatStateUsing(fn (string $state): string => ucfirst(str_replace('_', ' ', $state)))
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'new' => 'Baru Masuk',
+                        'contacted' => 'Dihubungi',
+                        'quoted' => 'Penawaran Terkirim',
+                        'closed' => 'Selesai (Deal)',
+                        'lost' => 'Batal / Lost',
+                        default => ucfirst($state),
+                    })
                     ->sortable(),
 
                 TextColumn::make('target_date')
-                    ->label('Target Date')
+                    ->label('Target Selesai')
                     ->date('d M Y')
+                    ->placeholder('Fleksibel')
                     ->sortable()
-                    ->placeholder('-'),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('created_at')
-                    ->label('Received')
-                    ->dateTime('d M Y, H:i')
+                    ->label('Masuk')
+                    ->since()
+                    ->dateTimeTooltip('d M Y, H:i:s')
                     ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->label('Status')
                     ->options([
-                        'pending' => 'Pending',
-                        'contacted' => 'Contacted',
-                        'quoted' => 'Quoted',
-                        'in_progress' => 'In Progress',
-                        'completed' => 'Completed',
-                        'cancelled' => 'Cancelled',
+                        'new' => 'Baru Masuk',
+                        'contacted' => 'Dihubungi',
+                        'quoted' => 'Penawaran Terkirim',
+                        'closed' => 'Selesai (Deal)',
+                        'lost' => 'Batal / Lost',
                     ]),
                 SelectFilter::make('category_id')
-                    ->label('Category')
+                    ->label('Kategori')
                     ->relationship('category', 'name'),
             ])
             ->recordActions([
@@ -107,18 +122,22 @@ class QuotationsTable
                         if (! $phone) {
                             return null;
                         }
-                        $text = urlencode("Halo {$record->name}, terima kasih telah mengajukan Request for Quote di Bali Easy Sourcing [Ref: {$record->reference_no}]. Kami ingin mendiskusikan rincian pesanan Anda.");
+                        $text = urlencode("Halo {$record->name}, terima kasih telah mengajukan Request for Quote di Bali Easy Sourcing [Ref: {$record->reference_no}]. Kami ingin mendiskusikan rincian kebutuhan sourcing Anda.");
                         return "https://wa.me/{$phone}?text={$text}";
                     }, shouldOpenInNewTab: true)
                     ->visible(fn (Quotation $record): bool => ! empty($record->whatsapp)),
-                ViewAction::make(),
-                EditAction::make(),
-                Action::make('mark_contacted')
-                    ->label('Tandai Dihubungi')
-                    ->icon('heroicon-m-check')
-                    ->color('info')
-                    ->visible(fn (Quotation $record): bool => $record->status === 'pending')
-                    ->action(fn (Quotation $record) => $record->update(['status' => 'contacted'])),
+
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    Action::make('mark_contacted')
+                        ->label('Tandai Dihubungi')
+                        ->icon('heroicon-m-check')
+                        ->color('info')
+                        ->visible(fn (Quotation $record): bool => $record->status === 'new')
+                        ->action(fn (Quotation $record) => $record->update(['status' => 'contacted'])),
+                    DeleteAction::make(),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
