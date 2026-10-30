@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Settings\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -30,7 +31,7 @@ class SettingForm
                                 'instagram_url' => 'Tautan profil Instagram bisnis Anda (contoh: https://instagram.com/balieasysourcing).',
                                 'site_name' => 'Nama brand bisnis Anda (contoh: Bali Easy Sourcing).',
                                 'tagline' => 'Slogan singkat yang mendeskripsikan layanan sourcing Anda.',
-                                'hero_image' => 'Link URL foto beresolusi tinggi yang menjadi gambar utama di bagian paling atas beranda web.',
+                                'hero_image' => 'Unggah file gambar dari komputer Anda (JPG, PNG, WebP) atau masukkan tautan URL gambar.',
                                 'hero_image_caption' => 'Keterangan teks kecil di bawah foto utama hero banner.',
                                 default => 'Pastikan nilai yang Anda masukkan sesuai format yang diharapkan oleh halaman web publik.',
                             }),
@@ -53,11 +54,28 @@ class SettingForm
                                 ->dehydrated(false),
                         ]),
 
+                        Placeholder::make('current_image_preview')
+                            ->label('Pratinjau Gambar Saat Ini')
+                            ->content(fn ($record) => $record?->value ? new \Illuminate\Support\HtmlString('<div class="mt-1"><img src="' . (str_starts_with($record->value, 'http') ? e($record->value) : e(asset('storage/' . $record->value))) . '" alt="Pratinjau Banner" class="h-40 w-auto rounded border border-stone-200 shadow-sm object-cover" /></div>') : 'Belum ada gambar')
+                            ->visible(fn ($record) => $record?->key === 'hero_image'),
+
+                        FileUpload::make('value')
+                            ->label('Unggah Foto Hero Banner Baru')
+                            ->image()
+                            ->disk('public')
+                            ->directory('settings')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->helperText('Pilih atau seret gambar dari komputer Anda (JPG, PNG, WebP). Gambar ini akan otomatis muncul di banner atas website.')
+                            ->columnSpanFull()
+                            ->visible(fn ($record) => $record?->key === 'hero_image'),
+
                         Textarea::make('value')
                             ->label('Isi Nilai Pengaturan (Yang Tampil di Website)')
                             ->helperText('Edit teks di atas, lalu klik tombol Simpan (Save changes) di bawah.')
                             ->rows(3)
                             ->columnSpanFull()
+                            ->visible(fn ($record) => $record?->key !== 'hero_image')
                             ->required(),
                     ]),
             ]);

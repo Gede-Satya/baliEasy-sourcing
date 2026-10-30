@@ -67,8 +67,12 @@
                         <article class="bg-[#FAF8F5] border border-stone-200 flex flex-col justify-between group">
                             <div>
                                 <div class="aspect-4/3 overflow-hidden bg-stone-100">
+                                    @php
+                                        $prodImg = $prod->cover_image ?? $category->cover_image;
+                                        $prodImgUrl = !empty($prodImg) ? (str_starts_with($prodImg, 'http') ? $prodImg : asset('storage/' . $prodImg)) : 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80';
+                                    @endphp
                                     <img 
-                                        src="{{ $prod->cover_image ?? $category->cover_image }}" 
+                                        src="{{ $prodImgUrl }}" 
                                         alt="{{ $prod->name }}" 
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                         loading="lazy"
@@ -124,7 +128,7 @@
                         }
                     @endphp
                     <a href="{{ route('categories.show', $other->slug) }}" class="flex items-center gap-4 p-4 bg-white border border-stone-200 hover:border-stone-900 transition-colors group">
-                        <img src="{{ $other->cover_image }}" alt="{{ $otherName }}" class="w-14 h-14 object-cover shrink-0">
+                        <img src="{{ str_starts_with($other->cover_image ?? '', 'http') ? $other->cover_image : asset('storage/' . ($other->cover_image ?? '')) }}" alt="{{ $otherName }}" class="w-14 h-14 object-cover shrink-0">
                         <div>
                             <div class="font-serif text-base text-stone-900 group-hover:text-amber-800 transition-colors font-medium">{{ $otherName }}</div>
                             <span class="text-[10px] uppercase tracking-wider text-stone-500">View Category &rarr;</span>

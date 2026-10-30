@@ -47,7 +47,7 @@
                     <div class="lg:col-span-6 {{ $isReversed ? 'lg:order-2' : '' }}">
                         <div class="aspect-4/3 overflow-hidden bg-stone-200 border border-stone-300/80 shadow-sm relative group">
                             <img 
-                                src="{{ $cat->cover_image }}" 
+                                src="{{ str_starts_with($cat->cover_image ?? '', 'http') ? $cat->cover_image : asset('storage/' . ($cat->cover_image ?? '')) }}" 
                                 alt="{{ $catName }}" 
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                 loading="lazy"

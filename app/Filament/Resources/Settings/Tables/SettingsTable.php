@@ -35,7 +35,7 @@ class SettingsTable
                         'instagram_url' => 'Tautan ke profil Instagram resmi',
                         'site_name' => 'Muncul di logo, tab browser (SEO), dan hak cipta',
                         'tagline' => 'Slogan singkat identitas perusahaan',
-                        'hero_image' => 'URL foto beresolusi tinggi di beranda paling atas',
+                        'hero_image' => 'Unggah atau ganti foto banner di bagian teratas website',
                         'hero_image_caption' => 'Teks kecil di bawah foto utama',
                         default => "Kunci konfigurasi teknis: {$record->key}",
                     })

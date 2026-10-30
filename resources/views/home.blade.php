@@ -72,7 +72,7 @@
                     <div class="lg:col-span-6">
                         <div class="relative bg-stone-100 overflow-hidden shadow-sm">
                             <img 
-                                src="{{ $settings['hero_image'] ?? 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80' }}" 
+                                src="{{ !empty($settings['hero_image']) ? (str_starts_with($settings['hero_image'], 'http') ? $settings['hero_image'] : asset('storage/' . $settings['hero_image'])) : 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80' }}" 
                                 alt="Master woodcarver shaping seasoned plantation teak in traditional Indonesian workshop" 
                                 class="w-full h-auto aspect-4/5 object-cover object-center"
                                 width="640" 
