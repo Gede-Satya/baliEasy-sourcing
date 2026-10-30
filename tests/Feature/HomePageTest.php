@@ -29,7 +29,7 @@ class HomePageTest extends TestCase
         $response->assertSee('About Us');
         $response->assertSee('Product Categories');
         $response->assertSee('How It Works');
-        $response->assertSee('Partners');
+        $response->assertSee('Where to Stay & Where to Eat', false);
         $response->assertSee('Request a Quote');
     }
 

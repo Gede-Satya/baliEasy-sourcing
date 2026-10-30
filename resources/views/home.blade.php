@@ -42,7 +42,7 @@
                 <a href="#about" class="hover:text-stone-950 transition-colors">About Us</a>
                 <a href="#categories" class="hover:text-stone-950 transition-colors">Categories</a>
                 <a href="#how-it-works" class="hover:text-stone-950 transition-colors">How It Works</a>
-                <a href="#partners" class="hover:text-stone-950 transition-colors">Partners</a>
+                <a href="#stay-eat" class="hover:text-stone-950 transition-colors">Stay &amp; Eat</a>
                 <a href="#contact" class="hover:text-stone-950 transition-colors">Contact</a>
             </nav>
 
@@ -71,7 +71,7 @@
                 <a href="#about" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">About Us</a>
                 <a href="#categories" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Categories</a>
                 <a href="#how-it-works" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">How It Works</a>
-                <a href="#partners" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Partners</a>
+                <a href="#stay-eat" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Where to Stay &amp; Eat</a>
                 <a href="#contact" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">Contact Us</a>
                 <div class="pt-4 border-t border-stone-200">
                     <a href="#contact" class="block w-full py-3 text-center bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em]" onclick="toggleMobileMenu()">
@@ -357,32 +357,30 @@
             </div>
         </section>
 
-        <!-- 6. Recommended Partners (Stay & Eat) -->
-        <section id="partners" class="py-16 md:py-24 border-b border-stone-200/80">
+        <!-- 6. Where to Stay & Where to Eat -->
+        <section id="stay-eat" class="py-16 md:py-24 border-b border-stone-200/80">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 
                 <!-- Section Header -->
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-stone-200 gap-6">
-                    <div>
-                        <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
-                            BALI GUIDE
-                        </span>
-                        <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal">
-                            Where to Stay &amp; Eat in Bali
-                        </h2>
-                    </div>
-                    <p class="text-stone-600 text-sm md:text-base max-w-md font-light leading-relaxed">
-                        Curated villas, hotels, and dining spots for clients visiting Bali on sourcing and inspection trips.
+                <div class="max-w-xl mb-12">
+                    <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
+                        VISITING BALI
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-2">
+                        Where to Stay &amp; Where to Eat
+                    </h2>
+                    <p class="text-stone-600 text-sm font-light">
+                        Our simple, vetted recommendations for clients visiting Bali on workshop inspection trips.
                     </p>
                 </div>
 
-                <!-- 2 Large Partner Cards -->
+                <!-- 2 Simple Clean Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                     @foreach($partners as $partner)
-                        <article class="group flex flex-col justify-between bg-white border border-stone-200/70 p-6 md:p-8">
+                        <article class="group bg-white border border-stone-200/70 p-6 flex flex-col justify-between">
                             <div>
                                 <!-- Image Container -->
-                                <div class="overflow-hidden bg-stone-100 aspect-16/10 mb-6">
+                                <div class="overflow-hidden bg-stone-100 aspect-16/10 mb-5">
                                     <img 
                                         src="{{ $partner->cover_image }}" 
                                         alt="{{ $partner->name }}" 
@@ -393,10 +391,9 @@
                                     >
                                 </div>
 
-                                <!-- Partner Metadata Badge -->
-                                <div class="flex items-center justify-between text-[11px] font-semibold tracking-[0.18em] text-stone-500 uppercase mb-3">
-                                    <span>{{ strtoupper($partner->type) }} · {{ strtoupper($partner->area) }}</span>
-                                    <span>{{ $partner->price_range ?? '$$' }}</span>
+                                <!-- Simple Label: Where to Stay / Where to Eat -->
+                                <div class="text-[11px] font-semibold tracking-[0.18em] text-stone-500 uppercase mb-2">
+                                    {{ $partner->type === 'stay' ? 'Where to Stay' : 'Where to Eat' }} &middot; {{ $partner->area }}
                                 </div>
 
                                 <!-- Partner Title -->
@@ -404,16 +401,16 @@
                                     {{ $partner->name }}
                                 </h3>
 
-                                <!-- Partner Description -->
-                                <p class="text-stone-600 text-sm leading-relaxed font-light mb-6">
+                                <!-- Description -->
+                                <p class="text-stone-600 text-xs sm:text-sm leading-relaxed font-light mb-4">
                                     {{ $partner->description }}
                                 </p>
                             </div>
 
-                            <!-- Link Action -->
-                            <div class="pt-4 border-t border-stone-100">
-                                <a href="#contact" class="inline-flex items-center text-xs font-medium tracking-[0.15em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
-                                    <span>View Partner Information</span>
+                            <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
+                                <span class="text-stone-400 font-light">{{ $partner->price_range ?? '$$' }}</span>
+                                <a href="#contact" class="inline-flex items-center font-medium tracking-[0.12em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
+                                    <span>Learn More</span>
                                     <span class="ml-1 text-sm font-sans" aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
@@ -654,7 +651,7 @@
                         <li><a href="#about" class="hover:text-stone-200 transition-colors">About Us</a></li>
                         <li><a href="#categories" class="hover:text-stone-200 transition-colors">Categories</a></li>
                         <li><a href="#how-it-works" class="hover:text-stone-200 transition-colors">How It Works</a></li>
-                        <li><a href="#partners" class="hover:text-stone-200 transition-colors">Partners</a></li>
+                        <li><a href="#stay-eat" class="hover:text-stone-200 transition-colors">Where to Stay &amp; Eat</a></li>
                         <li><a href="#contact" class="hover:text-stone-200 transition-colors">Contact Us</a></li>
                         <li><a href="{{ url('/admin') }}" class="hover:text-stone-200 transition-colors">Admin Login</a></li>
                     </ul>
