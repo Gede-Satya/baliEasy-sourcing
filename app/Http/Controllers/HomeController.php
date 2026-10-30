@@ -73,3 +73,4 @@ class HomeController extends Controller
             ->with('newsletter_success', 'Thank you for subscribing to Bali Easy Sourcing updates.');
     }
 }
+
