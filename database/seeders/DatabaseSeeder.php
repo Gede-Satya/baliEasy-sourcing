@@ -379,5 +379,8 @@ class DatabaseSeeder extends Seeder
                 $p
             );
         }
+
+        // 8. Visitor Analytics Demo Data
+        $this->call(VisitorAnalyticsSeeder::class);
     }
 }

@@ -22,7 +22,7 @@ class ServiceResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationLabel = 'Services & Value Pillars';
+    protected static ?string $navigationLabel = 'Layanan & Prinsip Nilai';
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-shield-check';
 

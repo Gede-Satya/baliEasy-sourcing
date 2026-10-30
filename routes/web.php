@@ -13,3 +13,13 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/lang/{locale}', [HomeController::class, 'changeLocale'])->name('locale.switch');
 Route::post('/rfq', [HomeController::class, 'submitRfq'])->name('rfq.submit');
 Route::post('/newsletter', [HomeController::class, 'subscribeNewsletter'])->name('newsletter.subscribe');
+
+if (app()->environment('local')) {
+    Route::get('/admin/dev-autologin', function () {
+        $admin = \App\Models\User::where('email', 'admin@balieasy.com')->first();
+        if ($admin) {
+            \Illuminate\Support\Facades\Auth::login($admin);
+        }
+        return redirect('/admin');
+    });
+}

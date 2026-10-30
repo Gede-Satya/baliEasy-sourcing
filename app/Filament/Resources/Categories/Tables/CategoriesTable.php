@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Categories\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -61,6 +62,11 @@ class CategoriesTable
                 //
             ])
             ->recordActions([
+                Action::make('view_public')
+                    ->label('Lihat di Web')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn ($record): string => route('categories.show', $record->slug), shouldOpenInNewTab: true),
                 EditAction::make(),
             ])
             ->toolbarActions([

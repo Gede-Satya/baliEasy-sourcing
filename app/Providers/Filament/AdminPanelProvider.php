@@ -5,10 +5,13 @@ namespace App\Providers\Filament;
 use App\Filament\Widgets\LatestQuotations;
 use App\Filament\Widgets\QuotationStatusChart;
 use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\VisitorDevicesChart;
+use App\Filament\Widgets\VisitorTrafficChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -43,8 +46,19 @@ class AdminPanelProvider extends PanelProvider
                 PanelsRenderHook::AUTH_LOGIN_FORM_AFTER,
                 fn () => view('filament.auth-login-helper')
             )
+            ->renderHook(
+                PanelsRenderHook::USER_MENU_BEFORE,
+                fn () => view('filament.topbar-public-link')
+            )
             ->sidebarCollapsibleOnDesktop()
+            ->navigationItems([
+                NavigationItem::make('Buka Website')
+                    ->url(fn () => url('/'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->sort(999),
+            ])
             ->navigationGroups([
+                'Ringkasan & Analisis',
                 'Sourcing & RFQ',
                 'Catalog',
                 'Directory (Stay & Eat)',
@@ -59,6 +73,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->widgets([
                 StatsOverview::class,
+                VisitorTrafficChart::class,
+                VisitorDevicesChart::class,
                 QuotationStatusChart::class,
                 AccountWidget::class,
                 LatestQuotations::class,

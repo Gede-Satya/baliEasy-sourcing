@@ -6,6 +6,10 @@ use App\Filament\Resources\Settings\Pages\EditSetting;
 use App\Filament\Widgets\LatestQuotations;
 use App\Filament\Widgets\QuotationStatusChart;
 use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\TopPagesWidget;
+use App\Filament\Widgets\VisitorDevicesChart;
+use App\Filament\Widgets\VisitorTrafficChart;
+use App\Models\PageView;
 use App\Models\Setting;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
@@ -129,5 +133,62 @@ class AdminPanelTest extends TestCase
             'key' => 'whatsapp_number',
             'value' => '+62 899 9999 9999',
         ]);
+    }
+
+    public function test_public_website_traffic_is_tracked_by_visitor_middleware(): void
+    {
+        PageView::truncate();
+
+        $this->withServerVariables(['HTTP_USER_AGENT' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Safari/604.1'])
+            ->get('/');
+
+        $this->assertDatabaseHas('page_views', [
+            'path' => '/',
+            'device' => 'Mobile',
+        ]);
+
+        $this->get('/where-to-stay-and-eat');
+
+        $this->assertDatabaseHas('page_views', [
+            'path' => '/where-to-stay-and-eat',
+        ]);
+    }
+
+    public function test_visitor_traffic_chart_widget_renders(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $this->actingAs($admin);
+
+        Livewire::test(VisitorTrafficChart::class)
+            ->assertSuccessful();
+    }
+
+    public function test_visitor_devices_chart_widget_renders(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $this->actingAs($admin);
+
+        Livewire::test(VisitorDevicesChart::class)
+            ->assertSuccessful();
+    }
+
+    public function test_top_pages_widget_renders(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+        $this->actingAs($admin);
+
+        Livewire::test(TopPagesWidget::class)
+            ->assertSuccessful();
+    }
+
+    public function test_admin_can_access_visitor_analytics_page(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+
+        $response = $this->actingAs($admin)->get('/admin/visitor-analytics');
+
+        $response->assertStatus(200);
+        $response->assertSee('Statistik &amp; Analisis Pengunjung Website', false);
+        $response->assertSee('Log Kunjungan Langsung', false);
     }
 }

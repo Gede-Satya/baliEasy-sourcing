@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Partners\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -82,6 +83,11 @@ class PartnersTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                Action::make('view_public')
+                    ->label('Lihat di Web')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn ($record): string => route('stay-eat', ['type' => $record->type]), shouldOpenInNewTab: true),
                 EditAction::make(),
             ])
             ->toolbarActions([

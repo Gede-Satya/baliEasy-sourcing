@@ -22,7 +22,7 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $navigationLabel = 'Staff & Administrators';
+    protected static ?string $navigationLabel = 'Staf & Admin';
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-users';
 

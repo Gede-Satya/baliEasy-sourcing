@@ -22,7 +22,7 @@ class NewsletterSubscriberResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationLabel = 'Newsletter Leads';
+    protected static ?string $navigationLabel = 'Pelanggan Buletin';
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-envelope';
 

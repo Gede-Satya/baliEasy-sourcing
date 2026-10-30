@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -78,6 +79,11 @@ class ProductsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                Action::make('view_public')
+                    ->label('Lihat di Web')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn ($record): string => $record->category ? route('categories.show', $record->category->slug) : route('categories.index'), shouldOpenInNewTab: true),
                 EditAction::make(),
             ])
             ->toolbarActions([

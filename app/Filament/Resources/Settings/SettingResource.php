@@ -22,7 +22,7 @@ class SettingResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationLabel = 'Site Settings';
+    protected static ?string $navigationLabel = 'Pengaturan Website';
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
 

@@ -22,7 +22,7 @@ class PageResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $navigationLabel = 'Pages & Policies';
+    protected static ?string $navigationLabel = 'Halaman & Kebijakan';
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
 

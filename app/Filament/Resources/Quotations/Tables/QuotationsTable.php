@@ -98,11 +98,24 @@ class QuotationsTable
                     ->relationship('category', 'name'),
             ])
             ->recordActions([
+                Action::make('chat_wa')
+                    ->label('WhatsApp')
+                    ->icon('heroicon-m-chat-bubble-oval-left-ellipsis')
+                    ->color('success')
+                    ->url(function (Quotation $record): ?string {
+                        $phone = preg_replace('/[^0-9]/', '', $record->whatsapp ?: '');
+                        if (! $phone) {
+                            return null;
+                        }
+                        $text = urlencode("Halo {$record->name}, terima kasih telah mengajukan Request for Quote di Bali Easy Sourcing [Ref: {$record->reference_no}]. Kami ingin mendiskusikan rincian pesanan Anda.");
+                        return "https://wa.me/{$phone}?text={$text}";
+                    }, shouldOpenInNewTab: true)
+                    ->visible(fn (Quotation $record): bool => ! empty($record->whatsapp)),
                 ViewAction::make(),
                 EditAction::make(),
                 Action::make('mark_contacted')
-                    ->label('Contacted')
-                    ->icon('heroicon-m-chat-bubble-left')
+                    ->label('Tandai Dihubungi')
+                    ->icon('heroicon-m-check')
                     ->color('info')
                     ->visible(fn (Quotation $record): bool => $record->status === 'pending')
                     ->action(fn (Quotation $record) => $record->update(['status' => 'contacted'])),
