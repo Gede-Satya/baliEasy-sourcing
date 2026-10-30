@@ -109,7 +109,7 @@
                                 {{ $settings['cta_text'] ?? 'Request a Quote' }}
                             </a>
                             <a href="#categories" class="inline-flex items-center justify-center px-7 py-3.5 border border-stone-300 text-stone-800 text-xs font-medium uppercase tracking-[0.18em] hover:border-stone-900 transition-colors">
-                                Explore
+                                Explore Catalog
                             </a>
                         </div>
 
@@ -218,7 +218,7 @@
                             <!-- Link Action -->
                             <div class="pt-3 border-t border-stone-200">
                                 <a href="#contact" class="inline-flex items-center text-xs font-medium tracking-[0.15em] uppercase text-stone-900 hover:text-stone-600 transition-colors">
-                                    <span>Detail</span>
+                                    <span>View Details</span>
                                     <span class="ml-1 text-sm font-sans" aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
