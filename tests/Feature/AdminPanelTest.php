@@ -233,6 +233,16 @@ class AdminPanelTest extends TestCase
         $response->assertSee('Kirim Update WhatsApp ke Klien', false);
     }
 
+    public function test_category_form_auto_generates_slug_without_type_error(): void
+    {
+        $admin = User::where('email', 'admin@balieasy.com')->first();
+
+        Livewire::actingAs($admin)
+            ->test(\App\Filament\Resources\Categories\Pages\CreateCategory::class)
+            ->set('data.name', 'Natural Rattan Basket')
+            ->assertSet('data.slug', 'natural-rattan-basket');
+    }
+
     public function test_admin_can_update_setting(): void
     {
         $admin = User::where('email', 'admin@balieasy.com')->first();

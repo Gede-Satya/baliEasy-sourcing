@@ -19,3 +19,4 @@ class EditSourcingProject extends EditRecord
         ];
     }
 }
+
