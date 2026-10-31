@@ -84,6 +84,21 @@
                             </div>
                         </div>
 
+                        <!-- Sub-categories / Child Collections -->
+                        @if($cat->children && $cat->children->isNotEmpty())
+                            <div class="pt-3 border-t border-stone-200">
+                                <span class="text-[10px] uppercase font-semibold text-stone-400 block mb-2 tracking-wider">Sub-kategori Turunan:</span>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($cat->children as $child)
+                                        <a href="{{ route('categories.show', $child->slug) }}" class="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-medium border border-stone-200 transition-colors">
+                                            <span>{{ $child->name }}</span>
+                                            <span class="text-stone-400" aria-hidden="true">&rarr;</span>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
                         <!-- Actions -->
                         <div class="pt-4 flex flex-wrap items-center gap-4">
                             <a href="{{ route('categories.show', $cat->slug) }}" class="inline-flex items-center justify-center px-6 py-3 bg-stone-900 text-stone-50 text-xs font-semibold uppercase tracking-[0.16em] hover:bg-stone-800 transition-colors">

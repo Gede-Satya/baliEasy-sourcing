@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Categories\Tables;
 
+use App\Models\Category;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,6 +10,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class CategoriesTable
@@ -24,42 +26,59 @@ class CategoriesTable
                     ->defaultImageUrl(asset('images/placeholder.jpg')),
 
                 TextColumn::make('name')
-                    ->label('Category Name')
-                    ->description(fn ($record): ?string => $record->slug)
+                    ->label('Nama Kategori')
+                    ->formatStateUsing(function (Category $record): string {
+                        return $record->parent_id ? "↳ {$record->name}" : $record->name;
+                    })
+                    ->description(function (Category $record): ?string {
+                        return $record->parent_id ? "Sub-kategori dari: {$record->parent?->name}" : $record->slug;
+                    })
+                    ->weight(fn (Category $record): string => $record->parent_id ? 'medium' : 'bold')
+                    ->color(fn (Category $record): ?string => $record->parent_id ? 'primary' : null)
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('parent.name')
-                    ->label('Parent Category')
+                    ->label('Kategori Induk')
                     ->badge()
-                    ->color('gray')
-                    ->placeholder('Top-level'),
+                    ->color(fn (?string $state): string => $state ? 'info' : 'gray')
+                    ->placeholder('Paling Atas (Top-level)'),
+
+                TextColumn::make('children_count')
+                    ->label('Sub-kategori')
+                    ->counts('children')
+                    ->badge()
+                    ->color(fn (int $state): string => $state > 0 ? 'success' : 'gray')
+                    ->sortable(),
 
                 TextColumn::make('products_count')
-                    ->label('Products')
+                    ->label('Produk')
                     ->counts('products')
                     ->badge()
                     ->color('primary')
                     ->sortable(),
 
                 IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label('Aktif')
                     ->boolean()
                     ->sortable(),
 
                 TextColumn::make('sort_order')
-                    ->label('Sort')
+                    ->label('Urutan')
                     ->numeric()
                     ->sortable(),
 
                 TextColumn::make('updated_at')
-                    ->label('Last Updated')
+                    ->label('Terakhir Diubah')
                     ->dateTime('d M Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('parent_id')
+                    ->label('Filter Kategori Induk')
+                    ->relationship('parent', 'name')
+                    ->placeholder('Semua Induk'),
             ])
             ->recordActions([
                 Action::make('view_public')

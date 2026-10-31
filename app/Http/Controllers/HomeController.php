@@ -59,9 +59,14 @@ class HomeController extends Controller
     public function categories(): View
     {
         $settings = Setting::all()->pluck('value', 'key');
-        $categories = Category::active()->with(['products' => function ($query) {
-            $query->where('is_active', true)->orderBy('sort_order');
-        }])->orderBy('sort_order')->get();
+        $categories = Category::active()
+            ->rootOnly()
+            ->with([
+                'children' => fn ($query) => $query->where('is_active', true)->orderBy('sort_order'),
+                'products' => fn ($query) => $query->where('is_active', true)->orderBy('sort_order'),
+            ])
+            ->orderBy('sort_order')
+            ->get();
 
         return view('categories.index', compact('settings', 'categories'));
     }
@@ -72,10 +77,18 @@ class HomeController extends Controller
     public function showCategory(string $slug): View
     {
         $settings = Setting::all()->pluck('value', 'key');
-        $categories = Category::active()->orderBy('sort_order')->get();
-        $category = Category::where('slug', $slug)->where('is_active', true)->firstOrFail();
-        $products = $category->products()->where('is_active', true)->orderBy('sort_order')->get();
-        $otherCategories = Category::where('id', '!=', $category->id)->where('is_active', true)->take(3)->get();
+        $categories = Category::active()->rootOnly()->orderBy('sort_order')->get();
+        $category = Category::where('slug', $slug)
+            ->where('is_active', true)
+            ->with([
+                'parent',
+                'children' => fn ($query) => $query->where('is_active', true)->orderBy('sort_order'),
+            ])
+            ->firstOrFail();
+
+        $catIds = collect([$category->id])->merge($category->children->pluck('id'))->unique();
+        $products = \App\Models\Product::whereIn('category_id', $catIds)->where('is_active', true)->orderBy('sort_order')->get();
+        $otherCategories = Category::where('id', '!=', $category->id)->where('is_active', true)->rootOnly()->take(3)->get();
 
         return view('categories.show', compact('settings', 'categories', 'category', 'products', 'otherCategories'));
     }

@@ -20,13 +20,27 @@
     <section class="py-16 md:py-24 border-b border-stone-200/80 bg-[#F4EFEA]">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             
-            <a href="{{ route('categories.index') }}" class="inline-flex items-center text-xs font-semibold tracking-widest uppercase text-stone-500 hover:text-stone-900 transition-colors mb-6">
-                &larr; {{ __('site.categories_page.back_to_catalog') }}
-            </a>
+            <div class="flex items-center gap-2 mb-6 text-xs font-semibold tracking-widest uppercase flex-wrap">
+                <a href="{{ route('categories.index') }}" class="text-stone-500 hover:text-stone-900 transition-colors">
+                    &larr; {{ __('site.categories_page.back_to_catalog') }}
+                </a>
+                @if($category->parent)
+                    <span class="text-stone-300">/</span>
+                    <a href="{{ route('categories.show', $category->parent->slug) }}" class="text-stone-500 hover:text-stone-900 transition-colors">
+                        {{ $category->parent->name }}
+                    </a>
+                    <span class="text-stone-300">/</span>
+                    <span class="text-stone-900 font-bold">{{ $catName }}</span>
+                @endif
+            </div>
 
             <div class="max-w-3xl">
                 <span class="text-xs font-semibold tracking-[0.25em] text-stone-500 uppercase block mb-3">
-                    {{ __('site.categories.eyebrow') }}
+                    @if($category->parent)
+                        SUB-KATEGORI DARI {{ strtoupper($category->parent->name) }}
+                    @else
+                        {{ __('site.categories.eyebrow') }}
+                    @endif
                 </span>
                 <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-stone-900 font-normal leading-[1.15] mb-5">
                     {{ $catName }}
@@ -34,6 +48,20 @@
                 <p class="text-stone-600 text-base md:text-lg font-light leading-relaxed">
                     {{ $catDesc }}
                 </p>
+
+                @if($category->children && $category->children->isNotEmpty())
+                    <div class="mt-8 pt-6 border-t border-stone-300/60">
+                        <span class="text-xs uppercase font-semibold text-stone-500 tracking-wider block mb-3">Sub-kategori / Koleksi Spesifik:</span>
+                        <div class="flex flex-wrap gap-2.5">
+                            @foreach($category->children as $child)
+                                <a href="{{ route('categories.show', $child->slug) }}" class="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-stone-100 text-stone-900 text-xs font-medium border border-stone-300 transition-colors shadow-sm">
+                                    <span>{{ $child->name }}</span>
+                                    <span class="text-stone-400" aria-hidden="true">&rarr;</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
 
         </div>
