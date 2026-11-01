@@ -15,6 +15,11 @@ foreach ($dirs as $dir) {
     }
 }
 
+// Copy SQLite database to writable /tmp if needed
+if (!file_exists('/tmp/database.sqlite') && file_exists(__DIR__ . '/../database/database.sqlite')) {
+    @copy(__DIR__ . '/../database/database.sqlite', '/tmp/database.sqlite');
+}
+
 // Forward request to Laravel public/index.php
 require __DIR__ . '/../public/index.php';
 

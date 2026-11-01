@@ -36,6 +36,8 @@
     "APP_DEBUG": "false",
     "APP_URL": "https://balieasy-sourcing.vercel.app",
     "ASSET_URL": "https://balieasy-sourcing.vercel.app",
+    "DB_CONNECTION": "sqlite",
+    "DB_DATABASE": "/tmp/database.sqlite",
     "LOG_CHANNEL": "stderr",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
