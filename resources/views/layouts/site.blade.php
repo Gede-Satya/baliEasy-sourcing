@@ -42,7 +42,6 @@
                 <a href="{{ $h }}#home" class="hover:text-stone-950 transition-colors">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('about') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('about') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.about') }}</a>
                 <a href="{{ route('categories.index') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('categories.*') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.categories') }}</a>
-                <a href="{{ $h }}#how-it-works" class="hover:text-stone-950 transition-colors">{{ __('site.nav.how_it_works') }}</a>
                 <a href="{{ route('stay-eat') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('stay-eat') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.stay_eat') }}</a>
                 <a href="{{ route('contact') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('contact') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.contact') }}</a>
             </nav>
@@ -89,7 +88,6 @@
                 <a href="{{ $h }}#home" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('about') }}" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.about') }}</a>
                 <a href="{{ route('categories.index') }}" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.categories') }}</a>
-                <a href="{{ $h }}#how-it-works" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.how_it_works') }}</a>
                 <a href="{{ route('stay-eat') }}" class="py-1 hover:text-stone-950 {{ request()->routeIs('stay-eat') ? 'font-bold text-stone-950' : '' }}" onclick="toggleMobileMenu()">{{ __('site.nav.stay_eat') }}</a>
                 <a href="{{ route('contact') }}" class="py-1 hover:text-stone-950 {{ request()->routeIs('contact') ? 'font-bold text-stone-950' : '' }}" onclick="toggleMobileMenu()">{{ __('site.nav.contact') }}</a>
                 <div class="pt-4 border-t border-stone-200">
