@@ -15,6 +15,11 @@ foreach ($dirs as $dir) {
     }
 }
 
+// Never allow Vite dev hot file to be served in serverless production
+if (file_exists(__DIR__ . '/../public/hot')) {
+    @unlink(__DIR__ . '/../public/hot');
+}
+
 // Copy SQLite database to writable /tmp if needed
 if (!file_exists('/tmp/database.sqlite') && file_exists(__DIR__ . '/../database/database.sqlite')) {
     @copy(__DIR__ . '/../database/database.sqlite', '/tmp/database.sqlite');
