@@ -30,22 +30,22 @@
                         </p>
 
                         <!-- Actions -->
-                        <div class="flex flex-wrap items-center gap-4 mb-12">
-                            <a href="#contact" class="inline-flex items-center justify-center px-7 py-3.5 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+                            <a href="#contact" class="inline-flex items-center justify-center w-full sm:w-auto px-7 py-3.5 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm text-center">
                                 {{ __('site.hero.btn_quote') }}
                             </a>
-                            <a href="#categories" class="inline-flex items-center justify-center px-7 py-3.5 border border-stone-300 text-stone-800 text-xs font-medium uppercase tracking-[0.18em] hover:border-stone-900 transition-colors">
+                            <a href="#categories" class="inline-flex items-center justify-center w-full sm:w-auto px-7 py-3.5 border border-stone-300 text-stone-800 text-xs font-medium uppercase tracking-[0.18em] hover:border-stone-900 transition-colors text-center">
                                 {{ __('site.hero.btn_explore') }}
                             </a>
                         </div>
 
                         <!-- Trust Metrics / Stats -->
-                        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
+                        <div class="grid grid-cols-3 gap-3 sm:gap-6 pt-8 border-t border-stone-200">
                             <div>
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
                                     {{ $settings['stat_1_number'] ?? __('site.hero.stats.workshops_num') }}
                                 </div>
-                                <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
+                                <div class="text-[10px] sm:text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase leading-snug">
                                     {{ $settings['stat_1_label'] ?? __('site.hero.stats.workshops_label') }}
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
                                     {{ $settings['stat_2_number'] ?? __('site.hero.stats.pricing_num') }}
                                 </div>
-                                <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
+                                <div class="text-[10px] sm:text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase leading-snug">
                                     {{ $settings['stat_2_label'] ?? __('site.hero.stats.pricing_label') }}
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
                                     {{ $settings['stat_3_number'] ?? __('site.hero.stats.qc_num') }}
                                 </div>
-                                <div class="text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase">
+                                <div class="text-[10px] sm:text-[11px] text-stone-500 font-medium tracking-wide mt-1 uppercase leading-snug">
                                     {{ $settings['stat_3_label'] ?? __('site.hero.stats.qc_label') }}
                                 </div>
                             </div>
@@ -254,8 +254,8 @@
                         </p>
                     </div>
 
-                    <div class="shrink-0">
-                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm">
+                    <div class="shrink-0 w-full lg:w-auto">
+                        <a href="#contact" class="inline-flex items-center justify-center w-full lg:w-auto px-8 py-4 bg-stone-900 text-stone-50 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors shadow-sm text-center">
                             {{ __('site.banner.btn') }}
                         </a>
                     </div>
@@ -361,7 +361,7 @@
                     </p>
                 </div>
 
-                <form action="{{ route('rfq.submit') }}" method="POST" class="bg-white p-8 md:p-10 border border-stone-200 shadow-sm space-y-6">
+                <form action="{{ route('rfq.submit') }}" method="POST" class="bg-white p-5 sm:p-8 md:p-10 border border-stone-200 shadow-sm space-y-6">
                     @csrf
 
                     @if ($errors->any())
@@ -520,11 +520,11 @@
                     {{ __('site.bottom_cta.subtitle') }}
                 </p>
 
-                <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-100 transition-colors">
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+                    <a href="#contact" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-white text-stone-900 text-xs font-medium uppercase tracking-[0.18em] hover:bg-stone-100 transition-colors text-center">
                         {{ __('site.bottom_cta.btn_quote') }}
                     </a>
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 border border-stone-600 text-stone-200 text-xs font-medium uppercase tracking-[0.18em] hover:border-white hover:text-white transition-colors">
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 border border-stone-600 text-stone-200 text-xs font-medium uppercase tracking-[0.18em] hover:border-white hover:text-white transition-colors text-center">
                         {{ __('site.bottom_cta.btn_whatsapp') }}
                     </a>
                 </div>

@@ -101,7 +101,7 @@
                     if ($currentIndex === false) { $currentIndex = 0; }
                 @endphp
 
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 pt-6 border-t border-stone-200 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-6 border-t border-stone-200 text-xs">
                     @foreach($stagesList as $stageKey => $stageInfo)
                         @php
                             $stepIndex = array_search($stageKey, $stageOrder);

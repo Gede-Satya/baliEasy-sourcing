@@ -86,7 +86,7 @@
     <!-- 3. Key Operational Numbers / Impact Metrics -->
     <section class="py-14 bg-stone-900 text-stone-100 border-b border-stone-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center md:text-left">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 text-left">
                 
                 <div class="border-l-2 border-amber-400/50 pl-5">
                     <div class="font-serif text-4xl sm:text-5xl text-white font-normal mb-1">
@@ -233,11 +233,11 @@
             <p class="text-stone-300 text-sm md:text-base font-light leading-relaxed mb-8">
                 {{ __('site.about_page.cta_desc') }}
             </p>
-            <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ route('home') }}#contact" class="inline-flex items-center justify-center px-8 py-3.5 bg-white text-stone-900 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-stone-100 transition-colors">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+                <a href="{{ route('home') }}#contact" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 bg-white text-stone-900 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-stone-100 transition-colors text-center">
                     {{ __('site.about_page.cta_btn') }}
                 </a>
-                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3.5 border border-stone-700 text-stone-200 text-xs font-semibold uppercase tracking-[0.18em] hover:border-white hover:text-white transition-colors">
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['whatsapp_number'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 border border-stone-700 text-stone-200 text-xs font-semibold uppercase tracking-[0.18em] hover:border-white hover:text-white transition-colors text-center">
                     {{ __('site.bottom_cta.btn_whatsapp') }}
                 </a>
             </div>

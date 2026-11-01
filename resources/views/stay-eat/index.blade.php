@@ -27,17 +27,19 @@
 
             <!-- Filter Controls -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 pb-8 border-b border-stone-200 mb-12">
-                <!-- Type Filter Tabs -->
-                <div class="inline-flex items-center gap-2 p-1 bg-stone-100 rounded border border-stone-200 text-xs">
-                    <a href="{{ route('stay-eat') }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ empty($type) ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
-                        {{ __('site.stay_eat_page.filter_all') }} ({{ count($stays) + count($eats) }})
-                    </a>
-                    <a href="{{ route('stay-eat', ['type' => 'stay', 'area' => $area]) }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ $type === 'stay' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
-                        {{ __('site.stay_eat_page.filter_stay') }} ({{ count($stays) }})
-                    </a>
-                    <a href="{{ route('stay-eat', ['type' => 'eat', 'area' => $area]) }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ $type === 'eat' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
-                        {{ __('site.stay_eat_page.filter_eat') }} ({{ count($eats) }})
-                    </a>
+                <!-- Type Filter Tabs (Scrollable on small mobile) -->
+                <div class="overflow-x-auto max-w-full pb-1 -mb-1 scrollbar-none">
+                    <div class="inline-flex items-center gap-2 p-1 bg-stone-100 rounded border border-stone-200 text-xs shrink-0 whitespace-nowrap">
+                        <a href="{{ route('stay-eat') }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ empty($type) ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
+                            {{ __('site.stay_eat_page.filter_all') }} ({{ count($stays) + count($eats) }})
+                        </a>
+                        <a href="{{ route('stay-eat', ['type' => 'stay', 'area' => $area]) }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ $type === 'stay' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
+                            {{ __('site.stay_eat_page.filter_stay') }} ({{ count($stays) }})
+                        </a>
+                        <a href="{{ route('stay-eat', ['type' => 'eat', 'area' => $area]) }}" class="px-4 py-2 font-medium uppercase tracking-wider transition-all {{ $type === 'eat' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600 hover:text-stone-900' }}">
+                            {{ __('site.stay_eat_page.filter_eat') }} ({{ count($eats) }})
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Area Quick Filters -->

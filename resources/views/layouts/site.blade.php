@@ -38,7 +38,7 @@
             </a>
 
             <!-- Desktop Nav Links (Ordered matching section flow) -->
-            <nav class="hidden md:flex items-center space-x-7 text-xs font-medium uppercase tracking-[0.16em] text-stone-600" aria-label="Main Navigation">
+            <nav class="hidden lg:flex items-center space-x-7 text-xs font-medium uppercase tracking-[0.16em] text-stone-600" aria-label="Main Navigation">
                 <a href="{{ $h }}#home" class="hover:text-stone-950 transition-colors">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('about') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('about') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.about') }}</a>
                 <a href="{{ route('categories.index') }}" class="hover:text-stone-950 transition-colors {{ request()->routeIs('categories.*') ? 'text-stone-950 font-bold border-b border-stone-950 pb-0.5' : '' }}">{{ __('site.nav.categories') }}</a>
@@ -48,7 +48,7 @@
             </nav>
 
             <!-- Language Switcher & Right CTA Button -->
-            <div class="hidden sm:flex items-center space-x-4">
+            <div class="hidden lg:flex items-center space-x-4">
                 <!-- EN / ID Switcher -->
                 <div class="inline-flex items-center text-xs font-medium tracking-wider bg-stone-100 border border-stone-200/90 rounded px-2.5 py-1">
                     <a href="{{ route('locale.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'text-stone-950 font-bold' : 'text-stone-400 hover:text-stone-700' }} transition-colors" title="Switch to English">
@@ -66,7 +66,7 @@
             </div>
 
             <!-- Mobile Hamburger Button -->
-            <div class="md:hidden flex items-center space-x-3">
+            <div class="lg:hidden flex items-center space-x-3">
                 <!-- Mobile EN / ID Switcher -->
                 <div class="inline-flex items-center text-xs font-medium tracking-wider bg-stone-100 border border-stone-200 rounded px-2 py-0.5">
                     <a href="{{ route('locale.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'text-stone-950 font-bold' : 'text-stone-400' }}">EN</a>
@@ -74,7 +74,7 @@
                     <a href="{{ route('locale.switch', 'id') }}" class="{{ app()->getLocale() === 'id' ? 'text-stone-950 font-bold' : 'text-stone-400' }}">ID</a>
                 </div>
 
-                <button type="button" id="mobile-menu-btn" class="p-2 text-stone-800 hover:text-stone-950" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav">
+                <button type="button" id="mobile-menu-btn" class="p-2.5 text-stone-800 hover:text-stone-950 inline-flex items-center justify-center min-w-[44px] min-h-[44px]" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path id="menu-icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 6h16M4 12h16M4 18h16" />
                         <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M6 18L18 6M6 6l12 12" />
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Mobile Nav Menu Drawer -->
-        <div id="mobile-nav" class="hidden md:hidden bg-[#FAF8F5] border-b border-stone-200 px-6 py-6 transition-all">
+        <div id="mobile-nav" class="hidden lg:hidden bg-[#FAF8F5] border-b border-stone-200 px-6 py-6 transition-all">
             <nav class="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.15em] text-stone-700">
                 <a href="{{ $h }}#home" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('about') }}" class="py-1 hover:text-stone-950" onclick="toggleMobileMenu()">{{ __('site.nav.about') }}</a>
@@ -196,10 +196,10 @@
 
             <!-- Bottom Copyright & Policies -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-stone-500 text-[11px] gap-4">
-                <div>
+                <div class="text-center sm:text-left">
                     &copy; {{ date('Y') }} {{ $settings['site_name'] ?? 'Bali Easy Sourcing' }}. {{ __('site.footer.copyright') }}
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
                     <a href="{{ url('/admin') }}" class="hover:text-stone-300 transition-colors">{{ __('site.footer.staff_login') }}</a>
                     <a href="{{ $h }}#contact" class="hover:text-stone-300 transition-colors">{{ __('site.footer.terms') }}</a>
                     <a href="{{ $h }}#contact" class="hover:text-stone-300 transition-colors">{{ __('site.footer.privacy') }}</a>
