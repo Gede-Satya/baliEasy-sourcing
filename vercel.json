@@ -34,6 +34,8 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
+    "APP_URL": "https://balieasy-sourcing.vercel.app",
+    "ASSET_URL": "https://balieasy-sourcing.vercel.app",
     "LOG_CHANNEL": "stderr",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
@@ -45,3 +47,4 @@
     "VIEW_COMPILED_PATH": "/tmp/storage/framework/views"
   }
 }
+
