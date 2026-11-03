@@ -16,7 +16,7 @@ class ServiceForm
         return $schema
             ->components([
                 Section::make('Informasi Layanan & Nilai Sourcing')
-                    ->description('Layanan atau pilar keunggulan yang ditampilkan pada halaman About Us & How It Works.')
+                    ->description('Layanan atau pilar keunggulan yang ditampilkan pada Homepage (Komitmen Kami) & Halaman About Us (Core Principles).')
                     ->icon('heroicon-m-shield-check')
                     ->schema([
                         TextInput::make('title')
@@ -32,8 +32,9 @@ class ServiceForm
 
                         Grid::make(3)->schema([
                             TextInput::make('icon')
-                                ->label('Kode Ikon (Heroicons)')
-                                ->placeholder('heroicon-o-check-badge'),
+                                ->label('Kode Ikon')
+                                ->placeholder('shield-check, check-badge, chat-bubble-left-right, truck')
+                                ->helperText('Rekomendasi: shield-check, check-badge, chat-bubble-left-right, truck'),
 
                             TextInput::make('sort_order')
                                 ->label('Urutan')

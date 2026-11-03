@@ -97,7 +97,7 @@
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
                         {{ __('site.about.eyebrow') }}
                     </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
+                    <h2 class="font-poppins text-3xl sm:text-4xl text-stone-900 font-semibold tracking-tight mb-3">
                         {{ __('site.about.title') }}
                     </h2>
                     <p class="text-stone-600 text-sm md:text-base font-light leading-relaxed">
@@ -108,16 +108,52 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
                     @foreach($services as $index => $service)
                         @php
-                            $key = 'site.about.pillars.' . ($index + 1);
-                            $pilTitle = __("$key.title");
-                            if ($pilTitle === "$key.title") { $pilTitle = $service->title; }
-                            $pilDesc = __("$key.description");
-                            if ($pilDesc === "$key.description") { $pilDesc = $service->description; }
+                            $isIndonesian = app()->getLocale() === 'id';
+                            $title = $service->title;
+                            $desc = $service->description;
+
+                            $defaultPillars = [
+                                'Handpicked Workshops' => 1,
+                                'Rigorous Inspection Protocol' => 2,
+                                'Fluent, Fast Communication' => 3,
+                                'Full Container Consolidation' => 4,
+                            ];
+
+                            if ($isIndonesian && isset($defaultPillars[$service->title])) {
+                                $pNum = $defaultPillars[$service->title];
+                                $transTitle = __("site.about.pillars.$pNum.title");
+                                $transDesc = __("site.about.pillars.$pNum.description");
+                                if ($transTitle !== "site.about.pillars.$pNum.title") {
+                                    $title = $transTitle;
+                                }
+                                if ($transDesc !== "site.about.pillars.$pNum.description") {
+                                    $desc = $transDesc;
+                                }
+                            }
+
+                            $icon = $service->icon;
                         @endphp
-                        <div class="pt-5 border-t border-stone-300">
-                            <span class="font-serif text-sm text-stone-500">0{{ $index + 1 }}</span>
-                            <h3 class="font-serif text-xl text-stone-900 font-medium mt-2 mb-1.5">{{ $pilTitle }}</h3>
-                            <p class="text-stone-600 text-sm leading-relaxed font-light">{{ $pilDesc }}</p>
+                        <div class="pt-5 border-t border-stone-300 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-poppins text-2xl sm:text-3xl text-amber-800 font-bold tracking-tight">0{{ $index + 1 }}</span>
+                                    @if($icon)
+                                        <div class="text-stone-400">
+                                            @if(str_contains($icon, 'shield'))
+                                                <svg class="w-5 h-5 text-amber-800/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                                            @elseif(str_contains($icon, 'check') || str_contains($icon, 'badge'))
+                                                <svg class="w-5 h-5 text-amber-800/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+                                            @elseif(str_contains($icon, 'chat') || str_contains($icon, 'communication'))
+                                                <svg class="w-5 h-5 text-amber-800/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-.642 0-1.272-.033-1.894-.096A48.51 48.51 0 016.75 16.5m10.5-8.989A48.243 48.243 0 0012 7.5a48.27 48.27 0 00-5.25.289c-1.133.093-1.98 1.057-1.98 2.193v4.286c0 .97.616 1.813 1.5 2.097m10.5-8.989l-.001.002M12 7.5v-3.75a2.25 2.25 0 00-2.25-2.25H4.5A2.25 2.25 0 002.25 3.75v10.5a2.25 2.25 0 002.25 2.25h1.5"/></svg>
+                                            @elseif(str_contains($icon, 'truck') || str_contains($icon, 'shipping') || str_contains($icon, 'container'))
+                                                <svg class="w-5 h-5 text-amber-800/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.25V18.75m0-11.25H3.375c-.621 0-1.125.504-1.125 1.125v6.75c0 .621.504 1.125 1.125 1.125h1.5"/></svg>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                                <h3 class="font-poppins text-lg sm:text-xl text-stone-900 font-semibold tracking-tight mb-1.5">{{ $title }}</h3>
+                                <p class="text-stone-600 text-sm leading-relaxed font-light">{{ $desc }}</p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -210,7 +246,7 @@
                     <span class="text-xs font-semibold tracking-[0.22em] text-stone-500 uppercase block mb-2">
                         {{ __('site.how_it_works.eyebrow') }}
                     </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl text-stone-900 font-normal mb-3">
+                    <h2 class="font-poppins text-3xl sm:text-4xl text-stone-900 font-semibold tracking-tight mb-3">
                         {{ __('site.how_it_works.title') }}
                     </h2>
                     <p class="text-stone-600 text-sm md:text-base font-light leading-relaxed">
@@ -228,8 +264,8 @@
                             if ($stepDesc === "$key.description") { $stepDesc = $step->description; }
                         @endphp
                         <li class="pt-5 border-t border-stone-300">
-                            <span class="font-serif text-3xl text-stone-400 font-light">0{{ $index + 1 }}</span>
-                            <h3 class="font-serif text-xl text-stone-900 font-medium mt-2 mb-1.5">{{ $stepTitle }}</h3>
+                            <span class="font-poppins text-2xl sm:text-3xl text-amber-800 font-bold tracking-tight">0{{ $index + 1 }}</span>
+                            <h3 class="font-poppins text-lg sm:text-xl text-stone-900 font-semibold tracking-tight mt-2 mb-1.5">{{ $stepTitle }}</h3>
                             <p class="text-stone-600 text-sm leading-relaxed font-light">{{ $stepDesc }}</p>
                         </li>
                     @endforeach

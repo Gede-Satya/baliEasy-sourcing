@@ -14,22 +14,26 @@ class ServicesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('sort_order', 'asc')
             ->columns([
-                TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('icon')
-                    ->searchable(),
                 TextColumn::make('sort_order')
+                    ->label('Urutan')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('title')
+                    ->label('Nama Layanan / Nilai')
+                    ->searchable()
+                    ->weight('medium'),
+                TextColumn::make('icon')
+                    ->label('Ikon')
+                    ->badge()
+                    ->color('gray'),
                 IconColumn::make('is_active')
+                    ->label('Aktif')
                     ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Terakhir Diperbarui')
+                    ->dateTime('d M Y, H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
